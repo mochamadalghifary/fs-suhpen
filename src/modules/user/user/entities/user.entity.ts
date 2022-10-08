@@ -21,7 +21,7 @@ export class AppUser extends AppBaseEntity implements IAppUser {
 	@Column()
 	password: string;
 
-	@Column({ type: 'varchar', default: Role.AdminEmployee })
+	@Column({ type: 'enum', enum: Role, default: Role.AdminEmployee })
 	role: IAppRole;
 
 	@Column({ default: null })
@@ -44,7 +44,7 @@ export class AppUser extends AppBaseEntity implements IAppUser {
 
 	@BeforeInsert()
 	@BeforeUpdate()
-	beforeInsert(): void {
-		this.password = bcrypt.hash(this.password, 10)
+	async hashPassword() {
+		this.password = await bcrypt.hash(this.password, 10);
 	}
 }

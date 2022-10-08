@@ -9,49 +9,49 @@ import { UserService } from '../services/user.service';
 
 @Injectable()
 export class UserCrudApp {
-    constructor(
-        private readonly userIndexApp: UserIndexService,
-        private readonly userService: UserService,
-    ) {}
+	constructor(
+		private readonly userIndexApp: UserIndexService,
+		private readonly userService: UserService,
+	) {}
 
-    async fetch(req: UserIndexRequest): Promise<IPaginateResponse<IAppUser>> {
-        const res = await this.userIndexApp.fetch(req)
-        return res
-    }
+	async fetch(req: UserIndexRequest): Promise<IPaginateResponse<IAppUser>> {
+		const res = await this.userIndexApp.fetch(req)
+		return res
+	}
 
-    async create(req: UserRequest): Promise<IAppUser> {
-        const data = new AppUser();
-        Object.assign(data, req)
+	async create(req: UserRequest): Promise<IAppUser> {
+		const data = new AppUser();
+		Object.assign(data, req)
 
-        return await this.userService.create(data);
-    }
+		return await this.userService.create(data);
+	}
 
-    async find(): Promise<IAppUser[]> {
-        return await this.userService.find();
-    }
+	async find(): Promise<IAppUser[]> {
+		return await this.userService.find();
+	}
 
-    async findOneOrFail(id: string): Promise<IAppUser> {
-        return await this.userService.findOneOrFail(id);
-    }
+	async findOneOrFail(id: string): Promise<IAppUser> {
+		return await this.userService.findOneOrFail(id);
+	}
 
-    async update(id: string, req: UserRequest): Promise<IAppUser> {
-        const data = await this.userService.findOneOrFail(id);
+	async update(id: string, req: UserRequest): Promise<IAppUser> {
+		const data = await this.userService.findOneOrFail(id);
 
-        Object.assign(data, req);
-        data.updatedAt = new Date();
+		Object.assign(data, req);
+		data.updatedAt = new Date();
 
-        return await this.userService.update(data);
-    }
+		return await this.userService.update(data);
+	}
 
-    async delete(id: string): Promise<IAppUser> {
-        const data = this.userService.findOneOrFail(id)
-        await this.userService.delete(id);
-        return data
-    }
+	async delete(id: string): Promise<IAppUser> {
+		const data = this.userService.findOneOrFail(id)
+		await this.userService.delete(id);
+		return data
+	}
 
-    async softDelete(id: string): Promise<IAppUser> {
-        const data = this.userService.findOneOrFail(id)
-        await this.userService.softDelete(id);
-        return data
-    }
+	async softDelete(id: string): Promise<IAppUser> {
+		const data = this.userService.findOneOrFail(id)
+		await this.userService.softDelete(id);
+		return data
+	}
 }

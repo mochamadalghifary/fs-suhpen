@@ -31,7 +31,7 @@ export class UserRequest implements IAppUser {
     @IsString()
     @MinLength(6)
     @Matches(STRING_PASSWORD_CHARACTER, {
-        message: 'Password harus mengandung huruf kapital, huruf kecil, dan angka',
+        message: 'Password should contain number, under case, and upper case character',
     })
     @ApiProperty()
     password: string;

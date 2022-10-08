@@ -1,7 +1,8 @@
 import {
-    Controller, Get, UseGuards
+    Controller, Get, Param, UseGuards
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { Role } from 'src/common/enums/role.enum';
 import { IApiResponse } from 'src/common/interfaces/response.interface';
 import { Routes } from 'src/modules/routes';
 import { AdministratorGuard } from '../../auth/guards/administrator.guard';
@@ -19,6 +20,16 @@ export class RoleController {
     @Get()
     async find(): Promise<IApiResponse<IAppRole[]>> {
         const res = await this.roleService.find()
+
+        return {
+            message: 'Success get data',
+            data: res
+        }
+    }
+
+    @Get(':name')
+    async findOne(@Param() name: Role): Promise<IApiResponse<IAppRole>> {
+        const res = await this.roleService.findOne(name)
 
         return {
             message: 'Success get data',

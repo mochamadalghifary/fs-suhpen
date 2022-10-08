@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { SwaggerModule } from '@nestjs/swagger';
 import { join } from 'path';
 import {
   initializeTransactionalContext,
@@ -9,6 +9,7 @@ import {
 } from 'typeorm-transactional-cls-hooked';
 import { AppModule } from './app.module';
 import { config } from './config';
+import { swaggerConfig } from './infrastructure/swagger/swagger.config';
 
 async function bootstrap() {
   initializeTransactionalContext();
@@ -21,13 +22,6 @@ async function bootstrap() {
   app.useStaticAssets(publicPath);
   app.setGlobalPrefix(globalPrefix);
   app.enableCors();
-
-  const swaggerConfig = new DocumentBuilder()
-    .setTitle(config.app.name)
-    .setDescription('The Inventory API description')
-    .setVersion(config.app.version)
-    .addTag(config.app.tag)
-    .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('docs', app, document);

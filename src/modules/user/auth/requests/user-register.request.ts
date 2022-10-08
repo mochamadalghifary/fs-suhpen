@@ -6,12 +6,12 @@ import { UserRequest } from '../../user/requests/user.request';
 export class UserRegisterRequest extends PickType(UserRequest, [
   'email', 'password', 'name'
 ]) {
-  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @MinLength(6)
   @Matches(STRING_PASSWORD_CHARACTER, {
-    message: 'Password harus mengandung huruf kapital, huruf kecil, dan angka',
+    message: 'Password should contain number, under case, and upper case character',
   })
+  @ApiProperty()
   passwordConfirmation: string;
 }

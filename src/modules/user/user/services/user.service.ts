@@ -13,7 +13,7 @@ export class UserService implements BaseService {
 		private readonly userRepo: Repository<IAppUser>,
 	) {}
 
-	@Transactional()
+	// @Transactional()
 	async create(req: IAppUser): Promise<IAppUser> {
 		const data = this.userRepo.create(req);
 		return await this.userRepo.save(data);
