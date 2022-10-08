@@ -1,0 +1,52 @@
+import { ApiProperty } from '@nestjs/swagger';
+import {
+    IsEmail,
+    IsNotEmpty,
+    IsNumber,
+    IsPhoneNumber,
+    IsString,
+    Matches,
+    MinLength
+} from 'class-validator';
+import { IAppRole } from '../../role/interfaces/role.interface';
+import { STRING_PASSWORD_CHARACTER } from '../common/character.constant';
+import { IAppUser } from '../interfaces/user.interface';
+
+export class UserRequest implements IAppUser {
+    id: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @Matches(/^[a-zA-Z ]+$/)
+    @ApiProperty()
+    name: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @IsEmail()
+    @ApiProperty()
+    email: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @MinLength(6)
+    @Matches(STRING_PASSWORD_CHARACTER, {
+        message: 'Password harus mengandung huruf kapital, huruf kecil, dan angka',
+    })
+    @ApiProperty()
+    password: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @IsPhoneNumber('ID')
+    @ApiProperty()
+    phoneNumber: string;
+
+    @IsNotEmpty()
+    @IsNumber()
+    @ApiProperty()
+    otp: number;
+
+    role: IAppRole
+    isVerified: boolean
+}
