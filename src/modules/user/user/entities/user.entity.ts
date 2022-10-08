@@ -1,6 +1,9 @@
+import * as bcrypt from 'bcrypt';
 import { Role } from 'src/common/enums/role.enum';
-import { AppBaseEntity } from 'src/infrastructure/databases/entities/base.entity';
+import { AppBaseEntity } from 'src/databases/base.entity';
 import {
+	BeforeInsert,
+	BeforeUpdate,
 	Column,
 	Entity
 } from 'typeorm';
@@ -27,9 +30,21 @@ export class AppUser extends AppBaseEntity implements IAppUser {
 	@Column({ default: null, unique: true })
 	phoneNumber: string;
 
+	@Column({ default: null, unique: true })
+	avatar: string;
+
 	@Column({ default: null })
 	otp: number
 
+	@Column({ default: null })
+	_accessToken?: string;
+
 	@Column({ default: false })
 	isVerified: boolean
+
+	@BeforeInsert()
+	@BeforeUpdate()
+	beforeInsert(): void {
+		this.password = bcrypt.hash(this.password, 10)
+	}
 }

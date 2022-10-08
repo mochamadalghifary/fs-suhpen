@@ -6,71 +6,61 @@ import { IAppUser } from 'src/modules/user/user/interfaces/user.interface';
 
 @Injectable()
 export class MailService {
-    private logger = new Logger('MailService');
+	private logger = new Logger('MailService');
 
-    constructor(
-        @InjectQueue(config.mailQueueName)
-        private readonly mailQueue: Queue,
-    ) {}
+	constructor(
+		@InjectQueue(config.mailQueueName)
+		private readonly mailQueue: Queue,
+	) {}
 
-    async sendOTPConfirmationEmail(
-        member: IAppUser,
-        otp: number,
-    ): Promise<boolean> {
-        try {
-            await this.mailQueue.add('send-registered-user-email', {
-                member,
-                otp,
-            });
+	async sendOtp(
+		user: IAppUser,
+		otp: number,
+	): Promise<boolean> {
+		try {
+			await this.mailQueue.add('send-registered-user-email', { user, otp, });
 
-            this.logger.log(
-                `Added email "${member.email}" to send-otp-confirmation-email queue`,
-            );
+			this.logger.log(
+				`Added email "${user.email}" to send-otp-confirmation-email queue`,
+			);
 
-            return true;
-        } catch (error) {
-            this.logger.error(error);
-            return false;
-        }
-    }
+			return true;
+		} catch (error) {
+			this.logger.error(error);
+			return false;
+		}
+	}
 
-    async sendSuccessChangePassword(member: IAppUser): Promise<boolean> {
-        try {
-            await this.mailQueue.add('send-success-change-password', {
-                member,
-            });
+	async sendSuccessChangeEmail(
+		user: IAppUser,
+		otp: number,
+		email?: string,
+	): Promise<boolean> {
+		try {
+			await this.mailQueue.add('send-otp-update-email', { user, otp, email });
 
-            this.logger.log(
-                `Added email "${member.email}" to send-success-change-password queue`,
-            );
+			this.logger.log(
+				`Added email "${email}" to send-otp-update-email queue`,
+			);
 
-            return true;
-        } catch (error) {
-            this.logger.error(error);
-            return false;
-        }
-    }
+			return true;
+		} catch (error) {
+			this.logger.error(error);
+			return false;
+		}
+	}
 
-    async sendOTPUpdateEmailMember(
-        member: IAppUser,
-        otp: number,
-        email?: string,
-    ): Promise<boolean> {
-        try {
-            await this.mailQueue.add('send-otp-update-email', {
-                member,
-                otp,
-                email,
-            });
+	async sendSuccessChangePassword(user: IAppUser): Promise<boolean> {
+		try {
+			await this.mailQueue.add('send-success-change-password', { user, }),
+				this.logger.log(
+					`Added email "${user.email}" to send-success-change-password queue`,
+				);
 
-            this.logger.log(
-                `Added email "${email}" to send-otp-update-email queue`,
-            );
-
-            return true;
-        } catch (error) {
-            this.logger.error(error);
-            return false;
-        }
-    }
+			return true;
+		} catch (error) {
+			this.logger.error(error);
+			return false;
+		}
+	}
 }

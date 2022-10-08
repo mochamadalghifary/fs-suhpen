@@ -1,4 +1,4 @@
-import { Injectable, UnprocessableEntityException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import moment from 'moment';
 import { Exception } from 'src/common/exceptions/index.exception';
@@ -16,10 +16,10 @@ export class AuthEmailService {
         private readonly mailService: MailService,
     ) {}
 
-    async send(req: UserEmailRequest): Promise<number> {
+    async sendOtp(req: UserEmailRequest): Promise<number> {
         const user = await this.userService.findOneByEmail(req.email);
 
-        if (!user) throw new UnprocessableEntityException('Email tidak terdaftar');
+        if (!user) Exception.unprocessableEntity('Email tidak terdaftar')
 
         const otp: number = Math.floor(100000 + Math.random() * 900000);
         const otpExpiredAt = moment().add(+process.env.OTP_TIMEOUT_IN_MINUTES, 'minutes');
@@ -29,7 +29,7 @@ export class AuthEmailService {
         user.otpExpiredAt = otpExpiredAt.toDate();
         await this.userService.update(user);
 
-        await this.mailService.sendOTPConfirmationEmail(user, otp);
+        await this.mailService.sendOtp(user, otp);
 
         return countDown;
     }
@@ -50,7 +50,7 @@ export class AuthEmailService {
 
         await this.userService.update(user);
 
-        user.accessToken = await this.jwtService.signAsync({ id: user.id });
+        user._accessToken = await this.jwtService.signAsync({ id: user.id });
         return user;
     }
 }

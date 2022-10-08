@@ -9,30 +9,32 @@ export class UserResponse implements IAppUser {
 	role: IAppRole
 	address: string
 	phoneNumber: string;
+	avatar: string;
 	otp: number
 	otpExpiredAt?: Date
 	isVerified: boolean
-	accessToken?: string;
+	_accessToken?: string;
 
-	static fromEntity(model: IAppUser): UserResponse {
+	static fromEntity(data: IAppUser): UserResponse {
 		const res = new UserResponse()
 
-		res.id = model.id
-		res.name = model.name
-		res.email = model.email
+		res.id = data.id
+		res.name = data.name
+		res.email = data.email
 		res.password = null
-		res.role = model.role
-		res.address = model.address
-		res.phoneNumber = model.phoneNumber
-		res.otp = model.otp
-		res.otpExpiredAt = model.otpExpiredAt
-		res.isVerified = model.isVerified
-		res.accessToken = model.accessToken
+		res.role = data.role
+		res.address = data.address
+		res.phoneNumber = data.phoneNumber
+		res.avatar = data.avatar
+		res.otp = data.otp
+		res.otpExpiredAt = data.otpExpiredAt
+		res.isVerified = data.isVerified
+		res._accessToken = data._accessToken
 
 		return res
 	}
 
-	static fromEntities(models: IAppUser[]): UserResponse[] {
-		return models.map((model) => this.fromEntity(model));
+	static fromEntities(data: IAppUser[]): UserResponse[] {
+		return data.map((data) => this.fromEntity(data));
 	}
 }

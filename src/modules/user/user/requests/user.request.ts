@@ -43,6 +43,11 @@ export class UserRequest implements IAppUser {
     phoneNumber: string;
 
     @IsNotEmpty()
+    @IsString()
+    @ApiProperty()
+    avatar: string;
+
+    @IsNotEmpty()
     @IsNumber()
     @ApiProperty()
     otp: number;

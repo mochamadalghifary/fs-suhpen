@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from 'src/config';
-import { AppUser } from 'src/modules/user/user/entities/user.entity';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 @Module({
@@ -13,9 +12,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 			username: config.database.username,
 			password: config.database.password,
 			database: config.database.database,
-			entities: [
-				AppUser
-			],
+			autoLoadEntities: true,
 			synchronize: true,
 			namingStrategy: new SnakeNamingStrategy(),
 			logging: config.nodeEnv === 'local',

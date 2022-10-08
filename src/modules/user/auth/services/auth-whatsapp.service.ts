@@ -53,7 +53,7 @@ export class AuthWhatsAppService {
 
 		await this.userService.update(user);
 
-		user.accessToken = await this.jwtService.signAsync({ id: user.id });
+		user._accessToken = await this.jwtService.signAsync({ id: user.id });
 		return user;
 	}
 }

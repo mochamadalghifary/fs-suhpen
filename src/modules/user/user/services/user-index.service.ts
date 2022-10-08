@@ -27,8 +27,6 @@ export class UserIndexService extends BaseIndexService {
 			search: `%${req.search.toLowerCase()}%`,
 		})
 
-		// Do other query
-
 		query.orderBy(this.orderByKey(TABLE_NAME, TABLE_KEYS, req.sort), this.getOrder(req.order));
 		query.take(this.take(req.perPage));
 		query.skip(this.countOffset(req));

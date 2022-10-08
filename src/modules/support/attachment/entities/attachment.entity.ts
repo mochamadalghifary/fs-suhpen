@@ -1,4 +1,4 @@
-import { AppBaseEntity } from 'src/infrastructure/databases/entities/base.entity';
+import { AppBaseEntity } from 'src/databases/base.entity';
 import {
 	Column,
 	Entity

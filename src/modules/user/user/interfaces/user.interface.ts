@@ -7,9 +7,10 @@ export interface IAppUser extends IAppBaseEntity {
 	password: string
 	role: IAppRole
 	phoneNumber: string;
+	avatar: string;
 	address?: string
 	otp: number
 	otpExpiredAt?: Date
 	isVerified: boolean
-	accessToken?: string;
+	_accessToken?: string;
 }

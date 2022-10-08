@@ -11,6 +11,7 @@ import {
 	UseInterceptors
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiTags } from '@nestjs/swagger';
 import * as path from 'path';
 import { IApiResponse } from 'src/common/interfaces/response.interface';
 import { fileFilter, Utils } from 'src/common/utils/util';
@@ -24,6 +25,7 @@ import { AttachmentUploadResponse } from '../responses/attachment-upload.respons
 import { AttachmentService } from '../services/attachment.service';
 
 @Controller(Routes.Attachment)
+@ApiTags(Routes.Attachment)
 @UseGuards(AdministratorGuard, AdminStoreGuard)
 export class AttachmentController {
 	constructor(private readonly attachmentService: AttachmentService) {}

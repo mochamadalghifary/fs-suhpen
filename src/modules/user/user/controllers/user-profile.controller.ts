@@ -19,7 +19,7 @@ import { UserResponse } from '../responses/user.response';
 @Controller(Routes.Profile)
 @ApiTags(Routes.Profile)
 @UseGuards(AuthGuard())
-export class IamController {
+export class UserProfileController {
 	constructor(
 		private readonly UserCrudApp: UserCrudApp,
 	) {}

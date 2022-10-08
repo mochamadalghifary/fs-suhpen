@@ -28,9 +28,7 @@ export class UserCrudController implements BaseCrudController {
 	) {}
 
 	@Get()
-	async fetch(
-		@Query() req: UserIndexRequest
-	): Promise<IApiResponse<UserResponse[]>> {
+	async fetch(@Query() req: UserIndexRequest): Promise<IApiResponse<UserResponse[]>> {
 		const res = await this.userCrudApp.fetch(req);
 
 		return {
@@ -41,21 +39,17 @@ export class UserCrudController implements BaseCrudController {
 	}
 
 	@Post()
-	async create(
-		@Body() req: UserRequest,
-	): Promise<IApiResponse<UserResponse>> {
+	async create(@Body() req: UserRequest): Promise<IApiResponse<UserResponse>> {
 		const data = await this.userCrudApp.create(req);
 
 		return {
-			message: 'Success get data',
+			message: 'Success create data',
 			data: UserResponse.fromEntity(data),
 		};
 	}
 
 	@Get(':id')
-	async findOneOrFail(
-		@Param('id') id: string,
-	): Promise<IApiResponse<UserResponse>> {
+	async findOneOrFail(@Param('id') id: string): Promise<IApiResponse<UserResponse>> {
 		const data = await this.userCrudApp.findOneOrFail(id);
 
 		return {
@@ -65,26 +59,21 @@ export class UserCrudController implements BaseCrudController {
 	}
 
 	@Put(':id')
-	async update(
-		@Param('id') id: string,
-		@Body() req: UserRequest,
-	): Promise<IApiResponse<UserResponse>> {
+	async update(@Param('id') id: string, @Body() req: UserRequest): Promise<IApiResponse<UserResponse>> {
 		const data = await this.userCrudApp.update(id, req);
 
 		return {
-			message: 'Success get data',
+			message: 'Success update data',
 			data: UserResponse.fromEntity(data),
 		};
 	}
 
 	@Delete(':id')
-	async delete(
-		@Param('id') id: string,
-	): Promise<IApiResponse<UserResponse>> {
+	async delete(@Param('id') id: string): Promise<IApiResponse<UserResponse>> {
 		const data = await this.userCrudApp.delete(id);
 
 		return {
-			message: 'Success get data',
+			message: 'Success delete data',
 			data: UserResponse.fromEntity(data),
 		};
 	}
