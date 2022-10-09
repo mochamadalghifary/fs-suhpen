@@ -11,7 +11,7 @@ import { IAppUser } from '../../user/interfaces/user.interface';
 import { UserService } from '../../user/services/user.service';
 import { UserChangePasswordRequest } from '../requests/user-change-password.request';
 import { UserLoginRequest } from '../requests/user-login.request';
-import { UserEmailOtpRequest } from '../requests/user-otp-email.request';
+import { UserOtpEmailRequest } from '../requests/user-otp-email.request';
 import { UserRegisterRequest } from '../requests/user-register.request';
 import { AuthEmailService } from '../services/auth-email.service';
 import { AuthWhatsAppService } from '../services/auth-whatsapp.service';
@@ -46,11 +46,11 @@ export class AuthApp {
 		return user
 	}
 
-	async otpEmailSend(req: UserEmailOtpRequest): Promise<number> {
+	async otpEmailSend(req: UserOtpEmailRequest): Promise<number> {
 		return await this.authEmailService.sendOtp(req);
 	}
 
-	async otpEmailVerify(req: UserEmailOtpRequest): Promise<IAppUser> {
+	async otpEmailVerify(req: UserOtpEmailRequest): Promise<IAppUser> {
 		return await this.authEmailService.verify(req);
 	}
 

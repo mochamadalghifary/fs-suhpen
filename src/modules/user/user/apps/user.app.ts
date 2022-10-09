@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { IPaginateResponse } from 'src/infrastructure/index/index.interface';
+import { Propagation, Transactional } from 'typeorm-transactional-cls-hooked';
 import { AppUser } from '../entities/user.entity';
 import { IAppUser } from '../interfaces/user.interface';
 import { UserIndexRequest } from '../requests/user-index.request';
@@ -19,6 +20,7 @@ export class UserCrudApp {
 		return res
 	}
 
+	@Transactional({ propagation: Propagation.NESTED })
 	async create(req: UserRequest): Promise<IAppUser> {
 		const data = new AppUser();
 		Object.assign(data, req)
@@ -34,6 +36,7 @@ export class UserCrudApp {
 		return await this.userService.findOneOrFail(id);
 	}
 
+	@Transactional({ propagation: Propagation.NESTED })
 	async update(id: string, req: UserRequest): Promise<IAppUser> {
 		const data = await this.userService.findOneOrFail(id);
 
@@ -43,12 +46,14 @@ export class UserCrudApp {
 		return await this.userService.update(data);
 	}
 
+	@Transactional({ propagation: Propagation.NESTED })
 	async delete(id: string): Promise<IAppUser> {
 		const data = this.userService.findOneOrFail(id)
 		await this.userService.delete(id);
 		return data
 	}
 
+	@Transactional({ propagation: Propagation.NESTED })
 	async softDelete(id: string): Promise<IAppUser> {
 		const data = this.userService.findOneOrFail(id)
 		await this.userService.softDelete(id);

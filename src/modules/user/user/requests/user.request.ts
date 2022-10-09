@@ -52,6 +52,11 @@ export class UserRequest implements IAppUser {
     @ApiProperty()
     otp: number;
 
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsString()
+    accessToken: string;
+
     role: IAppRole
     isVerified: boolean
 }

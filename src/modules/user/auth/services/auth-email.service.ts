@@ -6,7 +6,7 @@ import { MailService } from '../../../support/mail/services/mail.service';
 import { IAppUser } from '../../user/interfaces/user.interface';
 import { UserService } from '../../user/services/user.service';
 import { UserEmailRequest } from '../requests/user-email.request';
-import { UserEmailOtpRequest } from '../requests/user-otp-email.request';
+import { UserOtpEmailRequest } from '../requests/user-otp-email.request';
 
 @Injectable()
 export class AuthEmailService {
@@ -35,7 +35,7 @@ export class AuthEmailService {
     }
 
     async verify(
-        req: UserEmailOtpRequest,
+        req: UserOtpEmailRequest,
     ): Promise<IAppUser> {
         const user = await this.userService.findOneByEmail(req.email);
 

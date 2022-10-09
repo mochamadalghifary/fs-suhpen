@@ -12,8 +12,8 @@ import { UserResponse } from '../../user/responses/user.response';
 import { AuthApp } from '../apps/auth.app';
 import { UserChangePasswordRequest } from '../requests/user-change-password.request';
 import { UserLoginRequest } from '../requests/user-login.request';
-import { UserEmailOtpRequest } from '../requests/user-otp-email.request';
-import { UserOtpRequest } from '../requests/user-otp-phone-number.request';
+import { UserOtpEmailRequest } from '../requests/user-otp-email.request';
+import { UserOtpRequest } from '../requests/user-otp.request';
 import { UserRegisterRequest } from '../requests/user-register.request';
 
 @Controller(Routes.Auth)
@@ -44,7 +44,7 @@ export class AuthController {
 	}
 
 	@Post('otp/email')
-	async sendOtpEmail(@Body() req: UserEmailOtpRequest): Promise<IApiResponse<any>> {
+	async sendOtpEmail(@Body() req: UserOtpEmailRequest): Promise<IApiResponse<any>> {
 		const sendOtpEmail = await this.authApp.otpEmailSend(
 			req,
 		);
@@ -58,7 +58,7 @@ export class AuthController {
 	}
 
 	@Patch('otp/email')
-	async verifyEmailOtp(@Body() req: UserEmailOtpRequest): Promise<IApiResponse<UserResponse>> {
+	async verifyEmailOtp(@Body() req: UserOtpEmailRequest): Promise<IApiResponse<UserResponse>> {
 		const user = await this.authApp.otpEmailVerify(req);
 
 		return {

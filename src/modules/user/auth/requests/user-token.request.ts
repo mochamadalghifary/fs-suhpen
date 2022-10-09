@@ -1,11 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Expose } from 'class-transformer';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { PickType } from '@nestjs/swagger';
+import { UserRequest } from '../../user/requests/user.request';
 
-export class UserTokenRequest {
-	@ApiProperty()
-	@IsNotEmpty()
-	@IsString()
-	@Expose({ name: 'access_token' })
-	accessToken: string;
-}
+export class UserTokenRequest extends PickType(UserRequest, [
+	'accessToken'
+]) {}
