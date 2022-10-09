@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseService } from 'src/infrastructure/module/base.service';
+import { BaseService } from 'src/infrastructure/base/base.service';
 import { DeleteResult, Repository } from 'typeorm';
 import { Transactional } from 'typeorm-transactional-cls-hooked';
 import { AppUser } from '../entities/user.entity';
@@ -13,7 +13,7 @@ export class UserService implements BaseService {
 		private readonly userRepo: Repository<IAppUser>,
 	) {}
 
-	// @Transactional()
+	@Transactional()
 	async create(req: IAppUser): Promise<IAppUser> {
 		const data = this.userRepo.create(req);
 		return await this.userRepo.save(data);

@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
-import { Role } from 'src/common/enums/role.enum';
-import { AppBaseEntity } from 'src/databases/base.entity';
+import { BaseEntity } from 'src/infrastructure/base/base.entity';
+import { Role } from 'src/modules/user/auth/enums/role.enum';
 import {
 	BeforeInsert,
 	BeforeUpdate,
@@ -11,7 +11,7 @@ import { IAppRole } from '../../role/interfaces/role.interface';
 import { IAppUser } from '../interfaces/user.interface';
 
 @Entity()
-export class AppUser extends AppBaseEntity implements IAppUser {
+export class AppUser extends BaseEntity implements IAppUser {
 	@Column()
 	name: string;
 

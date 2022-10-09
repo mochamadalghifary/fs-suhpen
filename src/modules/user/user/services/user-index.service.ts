@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IPaginateResponse } from 'src/common/interfaces/index.interface';
-import { BaseIndexService } from 'src/infrastructure/module/base-index.service';
+import { IPaginateResponse } from 'src/infrastructure/index/index.interface';
+import { BaseIndexService } from 'src/infrastructure/index/index.service';
 import { Repository } from 'typeorm';
 import { AppUser } from '../entities/user.entity';
 import { IAppUser } from '../interfaces/user.interface';

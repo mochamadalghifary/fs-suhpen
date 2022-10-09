@@ -13,8 +13,8 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags } from '@nestjs/swagger';
 import * as path from 'path';
-import { IApiResponse } from 'src/common/interfaces/response.interface';
 import { fileFilter, Utils } from 'src/common/utils/util';
+import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
 import { Routes } from 'src/modules/routes';
 import { AdminStoreGuard } from 'src/modules/user/auth/guards/admin-store.guard';
 import { AdministratorGuard } from 'src/modules/user/auth/guards/administrator.guard';

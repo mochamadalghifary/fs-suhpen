@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IPaginateResponse } from 'src/common/interfaces/index.interface';
+import { IPaginateResponse } from 'src/infrastructure/index/index.interface';
 import { AppUser } from '../entities/user.entity';
 import { IAppUser } from '../interfaces/user.interface';
 import { UserIndexRequest } from '../requests/user-index.request';

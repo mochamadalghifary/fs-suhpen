@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
-import { IApiResponse } from 'src/common/interfaces/response.interface';
+import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
 import { Routes } from 'src/modules/routes';
 import { UserResponse } from '../../user/responses/user.response';
 import { AuthApp } from '../apps/auth.app';

@@ -1,5 +1,5 @@
-import { IndexRequest } from 'src/common/requests/index.request';
 import { IsNotEmpty, IsString } from 'class-validator';
+import { IndexRequest } from 'src/infrastructure/index/index.request';
 
 export class FindAttachmentRequest extends IndexRequest {
 	@IsNotEmpty()

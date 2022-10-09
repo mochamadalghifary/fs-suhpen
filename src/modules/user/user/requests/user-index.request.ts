@@ -1,3 +1,3 @@
-import { IndexRequest } from 'src/common/requests/index.request';
+import { IndexRequest } from "src/infrastructure/index/index.request";
 
 export class UserIndexRequest extends IndexRequest {}

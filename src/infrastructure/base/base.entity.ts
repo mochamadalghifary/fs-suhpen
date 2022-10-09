@@ -1,4 +1,3 @@
-import { IAppBaseEntity } from 'src/common/interfaces/index-entity.interface';
 import { GetUserLogged } from 'src/modules/user/user/common/get-user.decorator';
 import { AppUser } from 'src/modules/user/user/entities/user.entity';
 import { IAppUser } from 'src/modules/user/user/interfaces/user.interface';
@@ -12,8 +11,9 @@ import {
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
 } from 'typeorm';
+import { IBaseEntity } from './base-entity.interface';
 
-export class AppBaseEntity implements IAppBaseEntity {
+export class BaseEntity implements IBaseEntity {
 	@PrimaryGeneratedColumn('uuid')
 	id: string;
 

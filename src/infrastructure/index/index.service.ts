@@ -3,18 +3,9 @@
  * Used to fetch paginated data with any sort, filter and search
  */
 
-import { OrderDirectionType } from 'src/common/enums/index.enum';
-import { IAppBaseEntity } from 'src/common/interfaces/index-entity.interface';
-import {
-	IPaginateRequest,
-	IPaginateResponse,
-	IPaginationMeta
-} from 'src/common/interfaces/index.interface';
-
-export enum IndexOrderEnum {
-	Asc = 'ASC',
-	Desc = 'DESC'
-}
+import { OrderDirectionEnum, OrderDirectionType } from 'src/infrastructure/index/index.enum';
+import { IBaseEntity } from '../base/base-entity.interface';
+import { IPaginateRequest, IPaginateResponse, IPaginationMeta } from './index.interface';
 
 export abstract class BaseIndexService {
 	readonly DefaultPerPage: number = 10;
@@ -22,7 +13,7 @@ export abstract class BaseIndexService {
 	readonly DefaultSort: string = 'created_at';
 	readonly DefaultOrder: OrderDirectionType = 'DESC';
 
-	abstract fetch(arg0: any, arg1: any): Promise<IPaginateResponse<IAppBaseEntity>>;
+	abstract fetch(arg0: any, arg1: any): Promise<IPaginateResponse<IBaseEntity>>;
 
 	countOffset({ page, perPage }: IPaginateRequest): number {
 		page = page ?? this.DefaultPage;
@@ -31,8 +22,8 @@ export abstract class BaseIndexService {
 		return (page - 1) * perPage;
 	}
 
-	getOrder(order: string): IndexOrderEnum {
-		return order == IndexOrderEnum.Asc ? IndexOrderEnum.Asc : IndexOrderEnum.Desc
+	getOrder(order: string): OrderDirectionEnum {
+		return order == OrderDirectionEnum.Asc ? OrderDirectionEnum.Asc : OrderDirectionEnum.Desc
 	}
 
 	take(amount: number): number {

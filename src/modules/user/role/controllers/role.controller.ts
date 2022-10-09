@@ -2,9 +2,9 @@ import {
     Controller, Get, Param, UseGuards
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Role } from 'src/common/enums/role.enum';
-import { IApiResponse } from 'src/common/interfaces/response.interface';
+import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
 import { Routes } from 'src/modules/routes';
+import { Role } from 'src/modules/user/auth/enums/role.enum';
 import { AdministratorGuard } from '../../auth/guards/administrator.guard';
 import { IAppRole } from '../interfaces/role.interface';
 import { RoleService } from '../services/role.service';

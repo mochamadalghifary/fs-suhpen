@@ -1,4 +1,4 @@
-import { AppBaseEntity } from 'src/databases/base.entity';
+import { BaseEntity } from 'src/infrastructure/base/base.entity';
 import {
 	Column,
 	Entity
@@ -6,7 +6,7 @@ import {
 import { IAppAttachment } from '../interfaces/attachment.interface';
 
 @Entity()
-export class AppAttachment extends AppBaseEntity implements IAppAttachment {
+export class AppAttachment extends BaseEntity implements IAppAttachment {
 	@Column()
 	attachment: string;
 

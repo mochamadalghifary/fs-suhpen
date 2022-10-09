@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
-import { IApiResponse } from 'src/common/interfaces/response.interface';
+import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
 import { Routes } from 'src/modules/routes';
 import { UserCrudApp } from '../apps/user.app';
 import { GetUserLogged } from '../common/get-user.decorator';

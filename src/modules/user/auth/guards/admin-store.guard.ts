@@ -1,5 +1,5 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { Role } from 'src/common/enums/role.enum';
+import { Role } from 'src/modules/user/auth/enums/role.enum';
 import { LoggedInGuard } from './logged-in.guard';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import { IPaginationMeta } from './index.interface';
+import { IPaginationMeta } from '../index/index.interface';
 
 export interface IApiResponse<T> {
 	message: string;

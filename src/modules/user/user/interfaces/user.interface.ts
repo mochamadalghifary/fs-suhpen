@@ -1,7 +1,7 @@
-import { IAppBaseEntity } from "src/common/interfaces/index-entity.interface";
+import { IBaseEntity } from "src/infrastructure/base/base-entity.interface";
 import { IAppRole } from "../../role/interfaces/role.interface";
 
-export interface IAppUser extends IAppBaseEntity {
+export interface IAppUser extends IBaseEntity {
 	name: string;
 	email: string
 	password: string

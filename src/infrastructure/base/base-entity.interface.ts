@@ -1,6 +1,6 @@
 import { IAppUser } from "src/modules/user/user/interfaces/user.interface";
 
-export interface IAppBaseEntity {
+export interface IBaseEntity {
 	id: string
 	createdAt?: Date;
 	createdBy?: IAppUser;

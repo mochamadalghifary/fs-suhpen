@@ -1,6 +1,6 @@
 // Index Request
 
-import { OrderDirectionType } from '../enums/index.enum';
+import { OrderDirectionType } from "src/infrastructure/index/index.enum";
 
 export interface ISortRequest {
   sort?: string

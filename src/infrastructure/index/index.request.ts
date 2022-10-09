@@ -1,6 +1,6 @@
 import { IsEnum, IsNumber, IsOptional, IsString, Min } from 'class-validator';
-import { OrderDirectionEnum, OrderDirectionType } from '../enums/index.enum';
-import { IPaginateRequest, ISortRequest } from '../interfaces/index.interface';
+import { OrderDirectionEnum, OrderDirectionType } from 'src/infrastructure/index/index.enum';
+import { IPaginateRequest, ISortRequest } from './index.interface';
 
 export class IndexRequest implements ISortRequest, IPaginateRequest {
 	@IsOptional()

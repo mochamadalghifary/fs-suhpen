@@ -1,6 +1,6 @@
-import { IAppBaseEntity } from "src/common/interfaces/index-entity.interface";
+import { IBaseEntity } from "src/infrastructure/base/base-entity.interface";
 
-export interface IAppAttachment extends IAppBaseEntity {
+export interface IAppAttachment extends IBaseEntity {
 	attachment: string;
 	module: string;
 }
