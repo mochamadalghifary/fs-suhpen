@@ -16,8 +16,7 @@ import * as path from 'path';
 import { fileFilter, Utils } from 'src/common/utils/util';
 import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
 import { Routes } from 'src/modules/routes';
-import { AdminStoreGuard } from 'src/modules/user/auth/guards/admin-store.guard';
-import { AdministratorGuard } from 'src/modules/user/auth/guards/administrator.guard';
+import { LoggedInGuard } from 'src/modules/user/auth/guards/logged-in.guard';
 import { config } from '../../../../config';
 import { AttachmentUploadRequest } from '../requests/attachment-upload.request';
 import { FindAttachmentRequest } from '../requests/find-attachment.request';
@@ -26,7 +25,7 @@ import { AttachmentService } from '../services/attachment.service';
 
 @Controller(Routes.Attachment)
 @ApiTags(Routes.Attachment)
-@UseGuards(AdministratorGuard, AdminStoreGuard)
+@UseGuards(LoggedInGuard)
 export class AttachmentController {
 	constructor(private readonly attachmentService: AttachmentService) {}
 	@Get(':filePath')

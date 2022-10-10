@@ -13,14 +13,15 @@ import { ApiTags } from '@nestjs/swagger';
 import { BaseCrudController } from 'src/infrastructure/base/base-crud.controller';
 import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
 import { Routes } from 'src/modules/routes';
-import { AdministratorGuard } from '../../auth/guards/administrator.guard';
+import { AdminGuard } from '../../auth/guards/admin.guard';
 import { UserCrudApp } from '../apps/user.app';
 import { UserIndexRequest } from '../requests/user-index.request';
 import { UserRequest } from '../requests/user.request';
 import { UserResponse } from '../responses/user.response';
+
 @Controller(Routes.Users)
 @ApiTags(Routes.Users)
-@UseGuards(AdministratorGuard)
+@UseGuards(AdminGuard)
 export class UserCrudController implements BaseCrudController {
 	constructor(
 		private readonly userCrudApp: UserCrudApp,

@@ -48,6 +48,11 @@ export class UserRequest implements IAppUser {
     avatar: string;
 
     @IsNotEmpty()
+    @IsString()
+    @ApiProperty()
+    address: string;
+
+    @IsNotEmpty()
     @IsNumber()
     @ApiProperty()
     otp: number;

@@ -6,19 +6,19 @@ import {
 	Put,
 	UseGuards
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
 import { Routes } from 'src/modules/routes';
+import { LoggedInGuard } from '../../auth/guards/logged-in.guard';
 import { UserCrudApp } from '../apps/user.app';
 import { GetUserLogged } from '../common/get-user.decorator';
 import { IAppUser } from '../interfaces/user.interface';
-import { UserRequest } from '../requests/user.request';
+import { UserUpdateRequest } from '../requests/user-update.request';
 import { UserResponse } from '../responses/user.response';
 
 @Controller(Routes.Profile)
 @ApiTags(Routes.Profile)
-@UseGuards(AuthGuard())
+@UseGuards(LoggedInGuard)
 export class UserProfileController {
 	constructor(
 		private readonly UserCrudApp: UserCrudApp,
@@ -39,7 +39,7 @@ export class UserProfileController {
 	@Put()
 	async update(
 		@Param('id') id: string,
-		@Body() req: UserRequest,
+		@Body() req: UserUpdateRequest,
 	): Promise<IApiResponse<UserResponse>> {
 		const data = await this.UserCrudApp.update(id, req);
 

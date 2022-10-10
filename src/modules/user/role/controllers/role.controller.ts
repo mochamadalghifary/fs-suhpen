@@ -5,13 +5,13 @@ import { ApiTags } from '@nestjs/swagger';
 import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
 import { Routes } from 'src/modules/routes';
 import { Role } from 'src/modules/user/role/enums/role.enum';
-import { AdministratorGuard } from '../../auth/guards/administrator.guard';
+import { AdminGuard } from '../../auth/guards/admin.guard';
 import { IAppRole } from '../interfaces/role.interface';
 import { RoleService } from '../services/role.service';
 
 @Controller(Routes.Roles)
 @ApiTags(Routes.Roles)
-@UseGuards(AdministratorGuard)
+@UseGuards(AdminGuard)
 export class RoleController {
     constructor(
         private readonly roleService: RoleService,

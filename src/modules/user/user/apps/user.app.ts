@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { IPaginateResponse } from 'src/infrastructure/index/index.interface';
-import { Propagation, Transactional } from 'typeorm-transactional-cls-hooked';
 import { AppUser } from '../entities/user.entity';
 import { IAppUser } from '../interfaces/user.interface';
 import { UserIndexRequest } from '../requests/user-index.request';
+import { UserUpdateRequest } from '../requests/user-update.request';
 import { UserRequest } from '../requests/user.request';
 import { UserIndexService } from '../services/user-index.service';
 import { UserService } from '../services/user.service';
@@ -20,7 +20,6 @@ export class UserCrudApp {
 		return res
 	}
 
-	@Transactional({ propagation: Propagation.NESTED })
 	async create(req: UserRequest): Promise<IAppUser> {
 		const data = new AppUser();
 		Object.assign(data, req)
@@ -36,24 +35,23 @@ export class UserCrudApp {
 		return await this.userService.findOneOrFail(id);
 	}
 
-	@Transactional({ propagation: Propagation.NESTED })
-	async update(id: string, req: UserRequest): Promise<IAppUser> {
+	async update(id: string, req: UserUpdateRequest): Promise<IAppUser> {
 		const data = await this.userService.findOneOrFail(id);
 
-		Object.assign(data, req);
-		data.updatedAt = new Date();
+		data.name = req.name
+		data.phoneNumber = req.phoneNumber
+		data.avatar = req.avatar
+		data.address = req.address
 
 		return await this.userService.update(data);
 	}
 
-	@Transactional({ propagation: Propagation.NESTED })
 	async delete(id: string): Promise<IAppUser> {
 		const data = this.userService.findOneOrFail(id)
 		await this.userService.delete(id);
 		return data
 	}
 
-	@Transactional({ propagation: Propagation.NESTED })
 	async softDelete(id: string): Promise<IAppUser> {
 		const data = this.userService.findOneOrFail(id)
 		await this.userService.softDelete(id);

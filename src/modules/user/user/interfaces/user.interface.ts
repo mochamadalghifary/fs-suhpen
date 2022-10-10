@@ -6,9 +6,9 @@ export interface IAppUser extends IBaseEntity {
 	email: string
 	password: string
 	role: IAppRole
-	phoneNumber?: string;
-	avatar?: string;
-	address?: string
+	phoneNumber: string;
+	avatar: string;
+	address: string
 	otp?: number
 	otpExpiredAt?: Date
 	isVerified: boolean

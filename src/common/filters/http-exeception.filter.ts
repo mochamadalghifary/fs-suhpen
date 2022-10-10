@@ -2,8 +2,9 @@ import {
   ArgumentsHost, Catch, ExceptionFilter, HttpException,
   UnprocessableEntityException
 } from '@nestjs/common';
+import { BaseExceptionFilter } from '@nestjs/core';
 import { Response } from 'express';
-import { EntityNotFoundError, FindRelationsNotFoundError } from 'typeorm';
+import { EntityNotFoundError, FindRelationsNotFoundError, QueryFailedError } from 'typeorm';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -55,5 +56,32 @@ export class RelationNotFoundExceptionFilter implements ExceptionFilter {
       message: 'Relation data not found',
       data: null,
     });
+  }
+}
+
+@Catch(QueryFailedError)
+export class QueryErrorFilter extends BaseExceptionFilter {
+  public catch(exception: any, host: ArgumentsHost): any {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse<Response>();
+
+    switch (exception.code) {
+      case 'ER_DUP_ENTRY':
+        const sqlMessage = exception.sqlMessage.replace('Duplicate entry ', '')
+        const indexValue = sqlMessage.indexOf(' ') - 1
+        const message = sqlMessage.slice(1, indexValue) + ' telah digunakan'
+
+        response.status(409).json({
+          message,
+          data: null,
+        });
+        break
+
+      default:
+        response.status(422).json({
+          message: 'Unprocessable entity',
+          data: null,
+        });
+    }
   }
 }

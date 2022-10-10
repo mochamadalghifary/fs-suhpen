@@ -37,10 +37,10 @@ export abstract class BaseIndexService {
 	}
 
 	querySearch(table: string, keys: string[]): string {
-		const querySearch = ''
+		let querySearch = ''
 
 		for (const key of keys) {
-			querySearch.concat(`lower(${table}.${key}) like :search or `)
+			querySearch += `lower(${table}.${key}) like :search or `
 		}
 
 		return querySearch.slice(0, -4);

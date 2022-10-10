@@ -6,9 +6,9 @@ const roles: IAppRole[] = [
 	{
 		name: Role.Administrator
 	}, {
-		name: Role.AdminStore
+		name: Role.HeadStore
 	}, {
-		name: Role.AdminEmployee
+		name: Role.Employee
 	}
 ]
 
