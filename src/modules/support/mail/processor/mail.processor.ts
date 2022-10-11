@@ -9,7 +9,7 @@ import {
 import { Logger } from '@nestjs/common';
 import { Job } from 'bull';
 import { config } from 'src/config';
-import { IAppUser } from 'src/modules/user/user/interfaces/user.interface';
+import { IAppUser } from 'src/modules/users/user/interfaces/user.interface';
 
 @Processor(config.mailQueueName)
 export class MailProcessor {

@@ -5,9 +5,9 @@ import { ValidationPipe } from './common/pipes/validation.pipe';
 import { DatabaseModule } from './databases/databases.module';
 import { FeatureModule } from './modules/feature/feature.module';
 import { SupportModule } from './modules/support/support.module';
-import { AuthModule } from './modules/user/auth/auth.module';
-import { RoleModule } from './modules/user/role/role.module';
-import { UserModule } from './modules/user/user/user.module';
+import { AuthModule } from './modules/users/auth/auth.module';
+import { RoleModule } from './modules/users/role/role.module';
+import { UserModule } from './modules/users/user/user.module';
 
 @Module({
   imports: [

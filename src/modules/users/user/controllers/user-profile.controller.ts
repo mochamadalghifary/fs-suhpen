@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
-import { Routes } from 'src/modules/routes';
+import { Modules } from 'src/modules/modules';
 import { LoggedInGuard } from '../../auth/guards/logged-in.guard';
 import { UserCrudApp } from '../apps/user.app';
 import { GetUserLogged } from '../common/get-user.decorator';
@@ -16,8 +16,8 @@ import { IAppUser } from '../interfaces/user.interface';
 import { UserUpdateRequest } from '../requests/user-update.request';
 import { UserResponse } from '../responses/user.response';
 
-@Controller(Routes.Profile)
-@ApiTags(Routes.Profile)
+@Controller(Modules.Profile)
+@ApiTags(Modules.Profile)
 @UseGuards(LoggedInGuard)
 export class UserProfileController {
 	constructor(

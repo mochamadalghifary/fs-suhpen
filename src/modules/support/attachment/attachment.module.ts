@@ -3,7 +3,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as path from 'path';
 import { config } from '../../../config';
-import { AuthModule } from '../../user/auth/auth.module';
+import { AuthModule } from '../../users/auth/auth.module';
 import { AttachmentController } from './controllers/attachment.controller';
 import { AppAttachment } from './entities/attachment.entity';
 import { AttachmentService } from './services/attachment.service';

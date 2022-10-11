@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Role } from 'src/modules/user/role/enums/role.enum';
+import { Role } from 'src/modules/users/role/enums/role.enum';
 import { IAppRole } from '../interfaces/role.interface';
 
 const roles: IAppRole[] = [

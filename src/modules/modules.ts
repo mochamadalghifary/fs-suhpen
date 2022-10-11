@@ -1,4 +1,4 @@
-export enum Routes {
+export enum Modules {
   Auth = 'auth',
   Users = 'users',
   Roles = 'roles',

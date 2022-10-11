@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import { BaseEntity } from 'src/infrastructure/base/base.entity';
-import { Role } from 'src/modules/user/role/enums/role.enum';
+import { Role } from 'src/modules/users/role/enums/role.enum';
 import {
 	BeforeInsert, Column,
 	Entity

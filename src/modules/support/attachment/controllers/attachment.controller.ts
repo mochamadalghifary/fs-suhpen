@@ -15,16 +15,16 @@ import { ApiTags } from '@nestjs/swagger';
 import * as path from 'path';
 import { fileFilter, Utils } from 'src/common/utils/util';
 import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
-import { Routes } from 'src/modules/routes';
-import { LoggedInGuard } from 'src/modules/user/auth/guards/logged-in.guard';
+import { Modules } from 'src/modules/modules';
+import { LoggedInGuard } from 'src/modules/users/auth/guards/logged-in.guard';
 import { config } from '../../../../config';
 import { AttachmentUploadRequest } from '../requests/attachment-upload.request';
 import { FindAttachmentRequest } from '../requests/find-attachment.request';
 import { AttachmentUploadResponse } from '../responses/attachment-upload.response';
 import { AttachmentService } from '../services/attachment.service';
 
-@Controller(Routes.Attachment)
-@ApiTags(Routes.Attachment)
+@Controller(Modules.Attachment)
+@ApiTags(Modules.Attachment)
 @UseGuards(LoggedInGuard)
 export class AttachmentController {
 	constructor(private readonly attachmentService: AttachmentService) {}
@@ -37,7 +37,7 @@ export class AttachmentController {
 	}
 
 	@Post()
-	@UseInterceptors(FileInterceptor(Routes.Attachment, { fileFilter: fileFilter }))
+	@UseInterceptors(FileInterceptor(Modules.Attachment, { fileFilter: fileFilter }))
 	async uploadAttachment(@UploadedFile() file: Express.Multer.File, @Body() req: AttachmentUploadRequest): Promise<IApiResponse<AttachmentUploadResponse>> {
 		const fileUrl = await Utils.moveFile(
 			file.path,

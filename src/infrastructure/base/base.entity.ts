@@ -1,6 +1,6 @@
-import { GetUserLogged } from 'src/modules/user/user/common/get-user.decorator';
-import { AppUser } from 'src/modules/user/user/entities/user.entity';
-import { IAppUser } from 'src/modules/user/user/interfaces/user.interface';
+import { GetUserLogged } from 'src/modules/users/user/common/get-user.decorator';
+import { AppUser } from 'src/modules/users/user/entities/user.entity';
+import { IAppUser } from 'src/modules/users/user/interfaces/user.interface';
 import {
 	BeforeInsert,
 	BeforeSoftRemove,

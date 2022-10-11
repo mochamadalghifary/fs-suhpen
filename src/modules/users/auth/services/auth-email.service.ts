@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import moment from 'moment';
 import { Exception } from 'src/common/exceptions/index.exception';
 import { config } from 'src/config';
-import { Routes } from 'src/modules/routes';
+import { Modules } from 'src/modules/modules';
 import { MailService } from '../../../support/mail/services/mail.service';
 import { IAppUser } from '../../user/interfaces/user.interface';
 import { UserService } from '../../user/services/user.service';
@@ -40,7 +40,7 @@ export class AuthEmailService {
 
         user.token = await this.jwtService.signAsync({ id: user.id });
 
-        const link = `${config.host}/${Routes.Auth}/password/get/${user.token}`
+        const link = `${config.host}/${Modules.Auth}/password/get/${user.token}`
 
         await this.userService.update(user);
         await this.mailService.sendLinkChangePassword(user, link);

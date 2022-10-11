@@ -3,14 +3,14 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
-import { Routes } from 'src/modules/routes';
-import { Role } from 'src/modules/user/role/enums/role.enum';
+import { Modules } from 'src/modules/modules';
+import { Role } from 'src/modules/users/role/enums/role.enum';
 import { AdminGuard } from '../../auth/guards/admin.guard';
 import { IAppRole } from '../interfaces/role.interface';
 import { RoleService } from '../services/role.service';
 
-@Controller(Routes.Roles)
-@ApiTags(Routes.Roles)
+@Controller(Modules.Roles)
+@ApiTags(Modules.Roles)
 @UseGuards(AdminGuard)
 export class RoleController {
     constructor(

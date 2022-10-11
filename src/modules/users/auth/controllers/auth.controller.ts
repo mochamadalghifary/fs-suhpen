@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
-import { Routes } from 'src/modules/routes';
+import { Modules } from 'src/modules/modules';
 import { UserResponse } from '../../user/responses/user.response';
 import { AuthApp } from '../apps/auth.app';
 import { AuthChangePasswordRequest } from '../requests/auth-change-password.request';
@@ -13,8 +13,8 @@ import { AuthEmailRequest } from '../requests/auth-email.request';
 import { AuthLoginRequest } from '../requests/auth-login.request';
 import { AuthRegisterRequest } from '../requests/auth-register.request';
 
-@Controller(Routes.Auth)
-@ApiTags(Routes.Auth)
+@Controller(Modules.Auth)
+@ApiTags(Modules.Auth)
 export class AuthController {
 	constructor(
 		private readonly authApp: AuthApp,

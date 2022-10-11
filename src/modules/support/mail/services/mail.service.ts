@@ -2,7 +2,7 @@ import { InjectQueue } from '@nestjs/bull';
 import { Injectable, Logger } from '@nestjs/common';
 import { Queue } from 'bull';
 import { config } from 'src/config';
-import { IAppUser } from 'src/modules/user/user/interfaces/user.interface';
+import { IAppUser } from 'src/modules/users/user/interfaces/user.interface';
 
 @Injectable()
 export class MailService {
