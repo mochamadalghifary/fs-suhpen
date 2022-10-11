@@ -28,8 +28,9 @@ import { AttachmentService } from '../services/attachment.service';
 @UseGuards(LoggedInGuard)
 export class AttachmentController {
 	constructor(private readonly attachmentService: AttachmentService) {}
+
 	@Get(':filePath')
-	seeUploadedFile(@Param('filePath') file: string, @Res() res) {
+	findUploadedAttachment(@Param('filePath') file: string, @Res() res: any) {
 		return res.sendFile(file, {
 			root: path.resolve('./') + '/dist/' + config.assets.public,
 		});
@@ -37,19 +38,13 @@ export class AttachmentController {
 
 	@Post()
 	@UseInterceptors(FileInterceptor(Routes.Attachment, { fileFilter: fileFilter }))
-	async uploadFile(
-		@UploadedFile() file: Express.Multer.File,
-		@Body() attachmentUploadRequest: AttachmentUploadRequest,
-	): Promise<IApiResponse<AttachmentUploadResponse>> {
+	async uploadAttachment(@UploadedFile() file: Express.Multer.File, @Body() req: AttachmentUploadRequest): Promise<IApiResponse<AttachmentUploadResponse>> {
 		const fileUrl = await Utils.moveFile(
 			file.path,
 			'/' + Date.now() + '-' + file.originalname,
 		);
 
-		const attachment = await this.attachmentService.upload(
-			fileUrl,
-			attachmentUploadRequest,
-		);
+		const attachment = await this.attachmentService.upload(fileUrl, req);
 
 		return {
 			message: 'Success upload file',
@@ -59,9 +54,7 @@ export class AttachmentController {
 
 	@Get()
 	async findAttachment(@Query() findAttachmentRequest: FindAttachmentRequest): Promise<IApiResponse<AttachmentUploadResponse>> {
-		const attachment = await this.attachmentService.findOne(
-			findAttachmentRequest,
-		);
+		const attachment = await this.attachmentService.findOne(findAttachmentRequest);
 
 		return {
 			message: 'Success find file',

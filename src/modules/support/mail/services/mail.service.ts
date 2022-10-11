@@ -18,7 +18,7 @@ export class MailService {
 		otp: number,
 	): Promise<boolean> {
 		try {
-			await this.mailQueue.add('send-registered-user-email', { user, otp, });
+			await this.mailQueue.add('send-registered-user-email', { user, otp });
 
 			this.logger.log(
 				`Added email "${user.email}" to send-otp-confirmation-email queue`,
@@ -42,6 +42,20 @@ export class MailService {
 			this.logger.log(
 				`Added email "${email}" to send-otp-update-email queue`,
 			);
+
+			return true;
+		} catch (error) {
+			this.logger.error(error);
+			return false;
+		}
+	}
+
+	async sendLinkChangePassword(user: IAppUser, link: string): Promise<boolean> {
+		try {
+			await this.mailQueue.add('send-link-change-password', { user, link }),
+				this.logger.log(
+					`Added email "${user.email}" to send-link-change-password queue`,
+				);
 
 			return true;
 		} catch (error) {

@@ -2,11 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import moment from 'moment';
 import { Exception } from 'src/common/exceptions/index.exception';
+import { config } from 'src/config';
+import { Routes } from 'src/modules/routes';
 import { MailService } from '../../../support/mail/services/mail.service';
 import { IAppUser } from '../../user/interfaces/user.interface';
 import { UserService } from '../../user/services/user.service';
-import { UserEmailRequest } from '../requests/user-email.request';
-import { UserOtpEmailRequest } from '../requests/user-otp-email.request';
+import { AuthEmailRequest } from '../requests/auth-email.request';
 
 @Injectable()
 export class AuthEmailService {
@@ -16,7 +17,7 @@ export class AuthEmailService {
         private readonly mailService: MailService,
     ) {}
 
-    async sendOtp(req: UserEmailRequest): Promise<number> {
+    async sendOtp(req: AuthEmailRequest): Promise<number> {
         const user = await this.userService.findOneByEmail(req.email);
 
         if (!user) Exception.unprocessableEntity('Email tidak terdaftar')
@@ -34,15 +35,26 @@ export class AuthEmailService {
         return countDown;
     }
 
+    async passwordSendLink(req: AuthEmailRequest): Promise<IAppUser> {
+        const user = await this.userService.findOneByEmail(req.email);
+
+        user.token = await this.jwtService.signAsync({ id: user.id });
+
+        const link = `${config.host}/${Routes.Auth}/password/get/${user.token}`
+
+        await this.userService.update(user);
+        await this.mailService.sendLinkChangePassword(user, link);
+
+        return user;
+    }
+
     async verify(
-        req: UserOtpEmailRequest,
+        req: AuthEmailRequest,
     ): Promise<IAppUser> {
         const user = await this.userService.findOneByEmail(req.email);
 
         if (!user) Exception.unprocessableEntity('Email tidak terdaftar')
-        if (user.otp != req.otp) Exception.unprocessableEntity('OTP salah')
         if (user.email != req.email) throw Exception.unprocessableEntity('Email salah')
-        if (moment().diff(user.otpExpiredAt, 'seconds') > 0) Exception.unprocessableEntity('OTP sudah kadaluarsa')
 
         user.otp = null;
         user.otpExpiredAt = null;
@@ -50,7 +62,7 @@ export class AuthEmailService {
 
         await this.userService.update(user);
 
-        user._accessToken = await this.jwtService.signAsync({ id: user.id });
+        user.token = await this.jwtService.signAsync({ id: user.id });
         return user;
     }
 }

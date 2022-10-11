@@ -5,14 +5,13 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { Exception } from 'src/common/exceptions/index.exception';
 import { MailService } from '../../../support/mail/services/mail.service';
-import { GetUserLogged } from '../../user/common/get-user.decorator';
 import { AppUser } from '../../user/entities/user.entity';
 import { IAppUser } from '../../user/interfaces/user.interface';
 import { UserService } from '../../user/services/user.service';
-import { UserChangePasswordRequest } from '../requests/user-change-password.request';
-import { UserLoginRequest } from '../requests/user-login.request';
-import { UserOtpEmailRequest } from '../requests/user-otp-email.request';
-import { UserRegisterRequest } from '../requests/user-register.request';
+import { AuthChangePasswordRequest } from '../requests/auth-change-password.request';
+import { AuthEmailRequest } from '../requests/auth-email.request';
+import { AuthLoginRequest } from '../requests/auth-login.request';
+import { AuthRegisterRequest } from '../requests/auth-register.request';
 import { AuthEmailService } from '../services/auth-email.service';
 import { AuthWhatsAppService } from '../services/auth-whatsapp.service';
 
@@ -26,14 +25,14 @@ export class AuthApp {
 		private readonly authEmailService: AuthEmailService,
 	) {}
 
-	async register(req: UserRegisterRequest): Promise<IAppUser> {
+	async register(req: AuthRegisterRequest): Promise<IAppUser> {
 		const user = new AppUser();
 		Object.assign(user, req);
 
 		return await this.userService.create(user);
 	}
 
-	async login(req: UserLoginRequest): Promise<IAppUser> {
+	async login(req: AuthLoginRequest): Promise<IAppUser> {
 		const { email, password } = req;
 		const user = await this.userService.findOneByEmail(email);
 
@@ -41,44 +40,47 @@ export class AuthApp {
 		!(await bcrypt.compare(password, user.password)) &&
 			Exception.unprocessableEntity('Email atau Password Anda salah')
 
-		user._accessToken = this.jwtService.sign({ id: user.id });
+		user.token = await this.jwtService.signAsync({ id: user.id });
 
 		return user
 	}
 
-	async otpEmailSend(req: UserOtpEmailRequest): Promise<number> {
-		return await this.authEmailService.sendOtp(req);
+	async passwordSendLink(req: AuthEmailRequest): Promise<IAppUser> {
+		return await this.authEmailService.passwordSendLink(req);
 	}
 
-	async otpEmailVerify(req: UserOtpEmailRequest): Promise<IAppUser> {
-		return await this.authEmailService.verify(req);
+	async passwordGetLink(token: string): Promise<IAppUser> {
+		return await this.userService.findOneByToken(token);
 	}
 
-	async otpWhatsAppSend(@GetUserLogged() user?: IAppUser): Promise<void> {
-		await this.authWhatsAppService.send(user.phoneNumber);
-	}
-
-	async otpWhatsAppVerify(otp: number, @GetUserLogged() user?: IAppUser): Promise<IAppUser> {
-		return await this.authWhatsAppService.verify(otp, user);
-	}
-
-	async passwordChange(req: UserChangePasswordRequest): Promise<IAppUser> {
+	async passwordChange(req: AuthChangePasswordRequest): Promise<IAppUser> {
 		const user = await this.userService.findOneByEmail(req.email);
-		const salt = await bcrypt.genSalt();
-		const hashedPassword = await bcrypt.hash(req.password, salt);
 
+		user.token != req.token && Exception.unprocessableEntity('Invalid token')
 		!user && Exception.unprocessableEntity('Email atau Nomor Telepon belum terdaftar')
 
-		if (user.password) if (await bcrypt.compare(req.password, user.password)) {
-			Exception.unprocessableEntity('Kata sandi telah digunakan sebelumnya')
-		}
-
-		user.password = hashedPassword;
-		user._accessToken = null;
+		user.password = await bcrypt.hash(req.password, 10);
+		user.token = null;
 
 		await this.userService.update(user);
 		await this.mailService.sendSuccessChangePassword(user);
 
 		return user;
 	}
+
+	// async otpEmailSend(req: AuthEmailRequest): Promise<number> {
+	// 	return await this.authEmailService.sendOtp(req);
+	// }
+
+	// async otpEmailVerify(req: AuthEmailRequest): Promise<IAppUser> {
+	// 	return await this.authEmailService.verify(req);
+	// }
+
+	// async otpWhatsAppSend(@GetUserLogged() user?: IAppUser): Promise<void> {
+	// 	await this.authWhatsAppService.send(user.phoneNumber);
+	// }
+
+	// async otpWhatsAppVerify(otp: number, @GetUserLogged() user?: IAppUser): Promise<IAppUser> {
+	// 	return await this.authWhatsAppService.verify(otp, user);
+	// }
 }

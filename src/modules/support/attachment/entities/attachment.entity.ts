@@ -8,7 +8,7 @@ import { IAppAttachment } from '../interfaces/attachment.interface';
 @Entity()
 export class AppAttachment extends BaseEntity implements IAppAttachment {
 	@Column()
-	attachment: string;
+	fileUrl: string;
 
 	@Column()
 	module: string;

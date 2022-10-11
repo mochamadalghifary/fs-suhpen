@@ -32,7 +32,7 @@ export class UserService implements BaseService {
 	async update(req: IAppUser): Promise<IAppUser> {
 		const data = this.userRepo.create(req);
 		await this.userRepo.update(data.id, data);
-		return this.findOneOrFail(req.id)
+		return await this.findOneOrFail(req.id)
 	}
 
 	async delete(id: string): Promise<DeleteResult> {
@@ -49,5 +49,9 @@ export class UserService implements BaseService {
 
 	public async findOneByPhoneNumber(phoneNumber: string): Promise<IAppUser> {
 		return await this.userRepo.findOneOrFail({ where: { phoneNumber } });
+	}
+
+	public async findOneByToken(token: string): Promise<IAppUser> {
+		return await this.userRepo.findOneOrFail({ where: { token } });
 	}
 }

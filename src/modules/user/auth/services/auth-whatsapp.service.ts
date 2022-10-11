@@ -38,11 +38,7 @@ export class AuthWhatsAppService {
 			.catch((error) => { throw new Error(error) });
 	}
 
-	async verify(
-		otp: number,
-		user: IAppUser,
-	): Promise<IAppUser> {
-
+	async verify(otp: number, user: IAppUser): Promise<IAppUser> {
 		if (!user) Exception.unprocessableEntity('Email tidak terdaftar')
 		if (user.otp != otp) Exception.unprocessableEntity('OTP salah')
 		if (moment().diff(user.otpExpiredAt, 'seconds') > 0) Exception.unprocessableEntity('OTP sudah kadaluarsa')
@@ -53,7 +49,7 @@ export class AuthWhatsAppService {
 
 		await this.userService.update(user);
 
-		user._accessToken = await this.jwtService.signAsync({ id: user.id });
+		user.token = await this.jwtService.signAsync({ id: user.id });
 		return user;
 	}
 }

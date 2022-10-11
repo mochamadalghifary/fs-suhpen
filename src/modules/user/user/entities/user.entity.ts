@@ -2,9 +2,7 @@ import * as bcrypt from 'bcrypt';
 import { BaseEntity } from 'src/infrastructure/base/base.entity';
 import { Role } from 'src/modules/user/role/enums/role.enum';
 import {
-	BeforeInsert,
-	BeforeUpdate,
-	Column,
+	BeforeInsert, Column,
 	Entity
 } from 'typeorm';
 import { IAppRole } from '../../role/interfaces/role.interface';
@@ -25,25 +23,24 @@ export class AppUser extends BaseEntity implements IAppUser {
 	role: IAppRole;
 
 	@Column({ default: null })
-	address: string;
+	address?: string;
 
 	@Column({ default: null, unique: true })
-	phoneNumber: string;
+	phoneNumber?: string;
 
 	@Column({ default: null, unique: true })
-	avatar: string;
+	avatar?: string;
 
 	@Column({ default: null })
-	otp: number
+	otp?: number
 
 	@Column({ default: null })
-	_accessToken?: string;
+	token?: string;
 
 	@Column({ default: false })
 	isVerified: boolean
 
 	@BeforeInsert()
-	@BeforeUpdate()
 	async hashPassword() {
 		this.password = await bcrypt.hash(this.password, 10);
 	}

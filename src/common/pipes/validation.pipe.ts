@@ -1,12 +1,8 @@
 import {
-	PipeTransform,
-	Injectable,
-	ArgumentMetadata,
-	UnprocessableEntityException,
+	ArgumentMetadata, Injectable, PipeTransform, UnprocessableEntityException
 } from '@nestjs/common';
-import { validate, ValidationError } from 'class-validator';
 import { plainToClass } from 'class-transformer';
-import * as _ from 'lodash';
+import { validate, ValidationError } from 'class-validator';
 
 @Injectable()
 export class ValidationPipe implements PipeTransform {
@@ -36,7 +32,7 @@ export class ValidationPipe implements PipeTransform {
 						return {
 							property: data.parentName
 								? data.parentName.substring(1)
-								: _.snakeCase(data.property),
+								: data.property,
 							// TODO implement i18n
 							message: Object.values(data.constraints).map(
 								(constraint) => constraint,

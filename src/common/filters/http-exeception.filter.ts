@@ -38,8 +38,12 @@ export class EntityNotFoundExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const status = 404;
 
+    const indexValue = exception.message.indexOf('{')
+    const { where } = JSON.parse(exception.message.slice(indexValue, -1) + '}')
+    const message = `Data ${Object.keys(where)[0]} = '${Object.values(where)[0]}' not found`
+
     response.status(status).json({
-      message: 'Data not found',
+      message,
       data: null,
     });
   }

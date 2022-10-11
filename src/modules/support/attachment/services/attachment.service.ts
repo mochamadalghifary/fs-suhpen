@@ -7,31 +7,26 @@ import { FindAttachmentRequest } from '../requests/find-attachment.request';
 
 @Injectable()
 export class AttachmentService {
-    constructor(
-        @InjectRepository(AppAttachment)
-        private readonly attachmentRepository: Repository<AppAttachment>,
-    ) {}
+	constructor(
+		@InjectRepository(AppAttachment)
+		private readonly attachmentRepo: Repository<AppAttachment>,
+	) {}
 
-    async upload(
-        fileUrl: string,
-        request: AttachmentUploadRequest,
-    ): Promise<AppAttachment> {
-        const attachment = this.attachmentRepository.create({
-            attachment: fileUrl,
-            module: request.module,
-        });
+	async upload(fileUrl: string, req: AttachmentUploadRequest,
+	): Promise<AppAttachment> {
+		const attachment = this.attachmentRepo.create({ fileUrl, module: req.module });
 
-        return await this.attachmentRepository.save(attachment);
-    }
+		return await this.attachmentRepo.save(attachment);
+	}
 
-    async findOne(
-        request: FindAttachmentRequest,
-    ): Promise<AppAttachment> {
-        return await this.attachmentRepository.findOneOrFail({
-            where: [
-                { attachment: request.attachmentName },
-                { module: request.module },
-            ],
-        });
-    }
+	async findOne(
+		req: FindAttachmentRequest,
+	): Promise<AppAttachment> {
+		return await this.attachmentRepo.findOneOrFail({
+			where: [
+				{ fileUrl: req.fileUrl },
+				{ module: req.module },
+			],
+		});
+	}
 }

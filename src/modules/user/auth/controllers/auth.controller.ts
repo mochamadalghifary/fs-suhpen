@@ -1,20 +1,17 @@
 import {
 	Body,
-	Controller, Patch, Post,
-	Put,
-	UseGuards
+	Controller, Get, Param, Post,
+	Put
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface';
 import { Routes } from 'src/modules/routes';
 import { UserResponse } from '../../user/responses/user.response';
 import { AuthApp } from '../apps/auth.app';
-import { UserChangePasswordRequest } from '../requests/user-change-password.request';
-import { UserLoginRequest } from '../requests/user-login.request';
-import { UserOtpEmailRequest } from '../requests/user-otp-email.request';
-import { UserOtpRequest } from '../requests/user-otp.request';
-import { UserRegisterRequest } from '../requests/user-register.request';
+import { AuthChangePasswordRequest } from '../requests/auth-change-password.request';
+import { AuthEmailRequest } from '../requests/auth-email.request';
+import { AuthLoginRequest } from '../requests/auth-login.request';
+import { AuthRegisterRequest } from '../requests/auth-register.request';
 
 @Controller(Routes.Auth)
 @ApiTags(Routes.Auth)
@@ -24,7 +21,7 @@ export class AuthController {
 	) {}
 
 	@Post('login')
-	async login(@Body() req: UserLoginRequest): Promise<IApiResponse<UserResponse>> {
+	async login(@Body() req: AuthLoginRequest): Promise<IApiResponse<UserResponse>> {
 		const user = await this.authApp.login(req);
 
 		return {
@@ -34,7 +31,7 @@ export class AuthController {
 	}
 
 	@Post('register')
-	async register(@Body() req: UserRegisterRequest): Promise<IApiResponse<UserResponse>> {
+	async register(@Body() req: AuthRegisterRequest): Promise<IApiResponse<UserResponse>> {
 		const user = await this.authApp.register(req);
 
 		return {
@@ -43,55 +40,28 @@ export class AuthController {
 		};
 	}
 
-	@Post('otp/email')
-	async sendOtpEmail(@Body() req: UserOtpEmailRequest): Promise<IApiResponse<any>> {
-		const sendOtpEmail = await this.authApp.otpEmailSend(
-			req,
-		);
+	@Post('password/send')
+	async passwordSendLinkChange(@Body() req: AuthEmailRequest): Promise<IApiResponse<any>> {
+		const user = await this.authApp.passwordSendLink(req);
 
 		return {
-			message: `Berhasil kirim OTP melalui Email`,
-			data: {
-				otp_expiration_countdown: sendOtpEmail,
-			},
-		};
-	}
-
-	@Patch('otp/email')
-	async verifyEmailOtp(@Body() req: UserOtpEmailRequest): Promise<IApiResponse<UserResponse>> {
-		const user = await this.authApp.otpEmailVerify(req);
-
-		return {
-			message: `Berhasil verifikasi OTP`,
+			message: `Berhasil kirim link reset password ke ${req.email}`,
 			data: UserResponse.fromEntity(user),
 		};
 	}
 
-	@Post('otp/whatsapp')
-	@UseGuards(AuthGuard('jwt'))
-	async sendOtpByWhatsApp(): Promise<IApiResponse<any>> {
-		await this.authApp.otpWhatsAppSend();
+	@Get('password/get/:token')
+	async passwordGetLinkChange(@Param('token') token: string): Promise<IApiResponse<UserResponse>> {
+		const user = await this.authApp.passwordGetLink(token);
 
 		return {
-			message: `Berhasil kirim OTP melalui WhatsApp`,
-			data: null,
-		};
-	}
-
-	@Patch('otp/whatsapp')
-	async verifySmsWaOtp(
-		@Body() req: UserOtpRequest,
-	): Promise<IApiResponse<UserResponse>> {
-		const member = await this.authApp.otpWhatsAppVerify(req.otp);
-
-		return {
-			message: `Berhasil verifikasi OTP`,
-			data: UserResponse.fromEntity(member),
+			message: 'Link validasi password',
+			data: UserResponse.fromEntity(user),
 		};
 	}
 
 	@Put('password/change')
-	async passwordChange(@Body() req: UserChangePasswordRequest): Promise<IApiResponse<UserResponse>> {
+	async passwordChange(@Body() req: AuthChangePasswordRequest): Promise<IApiResponse<UserResponse>> {
 		const user = await this.authApp.passwordChange(req);
 
 		return {
@@ -99,4 +69,49 @@ export class AuthController {
 			data: UserResponse.fromEntity(user),
 		};
 	}
+
+	// @Post('otp/email')
+	// async sendOtpEmail(@Body() req: AuthEmailRequest): Promise<IApiResponse<any>> {
+	// 	const sendOtpEmail = await this.authApp.otpEmailSend(req);
+
+	// 	return {
+	// 		message: `Berhasil kirim OTP melalui Email`,
+	// 		data: {
+	// 			otp_expiration_countdown: sendOtpEmail,
+	// 		},
+	// 	};
+	// }
+
+	// @Patch('otp/email')
+	// async verifyEmailOtp(@Body() req: AuthEmailRequest): Promise<IApiResponse<UserResponse>> {
+	// 	const user = await this.authApp.otpEmailVerify(req);
+
+	// 	return {
+	// 		message: `Berhasil verifikasi OTP`,
+	// 		data: UserResponse.fromEntity(user),
+	// 	};
+	// }
+
+	// @Post('otp/whatsapp')
+	// @UseGuards(AuthGuard('jwt'))
+	// async sendOtpByWhatsApp(): Promise<IApiResponse<any>> {
+	// 	await this.authApp.otpWhatsAppSend();
+
+	// 	return {
+	// 		message: `Berhasil kirim OTP melalui WhatsApp`,
+	// 		data: null,
+	// 	};
+	// }
+
+	// @Patch('otp/whatsapp')
+	// async verifySmsWaOtp(
+	// 	@Body() req: AuthOtpRequest,
+	// ): Promise<IApiResponse<UserResponse>> {
+	// 	const member = await this.authApp.otpWhatsAppVerify(req.otp);
+
+	// 	return {
+	// 		message: `Berhasil verifikasi OTP`,
+	// 		data: UserResponse.fromEntity(member),
+	// 	};
+	// }
 }

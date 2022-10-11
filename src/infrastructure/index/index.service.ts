@@ -27,7 +27,7 @@ export abstract class BaseIndexService {
 	}
 
 	take(amount: number): number {
-		return amount ?? 25
+		return amount ?? 10
 	}
 
 	orderByKey(table: string, keys: string[], sort: string): string {

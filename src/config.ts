@@ -87,7 +87,7 @@ export const config = {
         binding: process.env.QUEUE_BINDING || 'my-queue-binding',
     },
 
-    mailQueueName: process.env.QUEUE_MAIL_NAME || 'inventory-mail-queue',
+    mailQueueName: process.env.QUEUE_MAIL_NAME || 'fradotech-mail-queue',
 
     /**
      * used for every calucation on application

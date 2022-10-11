@@ -40,27 +40,58 @@ export class MailProcessor {
 
     @Process('send-registered-user-email')
     async sendOtpEmail(
-        job: Job<{ member: IAppUser; otp: number }>,
+        job: Job<{ user: IAppUser; otp: number }>,
     ): Promise<any> {
         this.logger.log(
-            `Sending confirmation email to '${job.data.member.email}'`,
+            `Sending confirmation email to '${job.data.user.email}'`,
         );
 
         try {
             const result = await this.mailerService.sendMail({
                 template: 'send-otp',
                 context: {
-                    member: job.data.member,
+                    user: job.data.user,
                     otp: job.data.otp,
                 },
-                subject: `OTP Kalla Friends`,
-                to: job.data.member.email,
+                subject: `OTP `,
+                to: job.data.user.email,
             });
 
             return result;
         } catch (error) {
             this.logger.error(
-                `Failed to send email to '${job.data.member.email}'`,
+                `Failed to send email to '${job.data.user.email}'`,
+                error.stack,
+            );
+
+            throw error;
+        }
+    }
+
+
+    @Process('send-link-change-password')
+    async sendLinkChangePassword(
+        job: Job<{ user: IAppUser; link: string }>,
+    ): Promise<any> {
+        this.logger.log(
+            `Sending link reset password information to '${job.data.user.email}'`,
+        );
+
+        try {
+            const result = await this.mailerService.sendMail({
+                template: 'link-reset-password',
+                context: {
+                    user: job.data.user,
+                    link: job.data.link
+                },
+                subject: `Link Reset Password `,
+                to: job.data.user.email,
+            });
+
+            return result;
+        } catch (error) {
+            this.logger.error(
+                `Failed to send email to '${job.data.user.email}'`,
                 error.stack,
             );
 
@@ -70,26 +101,26 @@ export class MailProcessor {
 
     @Process('send-success-change-password')
     async sendSuccessChangePassword(
-        job: Job<{ member: IAppUser }>,
+        job: Job<{ user: IAppUser }>,
     ): Promise<any> {
         this.logger.log(
-            `Sending change password information to '${job.data.member.email}'`,
+            `Sending change password information to '${job.data.user.email}'`,
         );
 
         try {
             const result = await this.mailerService.sendMail({
                 template: 'reset-password-complete',
                 context: {
-                    member: job.data.member,
+                    user: job.data.user,
                 },
-                subject: `Berhasil Ubah Password Kalla Friends`,
-                to: job.data.member.email,
+                subject: `Berhasil Ubah Password `,
+                to: job.data.user.email,
             });
 
             return result;
         } catch (error) {
             this.logger.error(
-                `Failed to send email to '${job.data.member.email}'`,
+                `Failed to send email to '${job.data.user.email}'`,
                 error.stack,
             );
 
@@ -99,7 +130,7 @@ export class MailProcessor {
 
     @Process('send-otp-update-email')
     async sendOtpUpdateEmail(
-        job: Job<{ member: IAppUser; otp: number; email: string }>,
+        job: Job<{ user: IAppUser; otp: number; email: string }>,
     ): Promise<any> {
         this.logger.log(`Sending confirmation email to '${job.data.email}'`);
 
@@ -107,18 +138,18 @@ export class MailProcessor {
             const result = await this.mailerService.sendMail({
                 template: 'send-otp',
                 context: {
-                    member: job.data.member,
+                    user: job.data.user,
                     otp: job.data.otp,
                     email: job.data.email,
                 },
-                subject: `OTP Kalla Friends`,
+                subject: `OTP `,
                 to: job.data.email,
             });
 
             return result;
         } catch (error) {
             this.logger.error(
-                `Failed to send email to '${job.data.member.email}'`,
+                `Failed to send email to '${job.data.user.email}'`,
                 error.stack,
             );
 

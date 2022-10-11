@@ -21,7 +21,7 @@ export class UserResponse implements IAppUser {
 		res.id = data.id
 		res.name = data.name
 		res.email = data.email
-		res.password = null
+		res.password = '******'
 		res.role = data.role
 		res.address = data.address
 		res.phoneNumber = data.phoneNumber
@@ -29,7 +29,7 @@ export class UserResponse implements IAppUser {
 		res.otp = data.otp
 		res.otpExpiredAt = data.otpExpiredAt
 		res.isVerified = data.isVerified
-		res._accessToken = data._accessToken
+		res._accessToken = data.token
 
 		return res
 	}
