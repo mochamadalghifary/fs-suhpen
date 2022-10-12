@@ -1,5 +1,5 @@
-import { DocumentBuilder } from "@nestjs/swagger";
-import { config } from "src/config";
+import { DocumentBuilder } from '@nestjs/swagger'
+import { config } from 'src/config'
 
 export const swaggerConfig = new DocumentBuilder()
   .setTitle(config.app.name)
@@ -7,4 +7,4 @@ export const swaggerConfig = new DocumentBuilder()
   .setVersion(config.app.version)
   .addBearerAuth()
   .setExternalDoc('Download Collection', '/docs-json')
-  .build();
+  .build()

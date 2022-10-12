@@ -1,5 +1,5 @@
-import { HttpModuleAsyncOptions } from '@nestjs/axios';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { HttpModuleAsyncOptions } from '@nestjs/axios'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 
 export const HttpModuleOption: HttpModuleAsyncOptions = {
   imports: [ConfigModule],

@@ -1,7 +1,7 @@
 export class MessageContract {
-    message: string;
+  message: string
 
-    typeQueue: string;
+  typeQueue: string
 
-    params?: string[];
+  params?: string[]
 }

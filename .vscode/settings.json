@@ -16,7 +16,8 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
-  "prettier.tabWidth": 4,
+  "prettier.tabWidth": 2,
   "prettier.useTabs": true,
-  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+  "prettier.semi": false
 }

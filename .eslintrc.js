@@ -19,7 +19,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': ['warn'],
+    '@typescript-eslint/explicit-module-boundary-types': ['off'],
     '@typescript-eslint/no-explicit-any': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
@@ -67,8 +67,6 @@ module.exports = {
         prefix: ['I'],
       },
     ],
-    curly: [2, 'all'],
     'no-console': 1,
   },
-  endOfLine: 'off',
-};
+}

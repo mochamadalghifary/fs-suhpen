@@ -1,17 +1,17 @@
-import { IPaginationMeta } from '../index/index.interface';
+import { IPaginationMeta } from '../index/index.interface'
 
 export interface IApiResponse<T> {
-	message: string;
-	meta?: IPaginationMeta;
-	data: T;
+  message: string
+  meta?: IPaginationMeta
+  data: T
 }
 
 interface IDataUnprocessable {
-	property: string;
-	message: string[];
+  property: string
+  message: string[]
 }
 
 export interface IUnprocessableResponse {
-	message: string;
-	data: Array<IDataUnprocessable>;
+  message: string
+  data: Array<IDataUnprocessable>
 }

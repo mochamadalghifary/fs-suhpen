@@ -1,5 +1,5 @@
-import { DeleteResult } from "typeorm";
-import { IBaseEntity } from "./base-entity.interface";
+import { DeleteResult } from 'typeorm'
+import { IBaseEntity } from './base-entity.interface'
 
 export abstract class BaseService {
   abstract create(arg0: any, arg1: any): Promise<IBaseEntity>
