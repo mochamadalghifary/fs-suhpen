@@ -16,8 +16,6 @@ const roles: IAppRole[] = [
 
 @Injectable()
 export class RoleService {
-  constructor() {}
-
   async find(): Promise<IAppRole[]> {
     return roles
   }

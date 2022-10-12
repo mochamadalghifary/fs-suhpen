@@ -1,7 +1,7 @@
 import {
   ExecutionContext,
   Injectable,
-  UnauthorizedException
+  UnauthorizedException,
 } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 
@@ -11,9 +11,8 @@ export class LoggedInGuard extends AuthGuard('jwt') {
     return super.canActivate(context)
   }
 
-  handleRequest(err: any, user: any, info: any) {
+  handleRequest(err: any, user: any) {
     if (err || !user) throw err || new UnauthorizedException()
-
 
     return user
   }

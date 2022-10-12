@@ -46,7 +46,8 @@ export class AuthWhatsAppService {
   async verify(otp: number, user: IAppUser): Promise<IAppUser> {
     if (!user) Exception.unprocessableEntity('Email tidak terdaftar')
     if (user.otp != otp) Exception.unprocessableEntity('OTP salah')
-    if (moment().diff(user.otpExpiredAt, 'seconds') > 0) Exception.unprocessableEntity('OTP sudah kadaluarsa')
+    if (moment().diff(user.otpExpiredAt, 'seconds') > 0)
+      Exception.unprocessableEntity('OTP sudah kadaluarsa')
 
     user.otp = null
     user.otpExpiredAt = null

@@ -1,6 +1,6 @@
 import {
   InternalServerErrorException,
-  UnprocessableEntityException
+  UnprocessableEntityException,
 } from '@nestjs/common'
 import * as AWS from 'aws-sdk'
 import BigNumber from 'bignumber.js'
@@ -23,7 +23,6 @@ export class Utils {
    */
   static snakeCaseKey(obj: { [x: string]: any }): { [x: string]: any } {
     if (typeof obj != 'object') return obj
-
 
     for (const oldName in obj) {
       // Camel to underscore
@@ -52,7 +51,6 @@ export class Utils {
    */
   static parseDatetime(obj: { [x: string]: any }, timezone: string): any {
     if (typeof obj != 'object') return obj
-
 
     for (const oldName in obj) {
       // Recursion
@@ -122,7 +120,9 @@ export class Utils {
           fileOriginalRelativePath,
           fileDestRelativePath,
           function (err) {
-            if (err) { err }
+            if (err) {
+              err
+            }
           },
         )
 
@@ -202,8 +202,8 @@ export class Utils {
     if (startingDate.getDay() == 6 && nearestDay == 5) {
       nearestTime.setDate(
         startingDate.getDate() +
-        ((7 + nearestDay - startingDate.getDay()) % 7) -
-        7,
+          ((7 + nearestDay - startingDate.getDay()) % 7) -
+          7,
       )
     } else {
       nearestTime.setDate(
@@ -244,7 +244,6 @@ export class Utils {
 }
 
 export const fileFilter = (req, file, callback) => {
-  //eslint-disable-line
   if (!file.originalname.match(/\.(jpg|jpeg|png|pdf)$/)) {
     return callback(
       new UnprocessableEntityException('This file type is not allowed!'),

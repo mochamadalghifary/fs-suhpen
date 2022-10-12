@@ -75,7 +75,6 @@ export class RelationNotFoundExceptionFilter implements ExceptionFilter {
 @Catch(QueryFailedError)
 export class QueryErrorFilter extends BaseExceptionFilter {
   public catch(exception: any, host: ArgumentsHost): any {
-    //eslint-disable-line
     const ctx = host.switchToHttp()
     const response = ctx.getResponse<Response>()
 

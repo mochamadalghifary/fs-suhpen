@@ -36,12 +36,15 @@ export class QueueService {
   ): Promise<void> {
     conn.createChannel((err: Error, ch: callbackAPI.Channel) => {
       if (err != null) {
+        // eslint-disable-next-line no-console
         console.error(err)
         return
       }
 
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       ch.assertExchange(config.queue.exchange, 'x-delayed-message', {
         durable: true,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         arguments: { 'x-delayed-type': 'direct' },
       })
       ch.assertQueue(config.queue.name, { durable: true })
@@ -51,6 +54,7 @@ export class QueueService {
         config.queue.binding,
       )
 
+      // eslint-disable-next-line no-console
       console.log('create chann & start consume message')
 
       ch.consume(
@@ -61,11 +65,14 @@ export class QueueService {
         },
         (err: Error, ok: callbackAPI.Replies.Consume) => {
           if (err != null) {
+            // eslint-disable-next-line no-console
             console.error(err)
           } else if (ok) {
+            // eslint-disable-next-line no-console
             console.error('consumed ' + ok.consumerTag)
           }
 
+          // eslint-disable-next-line no-console
           console.error('consumed message')
         },
       )
@@ -79,10 +86,12 @@ export class QueueService {
   ): Promise<any> {
     conn.createChannel((err: Error, ch: callbackAPI.Channel) => {
       if (err != null) {
+        // eslint-disable-next-line no-console
         console.error(err)
         return
-      }
 
+      }
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       const headers = { 'x-delay': delay }
       ch.publish(
         config.queue.exchange,

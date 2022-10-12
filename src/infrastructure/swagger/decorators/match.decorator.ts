@@ -6,7 +6,8 @@ import {
   ValidatorConstraintInterface,
 } from 'class-validator'
 
-export function match(property: string, validationOptions?: ValidationOptions) {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function Match(property: string, validationOptions?: ValidationOptions) {
   return (object: any, propertyName: string) => {
     registerDecorator({
       target: object.constructor,

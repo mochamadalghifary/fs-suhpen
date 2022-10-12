@@ -57,7 +57,8 @@ export class AuthEmailService {
     const user = await this.userService.findOneByEmail(req.email)
 
     if (!user) Exception.unprocessableEntity('Email tidak terdaftar')
-    if (user.email != req.email) throw Exception.unprocessableEntity('Email salah')
+    if (user.email != req.email)
+      throw Exception.unprocessableEntity('Email salah')
 
     user.otp = null
     user.otpExpiredAt = null
