@@ -89,7 +89,6 @@ export class QueueService {
         // eslint-disable-next-line no-console
         console.error(err)
         return
-
       }
       // eslint-disable-next-line @typescript-eslint/naming-convention
       const headers = { 'x-delay': delay }
