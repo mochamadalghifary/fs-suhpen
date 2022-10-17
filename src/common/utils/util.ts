@@ -1,8 +1,7 @@
 import {
   InternalServerErrorException,
-  UnprocessableEntityException,
+  UnprocessableEntityException
 } from '@nestjs/common'
-import * as AWS from 'aws-sdk'
 import BigNumber from 'bignumber.js'
 import BN from 'bn.js'
 import * as crypto from 'crypto'
@@ -90,11 +89,7 @@ export class Utils {
         return ''
       case 's3':
         const file = fs.readFileSync(fileOriginalRelativePath)
-        const s3 = new AWS.S3({
-          accessKeyId: config.storage.s3.accessKeyId,
-          secretAccessKey: config.storage.s3.secretAccessKey,
-          region: config.storage.s3.defaultRegion,
-        })
+        const s3 = null
 
         const filename = fileDestPath.replace(/^.*[\\\/]/, '')
 
@@ -202,8 +197,8 @@ export class Utils {
     if (startingDate.getDay() == 6 && nearestDay == 5) {
       nearestTime.setDate(
         startingDate.getDate() +
-          ((7 + nearestDay - startingDate.getDay()) % 7) -
-          7,
+        ((7 + nearestDay - startingDate.getDay()) % 7) -
+        7,
       )
     } else {
       nearestTime.setDate(
