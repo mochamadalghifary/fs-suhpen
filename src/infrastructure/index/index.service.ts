@@ -5,13 +5,13 @@
 
 import {
   OrderDirectionEnum,
-  OrderDirectionType,
+  OrderDirectionType
 } from 'src/infrastructure/index/index.enum'
 import { IBaseEntity } from '../base/base-entity.interface'
 import {
   IPaginateRequest,
   IPaginateResponse,
-  IPaginationMeta,
+  IPaginationMeta
 } from './index.interface'
 
 export abstract class BaseIndexService {

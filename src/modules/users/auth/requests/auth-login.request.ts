@@ -3,5 +3,6 @@ import { UserRequest } from '../../user/requests/user.request'
 
 export class AuthLoginRequest extends PickType(UserRequest, [
   'email',
-  'password',
-]) {}
+]) {
+  password!: string
+}

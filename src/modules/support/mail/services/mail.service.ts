@@ -1,75 +1,54 @@
-import { InjectQueue } from '@nestjs/bull'
-import { Injectable, Logger } from '@nestjs/common'
-import { Queue } from 'bull'
-import { config } from 'src/config'
-import { IAppUser } from 'src/modules/users/user/interfaces/user.interface'
+import nodemailer from 'nodemailer';
+import { MailOptions } from 'nodemailer/lib/json-transport';
+import { config } from 'src/config';
+import { Exception } from '../../../../common/exceptions/index.exception';
+import { IAppUser } from '../../../users/user/interfaces/user.interface';
+import { MailTemplatePasswordResetLink } from '../templates/password-reset-link.template';
+import { MailTemplatePasswordResetSuccess } from '../templates/password-reset-succes.template';
 
-@Injectable()
-export class MailService {
-  private logger = new Logger('MailService')
+const emailFrom = 'fradotech.id@gmail.com'
 
-  constructor(
-    @InjectQueue(config.mailQueueName)
-    private readonly mailQueue: Queue,
-  ) {}
+const transporter = nodemailer.createTransport({
+  host: config.smtp.host,
+  port: +config.smtp.port,
+  auth: {
+    user: config.smtp.username,
+    pass: config.smtp.password,
+  },
+})
 
-  async sendOtp(user: IAppUser, otp: number): Promise<boolean> {
-    try {
-      await this.mailQueue.add('send-registered-user-email', { user, otp })
+const sendMail = (mailOptions: MailOptions) => {
+  transporter.sendMail(mailOptions, (error, info) => {
+    error && Exception.unprocessable(error)
+    // eslint-disable-next-line
+    info && console.info('info - Success send email', info)
+  })
+}
 
-      this.logger.log(
-        `Added email "${user.email}" to send-otp-confirmation-email queue`,
-      )
-
-      return true
-    } catch (error) {
-      this.logger.error(error)
-      return false
+export const MailService = {
+  passwordResetLink: async (user: IAppUser, link: string): Promise<boolean> => {
+    const mailOptions: MailOptions = {
+      from: emailFrom,
+      to: user.email,
+      subject: `Password Reset ${user.name} Link`,
+      html: MailTemplatePasswordResetLink(user, link)
     }
-  }
 
-  async sendSuccessChangeEmail(
-    user: IAppUser,
-    otp: number,
-    email?: string,
-  ): Promise<boolean> {
-    try {
-      await this.mailQueue.add('send-otp-update-email', { user, otp, email })
+    sendMail(mailOptions)
 
-      this.logger.log(`Added email "${email}" to send-otp-update-email queue`)
+    return true
+  },
 
-      return true
-    } catch (error) {
-      this.logger.error(error)
-      return false
+  passwordResetSuccess: async (user: IAppUser): Promise<boolean> => {
+    const mailOptions: MailOptions = {
+      from: emailFrom,
+      to: user.email,
+      subject: `Password Reset ${user.name} Success`,
+      html: MailTemplatePasswordResetSuccess(user)
     }
-  }
 
-  async sendLinkChangePassword(user: IAppUser, link: string): Promise<boolean> {
-    try {
-      await this.mailQueue.add('send-link-change-password', { user, link }),
-        this.logger.log(
-          `Added email "${user.email}" to send-link-change-password queue`,
-        )
+    sendMail(mailOptions)
 
-      return true
-    } catch (error) {
-      this.logger.error(error)
-      return false
-    }
-  }
-
-  async sendSuccessChangePassword(user: IAppUser): Promise<boolean> {
-    try {
-      await this.mailQueue.add('send-success-change-password', { user }),
-        this.logger.log(
-          `Added email "${user.email}" to send-success-change-password queue`,
-        )
-
-      return true
-    } catch (error) {
-      this.logger.error(error)
-      return false
-    }
-  }
+    return true
+  },
 }

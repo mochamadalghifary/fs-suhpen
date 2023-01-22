@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { BaseService } from 'src/infrastructure/base/base.service'
-import { DeleteResult, Repository } from 'typeorm'
+import { Repository } from 'typeorm'
 import { AppUser } from '../entities/user.entity'
 import { IAppUser } from '../interfaces/user.interface'
 
@@ -35,13 +35,17 @@ export class UserService implements BaseService {
     return await this.findOneOrFail(req.id)
   }
 
-  async delete(id: string): Promise<DeleteResult> {
-    return await this.userRepo.delete({ id })
+  async remove(id: string): Promise<IAppUser> {
+    const data = await this.findOneOrFail(id) as AppUser
+    return await this.userRepo.remove(data)
   }
 
-  async softDelete(id: string): Promise<DeleteResult> {
-    return await this.userRepo.softDelete({ id })
+  async softRemove(id: string): Promise<IAppUser> {
+    const data = await this.findOneOrFail(id) as AppUser
+    return await this.userRepo.softRemove(data)
   }
+
+  // Another findOneBy() Methods
 
   public async findOneByEmail(email: string): Promise<IAppUser> {
     return await this.userRepo.findOneOrFail({ where: { email } })

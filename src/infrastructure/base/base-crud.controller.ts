@@ -1,13 +1,10 @@
-import { IApiResponse } from '../interfaces/responses.interface'
-import { IBaseEntity } from './base-entity.interface'
+import { IApiRes } from '../interfaces/api-responses.interface';
+import { IBaseEntity } from './base-entity.interface';
 
 export abstract class BaseCrudController {
-  abstract fetch(arg0: any, arg1: any): Promise<IApiResponse<IBaseEntity[]>>
-  abstract create(arg0: any, arg1: any): Promise<IApiResponse<IBaseEntity>>
-  abstract findOneOrFail(
-    arg0: any,
-    arg1: any,
-  ): Promise<IApiResponse<IBaseEntity>>
-  abstract update(arg0: any, arg1: any): Promise<IApiResponse<IBaseEntity>>
-  abstract delete(arg0: any, arg1: any): Promise<IApiResponse<IBaseEntity>>
+  abstract fetch(...arg1: any): Promise<IApiRes<IBaseEntity[]>>
+  abstract create(...arg1: any): Promise<IApiRes<IBaseEntity>>
+  abstract findOneOrFail(...arg1: any): Promise<IApiRes<IBaseEntity>>
+  abstract update(...arg1: any): Promise<IApiRes<IBaseEntity>>
+  abstract delete(...arg1: any): Promise<IApiRes<IBaseEntity>>
 }

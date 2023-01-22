@@ -5,10 +5,11 @@ import { SwaggerModule } from '@nestjs/swagger'
 import { join } from 'path'
 import {
   initializeTransactionalContext,
-  patchTypeORMRepositoryWithBaseRepository,
+  patchTypeORMRepositoryWithBaseRepository
 } from 'typeorm-transactional-cls-hooked'
 import { AppModule } from './app.module'
 import { config } from './config'
+import { seeders } from './database/seeds/seed.module'
 import { swaggerConfig } from './infrastructure/swagger/swagger.config'
 
 async function bootstrap() {
@@ -22,6 +23,8 @@ async function bootstrap() {
   app.useStaticAssets(publicPath)
   app.setGlobalPrefix(globalPrefix)
   app.enableCors()
+
+  await seeders()
 
   const document = SwaggerModule.createDocument(app, swaggerConfig)
   SwaggerModule.setup('docs', app, document)

@@ -1,37 +1,33 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { IPaginateResponse } from 'src/infrastructure/index/index.interface'
-import { BaseIndexService } from 'src/infrastructure/index/index.service'
-import { Repository } from 'typeorm'
+import { Repository, SelectQueryBuilder } from 'typeorm'
+import { IPaginateResponse } from '../../../../infrastructure/index/index.interface'
+import { BaseIndexService } from '../../../../infrastructure/index/index.service'
 import { AppUser } from '../entities/user.entity'
 import { IAppUser } from '../interfaces/user.interface'
 import { UserIndexRequest } from '../requests/user-index.request'
 
-@Injectable()
 export class UserIndexService extends BaseIndexService {
   constructor(
-    @InjectRepository(AppUser)
-    private readonly userRepo: Repository<IAppUser>,
-  ) {
-    super()
+    private readonly userRepo: Repository<IAppUser>
+  ) { super() }
+
+  additionalQuery(query: SelectQueryBuilder<IAppUser>, req: UserIndexRequest)
+    : SelectQueryBuilder<IAppUser> {
+    req
+    // Do Additional Query
+    return query
   }
 
   async fetch(req: UserIndexRequest): Promise<IPaginateResponse<IAppUser>> {
-    const TABLE_NAME = this.userRepo.metadata.tableName
-    const TABLE_KEYS = Object.keys(this.userRepo.metadata.propertiesMap)
+    const tableName = AppUser.name
+    const tableKey = Object.keys(new AppUser())
 
-    const query = this.userRepo.createQueryBuilder(TABLE_NAME)
+    const query = this.additionalQuery(this.userRepo.createQueryBuilder(tableName), req)
 
-    if (req.search) {
-      query.where(this.querySearch(TABLE_NAME, TABLE_KEYS), {
-        search: `%${req.search.toLowerCase()}%`,
-      })
-    }
+    req.search && query.where(this.querySearch(tableName, tableKey), {
+      search: `%${req.search.toLowerCase()}%`,
+    })
 
-    query.orderBy(
-      this.orderByKey(TABLE_NAME, TABLE_KEYS, req.sort),
-      this.getOrder(req.order),
-    )
+    query.orderBy(this.orderByKey(tableName, tableKey, req.sort), this.getOrder(req.order))
     query.take(this.take(req.perPage))
     query.skip(this.countOffset(req))
 

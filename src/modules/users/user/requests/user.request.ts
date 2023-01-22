@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiProperty, OmitType } from '@nestjs/swagger'
 import {
   IsEmail,
   IsNotEmpty,
@@ -7,7 +7,7 @@ import {
   IsPhoneNumber,
   IsString,
   Matches,
-  MinLength,
+  MinLength
 } from 'class-validator'
 import { IAppRole } from '../../role/interfaces/role.interface'
 import { STRING_PASSWORD_CHARACTER } from '../common/character.constant'
@@ -77,3 +77,12 @@ export class UserRequest implements IAppUser {
   role: IAppRole
   isVerified: boolean
 }
+
+export class UserUpdateRequest extends OmitType(UserRequest, [
+  'email',
+  'passwordConfirmation',
+  'role',
+  'otp',
+  'isVerified',
+  'token',
+]) {}

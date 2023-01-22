@@ -16,7 +16,7 @@ export class AppUser extends BaseEntity implements IAppUser {
   @Column()
   password: string
 
-  @Column({ type: 'enum', enum: Role, default: Role.Employee })
+  @Column({ type: 'enum', enum: Role, default: Role.User })
   role: IAppRole
 
   @Column({ default: null })

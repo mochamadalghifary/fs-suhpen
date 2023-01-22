@@ -15,7 +15,7 @@ export class UserResponse implements IAppUser {
   isVerified: boolean
   _accessToken?: string
 
-  static fromEntity(data: IAppUser): UserResponse {
+  static all(data: IAppUser): UserResponse {
     const res = new UserResponse()
 
     res.id = data.id
@@ -35,6 +35,6 @@ export class UserResponse implements IAppUser {
   }
 
   static fromEntities(data: IAppUser[]): UserResponse[] {
-    return data.map((data) => this.fromEntity(data))
+    return data.map((data) => this.all(data))
   }
 }

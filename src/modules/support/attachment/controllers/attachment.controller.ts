@@ -8,20 +8,20 @@ import {
   Res,
   UploadedFile,
   UseGuards,
-  UseInterceptors,
-} from '@nestjs/common'
-import { FileInterceptor } from '@nestjs/platform-express'
-import { ApiTags } from '@nestjs/swagger'
-import * as path from 'path'
-import { fileFilter, Utils } from 'src/common/utils/util'
-import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface'
-import { Modules } from 'src/modules/modules'
-import { LoggedInGuard } from 'src/modules/users/auth/guards/logged-in.guard'
-import { config } from '../../../../config'
-import { AttachmentUploadRequest } from '../requests/attachment-upload.request'
-import { FindAttachmentRequest } from '../requests/find-attachment.request'
-import { AttachmentUploadResponse } from '../responses/attachment-upload.response'
-import { AttachmentService } from '../services/attachment.service'
+  UseInterceptors
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiTags } from '@nestjs/swagger';
+import * as path from 'path';
+import { Utils } from 'src/common/utils/utils';
+import { IApiRes } from 'src/infrastructure/interfaces/api-responses.interface';
+import { Modules } from 'src/modules/modules';
+import { LoggedInGuard } from 'src/modules/users/auth/guards/logged-in.guard';
+import { config } from '../../../../config';
+import { AttachmentUploadRequest } from '../requests/attachment-upload.request';
+import { FindAttachmentRequest } from '../requests/find-attachment.request';
+import { AttachmentUploadResponse } from '../responses/attachment-upload.response';
+import { AttachmentService } from '../services/attachment.service';
 
 @Controller(Modules.Attachment)
 @ApiTags(Modules.Attachment)
@@ -38,17 +38,13 @@ export class AttachmentController {
 
   @Post()
   @UseInterceptors(
-    FileInterceptor(Modules.Attachment, { fileFilter: fileFilter }),
+    FileInterceptor(Modules.Attachment, { fileFilter: Utils.fileFilter }),
   )
   async uploadAttachment(
     @UploadedFile() file: Express.Multer.File,
     @Body() req: AttachmentUploadRequest,
-  ): Promise<IApiResponse<AttachmentUploadResponse>> {
-    const fileUrl = await Utils.moveFile(
-      file.path,
-      '/' + Date.now() + '-' + file.originalname,
-    )
-
+  ): Promise<IApiRes<AttachmentUploadResponse>> {
+    const fileUrl = file.path + '/' + Date.now() + '-' + file.originalname
     const attachment = await this.attachmentService.upload(fileUrl, req)
 
     return {
@@ -60,7 +56,7 @@ export class AttachmentController {
   @Get()
   async findAttachment(
     @Query() findAttachmentRequest: FindAttachmentRequest,
-  ): Promise<IApiResponse<AttachmentUploadResponse>> {
+  ): Promise<IApiRes<AttachmentUploadResponse>> {
     const attachment = await this.attachmentService.findOne(
       findAttachmentRequest,
     )

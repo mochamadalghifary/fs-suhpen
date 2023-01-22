@@ -3,8 +3,7 @@ import { IPaginateResponse } from 'src/infrastructure/index/index.interface'
 import { AppUser } from '../entities/user.entity'
 import { IAppUser } from '../interfaces/user.interface'
 import { UserIndexRequest } from '../requests/user-index.request'
-import { UserUpdateRequest } from '../requests/user-update.request'
-import { UserRequest } from '../requests/user.request'
+import { UserRequest, UserUpdateRequest } from '../requests/user.request'
 import { UserIndexService } from '../services/user-index.service'
 import { UserService } from '../services/user.service'
 
@@ -46,15 +45,15 @@ export class UserCrudApp {
     return await this.userService.update(data)
   }
 
-  async delete(id: string): Promise<IAppUser> {
+  async remove(id: string): Promise<IAppUser> {
     const data = this.userService.findOneOrFail(id)
-    await this.userService.delete(id)
+    await this.userService.remove(id)
     return data
   }
 
-  async softDelete(id: string): Promise<IAppUser> {
+  async softRemove(id: string): Promise<IAppUser> {
     const data = this.userService.findOneOrFail(id)
-    await this.userService.softDelete(id)
+    await this.userService.softRemove(id)
     return data
   }
 }

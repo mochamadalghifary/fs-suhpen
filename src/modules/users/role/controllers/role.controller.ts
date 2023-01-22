@@ -1,35 +1,30 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common'
+import { Controller, Get, Query, UseGuards } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
-import { IApiResponse } from 'src/infrastructure/interfaces/responses.interface'
+import { IApiRes } from 'src/infrastructure/interfaces/api-responses.interface'
+import { ApiRes } from 'src/infrastructure/interfaces/api.response'
 import { Modules } from 'src/modules/modules'
 import { Role } from 'src/modules/users/role/enums/role.enum'
 import { AdminGuard } from '../../auth/guards/admin.guard'
+import { RoleApp } from '../apps/role.app'
 import { IAppRole } from '../interfaces/role.interface'
-import { RoleService } from '../services/role.service'
 
-@Controller(Modules.Roles)
-@ApiTags(Modules.Roles)
+const THIS_MODULE = Modules.Roles
+
+@Controller(THIS_MODULE)
+@ApiTags(THIS_MODULE)
 @UseGuards(AdminGuard)
 export class RoleController {
-  constructor(private readonly roleService: RoleService) {}
+  constructor(private readonly roleApp: RoleApp) {}
 
   @Get()
-  async find(): Promise<IApiResponse<IAppRole[]>> {
-    const res = await this.roleService.find()
-
-    return {
-      message: 'Success get data',
-      data: res,
-    }
+  async find(): Promise<IApiRes<IAppRole[]>> {
+    const res = await this.roleApp.find()
+    return ApiRes.from(res)
   }
 
   @Get(':name')
-  async findOne(@Param() name: Role): Promise<IApiResponse<IAppRole>> {
-    const res = await this.roleService.findOne(name)
-
-    return {
-      message: 'Success get data',
-      data: res,
-    }
+  async findOne(@Query('name') name: Role): Promise<IApiRes<IAppRole | undefined>> {
+    const res = await this.roleApp.findOne(name)
+    return ApiRes.from(res)
   }
 }

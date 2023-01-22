@@ -1,6 +1,6 @@
 import { IPaginationMeta } from '../index/index.interface'
 
-export interface IApiResponse<T> {
+export interface IApiRes<T> {
   message: string
   meta?: IPaginationMeta
   data: T
