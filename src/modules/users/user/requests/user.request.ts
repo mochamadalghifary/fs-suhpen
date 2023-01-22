@@ -1,4 +1,4 @@
-import { ApiProperty, OmitType } from '@nestjs/swagger'
+import { ApiProperty, OmitType } from '@nestjs/swagger';
 import {
   IsEmail,
   IsNotEmpty,
@@ -8,10 +8,10 @@ import {
   IsString,
   Matches,
   MinLength
-} from 'class-validator'
-import { IAppRole } from '../../role/interfaces/role.interface'
-import { STRING_PASSWORD_CHARACTER } from '../common/character.constant'
-import { IAppUser } from '../interfaces/user.interface'
+} from 'class-validator';
+import { Role } from 'src/modules/users/role/enums/role.enum';
+import { STRING_PASSWORD_CHARACTER } from '../common/character.constant';
+import { IAppUser } from '../interfaces/user.interface';
 
 export class UserRequest implements IAppUser {
   id: string
@@ -25,7 +25,7 @@ export class UserRequest implements IAppUser {
   @IsNotEmpty()
   @IsString()
   @IsEmail()
-  @ApiProperty({ example: 'frado001@gmail.com' })
+  @ApiProperty({ example: 'Admin@admin.com' })
   email: string
 
   @IsNotEmpty()
@@ -35,7 +35,7 @@ export class UserRequest implements IAppUser {
     message:
       'Password should contain number, under case, and upper case character',
   })
-  @ApiProperty({ example: 'Frado123' })
+  @ApiProperty({ example: 'Admin123' })
   password: string
 
   @IsNotEmpty()
@@ -45,7 +45,7 @@ export class UserRequest implements IAppUser {
     message:
       'Password should contain number, under case, and upper case character',
   })
-  @ApiProperty({ example: 'Frado123' })
+  @ApiProperty({ example: 'Admin123' })
   passwordConfirmation: string
 
   @IsOptional()
@@ -74,7 +74,7 @@ export class UserRequest implements IAppUser {
   @ApiProperty()
   token: string
 
-  role: IAppRole
+  role: Role
   isVerified: boolean
 }
 

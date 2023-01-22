@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { config } from 'src/config';
@@ -12,6 +13,7 @@ import { AuthEmailRequest } from '../requests/auth-email.request';
 import { AuthLoginRequest } from '../requests/auth-login.request';
 import { AuthRegisterRequest } from '../requests/auth-register.request';
 
+@Injectable()
 export class AuthApp {
   constructor(
     private readonly userService: UserService,

@@ -23,7 +23,7 @@ export class UserProfileController {
     @GetUserLogged() user: IAppUser,
   ): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.findOneOrFail(user.id)
-    return ApiRes.from(UserResponse.all(data))
+    return ApiRes.all(UserResponse.all(data))
   }
 
   @Put()
@@ -32,6 +32,6 @@ export class UserProfileController {
     @Body() req: UserUpdateRequest,
   ): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.update(user.id, req)
-    return ApiRes.from(UserResponse.all(data))
+    return ApiRes.all(UserResponse.all(data))
   }
 }

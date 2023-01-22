@@ -15,6 +15,7 @@ import { ApiTags } from '@nestjs/swagger';
 import * as path from 'path';
 import { Utils } from 'src/common/utils/utils';
 import { IApiRes } from 'src/infrastructure/interfaces/api-responses.interface';
+import { ApiRes } from 'src/infrastructure/interfaces/api.response';
 import { Modules } from 'src/modules/modules';
 import { LoggedInGuard } from 'src/modules/users/auth/guards/logged-in.guard';
 import { config } from '../../../../config';
@@ -23,8 +24,10 @@ import { FindAttachmentRequest } from '../requests/find-attachment.request';
 import { AttachmentUploadResponse } from '../responses/attachment-upload.response';
 import { AttachmentService } from '../services/attachment.service';
 
-@Controller(Modules.Attachment)
-@ApiTags(Modules.Attachment)
+const THIS_MODULE = Modules.Attachment
+
+@Controller(THIS_MODULE)
+@ApiTags(THIS_MODULE)
 @UseGuards(LoggedInGuard)
 export class AttachmentController {
   constructor(private readonly attachmentService: AttachmentService) {}
@@ -38,7 +41,7 @@ export class AttachmentController {
 
   @Post()
   @UseInterceptors(
-    FileInterceptor(Modules.Attachment, { fileFilter: Utils.fileFilter }),
+    FileInterceptor(THIS_MODULE, { fileFilter: Utils.fileFilter }),
   )
   async uploadAttachment(
     @UploadedFile() file: Express.Multer.File,
@@ -47,10 +50,7 @@ export class AttachmentController {
     const fileUrl = file.path + '/' + Date.now() + '-' + file.originalname
     const attachment = await this.attachmentService.upload(fileUrl, req)
 
-    return {
-      message: 'Success upload file',
-      data: AttachmentUploadResponse.fromEntity(attachment),
-    }
+    return ApiRes.all(AttachmentUploadResponse.all(attachment))
   }
 
   @Get()
@@ -61,9 +61,6 @@ export class AttachmentController {
       findAttachmentRequest,
     )
 
-    return {
-      message: 'Success find file',
-      data: AttachmentUploadResponse.fromEntity(attachment),
-    }
+    return ApiRes.all(AttachmentUploadResponse.all(attachment),)
   }
 }

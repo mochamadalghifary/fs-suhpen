@@ -3,6 +3,14 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 export const config = {
+  app: {
+    name: process.env.APP_NAME,
+    version: process.env.APP_VERSION,
+    description: process.env.APP_DESCRIPTION,
+    tag: process.env.APP_TAG,
+    prefix: process.env.APP_PREFIX || '/api/v1',
+  },
+
   server: {
     nodeEnv: process.env.SERVER_NODE_ENV || 'local',
     port: process.env.SERVER_PORT || 3000,
@@ -21,6 +29,7 @@ export const config = {
   },
 
   auth: {
+    expiresIn: +process.env.JWT_EXPIRES_IN_SECONDS || 'fradotech',
     jwt: {
       secretKey: process.env.JWT_SECRET_KEY || 'fradotech',
       expiredInseconds: process.env.JWT_EXPIRED_IN_SECONDS || 604800,

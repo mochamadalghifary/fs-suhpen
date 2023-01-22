@@ -20,7 +20,7 @@ export class AuthController {
     @Body() req: AuthLoginRequest,
   ): Promise<IApiRes<UserResponse>> {
     const user = await this.authApp.login(req)
-    return ApiRes.from(UserResponse.all(user))
+    return ApiRes.all(UserResponse.all(user))
   }
 
   @Post('register')
@@ -28,6 +28,6 @@ export class AuthController {
     @Body() req: AuthRegisterRequest,
   ): Promise<IApiRes<UserResponse>> {
     const user = await this.authApp.register(req)
-    return ApiRes.from(UserResponse.all(user))
+    return ApiRes.all(UserResponse.all(user))
   }
 }

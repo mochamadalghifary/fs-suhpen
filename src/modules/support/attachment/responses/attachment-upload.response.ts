@@ -5,7 +5,7 @@ export class AttachmentUploadResponse implements IAppAttachment {
   fileUrl: string
   module: string
 
-  static fromEntity(attachment: IAppAttachment): AttachmentUploadResponse {
+  static all(attachment: IAppAttachment): AttachmentUploadResponse {
     return Object.assign(new AttachmentUploadResponse(), attachment)
   }
 }

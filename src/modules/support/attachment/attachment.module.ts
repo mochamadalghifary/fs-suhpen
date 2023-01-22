@@ -13,7 +13,7 @@ import { AttachmentService } from './services/attachment.service'
     TypeOrmModule.forFeature([AppAttachment]),
     AuthModule,
     MulterModule.register({
-      dest: path.resolve('./') + '/dist/' + config.assets.temp,
+      dest: path.resolve('./') + '/dist/' + config.assets.storage,
     }),
   ],
   controllers: [AttachmentController],

@@ -1,8 +1,8 @@
+import { Logger } from '@nestjs/common';
+import { DataSourceOptions } from 'src/database/config.db';
 import { EntityManager, Repository } from 'typeorm';
-import logger from '../../../common/utils/logger';
 import { AppUser } from '../../../modules/users/user/entities/user.entity';
 import { IAppUser } from '../../../modules/users/user/interfaces/user.interface';
-import { DataSourceOptions } from '../../config/options.db';
 import { usersDummies } from "./user.dummy";
 
 export const userSeeder = async (): Promise<boolean> => {
@@ -23,7 +23,7 @@ export const userSeeder = async (): Promise<boolean> => {
     .values(data)
     .execute()
 
-  logger('Seeder', 'Success run users seeders ', data.map((data) => data.email).toString())
+  Logger.log('Seeder', 'Success run users seeders ', data.map((data) => data.email).toString())
 
   return true
 }

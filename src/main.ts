@@ -9,7 +9,6 @@ import {
 } from 'typeorm-transactional-cls-hooked'
 import { AppModule } from './app.module'
 import { config } from './config'
-import { seeders } from './database/seeds/seed.module'
 import { swaggerConfig } from './infrastructure/swagger/swagger.config'
 
 async function bootstrap() {
@@ -24,14 +23,14 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix)
   app.enableCors()
 
-  await seeders()
+  // await seeders()
 
   const document = SwaggerModule.createDocument(app, swaggerConfig)
   SwaggerModule.setup('docs', app, document)
 
-  const port: string = config.port
+  const port = config.server.port
   await app.listen(port)
 
-  Logger.log(`Application running on port ${port}`, 'NestApplication')
+  Logger.log(`Application running at http://localhost:${port}`, 'NestApplication')
 }
 bootstrap()

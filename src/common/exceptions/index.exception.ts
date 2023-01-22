@@ -1,4 +1,4 @@
-import { BadRequestException, ForbiddenException, NotFoundException, UnauthorizedException, UnprocessableEntityException } from "next-api-decorators"
+import { BadRequestException, ForbiddenException, NotFoundException, UnauthorizedException, UnprocessableEntityException } from "@nestjs/common"
 
 export class Exception {
   static entityNotFound(key?: string, value?: string): void {

@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common'
 import { Exception } from '../../../../common/exceptions/index.exception'
 import { Role } from '../enums/role.enum'
 import { IAppRole } from '../interfaces/role.interface'
@@ -17,7 +18,8 @@ const roles: IAppRole[] = [
   },
 ]
 
-export class RoleApp {
+@Injectable()
+export class RoleService {
   async find(): Promise<IAppRole[]> {
     return roles
   }

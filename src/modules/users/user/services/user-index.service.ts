@@ -1,3 +1,4 @@
+import { InjectRepository } from '@nestjs/typeorm'
 import { Repository, SelectQueryBuilder } from 'typeorm'
 import { IPaginateResponse } from '../../../../infrastructure/index/index.interface'
 import { BaseIndexService } from '../../../../infrastructure/index/index.service'
@@ -7,6 +8,7 @@ import { UserIndexRequest } from '../requests/user-index.request'
 
 export class UserIndexService extends BaseIndexService {
   constructor(
+    @InjectRepository(AppUser)
     private readonly userRepo: Repository<IAppUser>
   ) { super() }
 

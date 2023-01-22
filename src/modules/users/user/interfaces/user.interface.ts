@@ -1,11 +1,11 @@
 import { IBaseEntity } from 'src/infrastructure/base/base-entity.interface'
-import { IAppRole } from '../../role/interfaces/role.interface'
+import { Role } from '../../role/enums/role.enum'
 
 export interface IAppUser extends IBaseEntity {
   name: string
   email: string
   password: string
-  role: IAppRole
+  role: Role
   phoneNumber?: string
   avatar?: string
   address?: string

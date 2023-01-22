@@ -1,4 +1,4 @@
-import { IAppRole } from '../../role/interfaces/role.interface'
+import { Role } from '../../role/enums/role.enum'
 import { IAppUser } from '../interfaces/user.interface'
 
 export class UserResponse implements IAppUser {
@@ -6,7 +6,7 @@ export class UserResponse implements IAppUser {
   name: string
   email: string
   password: string
-  role: IAppRole
+  role: Role
   address: string
   phoneNumber: string
   avatar: string
@@ -34,7 +34,7 @@ export class UserResponse implements IAppUser {
     return res
   }
 
-  static fromEntities(data: IAppUser[]): UserResponse[] {
+  static alls(data: IAppUser[]): UserResponse[] {
     return data.map((data) => this.all(data))
   }
 }

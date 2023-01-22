@@ -2,20 +2,21 @@ import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { config } from 'src/config'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
+import { DataSourceConfig } from './config.db'
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: config.database.host,
-      port: +config.database.port,
-      username: config.database.username,
-      password: config.database.password,
-      database: config.database.database,
+      host: DataSourceConfig.host,
+      port: +DataSourceConfig.port,
+      username: DataSourceConfig.username,
+      password: DataSourceConfig.password,
+      database: DataSourceConfig.database,
       autoLoadEntities: true,
       synchronize: true,
       namingStrategy: new SnakeNamingStrategy(),
-      logging: config.nodeEnv === 'local',
+      logging: config.server.nodeEnv === 'local',
     }),
   ],
   controllers: [],
