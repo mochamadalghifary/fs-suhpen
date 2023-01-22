@@ -9,11 +9,15 @@ import { UserIndexRequest } from '../requests/user-index.request'
 export class UserIndexService extends BaseIndexService {
   constructor(
     @InjectRepository(AppUser)
-    private readonly userRepo: Repository<IAppUser>
-  ) { super() }
+    private readonly userRepo: Repository<IAppUser>,
+  ) {
+    super()
+  }
 
-  additionalQuery(query: SelectQueryBuilder<IAppUser>, req: UserIndexRequest)
-    : SelectQueryBuilder<IAppUser> {
+  additionalQuery(
+    query: SelectQueryBuilder<IAppUser>,
+    req: UserIndexRequest,
+  ): SelectQueryBuilder<IAppUser> {
     req
     // Do Additional Query
     return query
@@ -23,13 +27,20 @@ export class UserIndexService extends BaseIndexService {
     const tableName = AppUser.name
     const tableKey = Object.keys(new AppUser())
 
-    const query = this.additionalQuery(this.userRepo.createQueryBuilder(tableName), req)
+    const query = this.additionalQuery(
+      this.userRepo.createQueryBuilder(tableName),
+      req,
+    )
 
-    req.search && query.where(this.querySearch(tableName, tableKey), {
-      search: `%${req.search.toLowerCase()}%`,
-    })
+    req.search &&
+      query.where(this.querySearch(tableName, tableKey), {
+        search: `%${req.search.toLowerCase()}%`,
+      })
 
-    query.orderBy(this.orderByKey(tableName, tableKey, req.sort), this.getOrder(req.order))
+    query.orderBy(
+      this.orderByKey(tableName, tableKey, req.sort),
+      this.getOrder(req.order),
+    )
     query.take(this.take(req.perPage))
     query.skip(this.countOffset(req))
 

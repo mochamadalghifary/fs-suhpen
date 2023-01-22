@@ -23,7 +23,9 @@ export class RoleController {
   }
 
   @Get(':name')
-  async findOne(@Query('name') name: Role): Promise<IApiRes<IAppRole | undefined>> {
+  async findOne(
+    @Query('name') name: Role,
+  ): Promise<IApiRes<IAppRole | undefined>> {
     const res = await this.roleService.findOne(name)
     return ApiRes.all(res)
   }

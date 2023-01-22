@@ -5,7 +5,7 @@ import { SwaggerModule } from '@nestjs/swagger'
 import { join } from 'path'
 import {
   initializeTransactionalContext,
-  patchTypeORMRepositoryWithBaseRepository
+  patchTypeORMRepositoryWithBaseRepository,
 } from 'typeorm-transactional-cls-hooked'
 import { AppModule } from './app.module'
 import { config } from './config'
@@ -31,6 +31,9 @@ async function bootstrap() {
   const port = config.server.port
   await app.listen(port)
 
-  Logger.log(`Application running at http://localhost:${port}`, 'NestApplication')
+  Logger.log(
+    `Application running at http://localhost:${port}`,
+    'NestApplication',
+  )
 }
 bootstrap()

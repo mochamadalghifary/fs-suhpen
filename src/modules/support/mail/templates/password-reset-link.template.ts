@@ -1,6 +1,9 @@
-import { IAppUser } from "../../../users/user/interfaces/user.interface";
+import { IAppUser } from '../../../users/user/interfaces/user.interface'
 
-export const MailTemplatePasswordResetLink = (user: IAppUser, link: string): string => {
+export const MailTemplatePasswordResetLink = (
+  user: IAppUser,
+  link: string,
+): string => {
   return `
     <html lang="en">
       <head>

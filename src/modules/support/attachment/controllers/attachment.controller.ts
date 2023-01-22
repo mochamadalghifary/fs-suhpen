@@ -8,21 +8,21 @@ import {
   Res,
   UploadedFile,
   UseGuards,
-  UseInterceptors
-} from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiTags } from '@nestjs/swagger';
-import * as path from 'path';
-import { Utils } from 'src/common/utils/utils';
-import { IApiRes } from 'src/infrastructure/interfaces/api-responses.interface';
-import { ApiRes } from 'src/infrastructure/interfaces/api.response';
-import { Modules } from 'src/modules/modules';
-import { LoggedInGuard } from 'src/modules/users/auth/guards/logged-in.guard';
-import { config } from '../../../../config';
-import { AttachmentUploadRequest } from '../requests/attachment-upload.request';
-import { FindAttachmentRequest } from '../requests/find-attachment.request';
-import { AttachmentUploadResponse } from '../responses/attachment-upload.response';
-import { AttachmentService } from '../services/attachment.service';
+  UseInterceptors,
+} from '@nestjs/common'
+import { FileInterceptor } from '@nestjs/platform-express'
+import { ApiTags } from '@nestjs/swagger'
+import * as path from 'path'
+import { Utils } from 'src/common/utils/utils'
+import { IApiRes } from 'src/infrastructure/interfaces/api-responses.interface'
+import { ApiRes } from 'src/infrastructure/interfaces/api.response'
+import { Modules } from 'src/modules/modules'
+import { LoggedInGuard } from 'src/modules/users/auth/guards/logged-in.guard'
+import { config } from '../../../../config'
+import { AttachmentUploadRequest } from '../requests/attachment-upload.request'
+import { FindAttachmentRequest } from '../requests/find-attachment.request'
+import { AttachmentUploadResponse } from '../responses/attachment-upload.response'
+import { AttachmentService } from '../services/attachment.service'
 
 const THIS_MODULE = Modules.Attachment
 
@@ -61,6 +61,6 @@ export class AttachmentController {
       findAttachmentRequest,
     )
 
-    return ApiRes.all(AttachmentUploadResponse.all(attachment),)
+    return ApiRes.all(AttachmentUploadResponse.all(attachment))
   }
 }

@@ -1,5 +1,5 @@
-import { IApiRes } from '../interfaces/api-responses.interface';
-import { IBaseEntity } from './base-entity.interface';
+import { IApiRes } from '../interfaces/api-responses.interface'
+import { IBaseEntity } from './base-entity.interface'
 
 export abstract class BaseCrudController {
   abstract fetch(...arg1: any): Promise<IApiRes<IBaseEntity[]>>

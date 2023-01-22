@@ -1,5 +1,5 @@
-import { config } from 'src/config';
-import { DataSource } from "typeorm";
+import { config } from 'src/config'
+import { DataSource } from 'typeorm'
 
 export const DataSourceConfig = {
   type: 'mysql',

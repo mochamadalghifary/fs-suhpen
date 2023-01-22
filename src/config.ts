@@ -25,7 +25,8 @@ export const config = {
     username: process.env.DB_USERNAME || 'root',
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE || 'template_next',
-    sslCa: process.env.DB_CERTIFICATE_PATH || '/etc/ssl/certs/ca-certificates.crt'
+    sslCa:
+      process.env.DB_CERTIFICATE_PATH || '/etc/ssl/certs/ca-certificates.crt',
   },
 
   auth: {
@@ -37,7 +38,7 @@ export const config = {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID || '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-    }
+    },
   },
 
   smtp: {

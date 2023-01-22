@@ -1,4 +1,4 @@
-import { IBaseEntity } from './base-entity.interface';
+import { IBaseEntity } from './base-entity.interface'
 
 export abstract class BaseService {
   abstract create(...arg: any): Promise<IBaseEntity>

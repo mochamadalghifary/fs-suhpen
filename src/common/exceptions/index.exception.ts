@@ -1,4 +1,10 @@
-import { BadRequestException, ForbiddenException, NotFoundException, UnauthorizedException, UnprocessableEntityException } from "@nestjs/common"
+import {
+  BadRequestException,
+  ForbiddenException,
+  NotFoundException,
+  UnauthorizedException,
+  UnprocessableEntityException,
+} from '@nestjs/common'
 
 export class Exception {
   static entityNotFound(key?: string, value?: string): void {
@@ -35,7 +41,6 @@ export class Exception {
 
       // TODO: another case
       // case 'ER_DUP_ENTRY':
-
     }
 
     // eslint-disable-next-line

@@ -1,10 +1,10 @@
-import nodemailer from 'nodemailer';
-import { MailOptions } from 'nodemailer/lib/json-transport';
-import { config } from 'src/config';
-import { Exception } from '../../../../common/exceptions/index.exception';
-import { IAppUser } from '../../../users/user/interfaces/user.interface';
-import { MailTemplatePasswordResetLink } from '../templates/password-reset-link.template';
-import { MailTemplatePasswordResetSuccess } from '../templates/password-reset-succes.template';
+import nodemailer from 'nodemailer'
+import { MailOptions } from 'nodemailer/lib/json-transport'
+import { config } from 'src/config'
+import { Exception } from '../../../../common/exceptions/index.exception'
+import { IAppUser } from '../../../users/user/interfaces/user.interface'
+import { MailTemplatePasswordResetLink } from '../templates/password-reset-link.template'
+import { MailTemplatePasswordResetSuccess } from '../templates/password-reset-succes.template'
 
 const emailFrom = 'fradotech.id@gmail.com'
 
@@ -31,7 +31,7 @@ export const MailService = {
       from: emailFrom,
       to: user.email,
       subject: `Password Reset ${user.name} Link`,
-      html: MailTemplatePasswordResetLink(user, link)
+      html: MailTemplatePasswordResetLink(user, link),
     }
 
     sendMail(mailOptions)
@@ -44,7 +44,7 @@ export const MailService = {
       from: emailFrom,
       to: user.email,
       subject: `Password Reset ${user.name} Success`,
-      html: MailTemplatePasswordResetSuccess(user)
+      html: MailTemplatePasswordResetSuccess(user),
     }
 
     sendMail(mailOptions)

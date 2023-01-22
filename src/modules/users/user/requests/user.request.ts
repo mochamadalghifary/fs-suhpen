@@ -1,4 +1,4 @@
-import { ApiProperty, OmitType } from '@nestjs/swagger';
+import { ApiProperty, OmitType } from '@nestjs/swagger'
 import {
   IsEmail,
   IsNotEmpty,
@@ -7,11 +7,11 @@ import {
   IsPhoneNumber,
   IsString,
   Matches,
-  MinLength
-} from 'class-validator';
-import { Role } from 'src/modules/users/role/enums/role.enum';
-import { STRING_PASSWORD_CHARACTER } from '../common/character.constant';
-import { IAppUser } from '../interfaces/user.interface';
+  MinLength,
+} from 'class-validator'
+import { Role } from 'src/modules/users/role/enums/role.enum'
+import { STRING_PASSWORD_CHARACTER } from '../common/character.constant'
+import { IAppUser } from '../interfaces/user.interface'
 
 export class UserRequest implements IAppUser {
   id: string

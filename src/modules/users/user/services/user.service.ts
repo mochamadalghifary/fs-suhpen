@@ -36,12 +36,12 @@ export class UserService implements BaseService {
   }
 
   async remove(id: string): Promise<IAppUser> {
-    const data = await this.findOneOrFail(id) as AppUser
+    const data = (await this.findOneOrFail(id)) as AppUser
     return await this.userRepo.remove(data)
   }
 
   async softRemove(id: string): Promise<IAppUser> {
-    const data = await this.findOneOrFail(id) as AppUser
+    const data = (await this.findOneOrFail(id)) as AppUser
     return await this.userRepo.softRemove(data)
   }
 

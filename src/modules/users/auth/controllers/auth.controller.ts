@@ -16,9 +16,7 @@ export class AuthController {
   constructor(private readonly authApp: AuthApp) {}
 
   @Post('login')
-  async login(
-    @Body() req: AuthLoginRequest,
-  ): Promise<IApiRes<UserResponse>> {
+  async login(@Body() req: AuthLoginRequest): Promise<IApiRes<UserResponse>> {
     const user = await this.authApp.login(req)
     return ApiRes.all(UserResponse.all(user))
   }

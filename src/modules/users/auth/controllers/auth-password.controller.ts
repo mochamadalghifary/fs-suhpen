@@ -16,17 +16,13 @@ export class AuthPasswordController {
   constructor(private readonly authApp: AuthApp) {}
 
   @Post('send')
-  async send(
-    @Body() req: AuthEmailRequest,
-  ): Promise<IApiRes<UserResponse>> {
+  async send(@Body() req: AuthEmailRequest): Promise<IApiRes<UserResponse>> {
     const link = await this.authApp.passwordSendLink(req)
     return ApiRes.all(link)
   }
 
   @Get(':token')
-  async token(
-    @Param('token') token: string,
-  ): Promise<IApiRes<UserResponse>> {
+  async token(@Param('token') token: string): Promise<IApiRes<UserResponse>> {
     const user = await this.authApp.passwordGetLink(token)
     return ApiRes.all(user)
   }

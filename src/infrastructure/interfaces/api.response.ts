@@ -1,6 +1,6 @@
-import { IBaseEntity } from '../base/base-entity.interface';
-import { IPaginationMeta } from '../index/index.interface';
-import { IApiRes } from './api-responses.interface';
+import { IBaseEntity } from '../base/base-entity.interface'
+import { IPaginationMeta } from '../index/index.interface'
+import { IApiRes } from './api-responses.interface'
 
 export class ApiRes implements IApiRes<any> {
   message!: string
@@ -14,7 +14,8 @@ export class ApiRes implements IApiRes<any> {
   ): ApiRes {
     const res = new ApiRes()
 
-    res.message = message || meta && 'Successfull fetch' || 'Successfull operation!'
+    res.message =
+      message || (meta && 'Successfull fetch') || 'Successfull operation!'
     res.data = data
     res.meta = meta
 

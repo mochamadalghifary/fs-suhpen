@@ -1,23 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
-import { config } from 'src/config';
-import { Exception } from '../../../../common/exceptions/index.exception';
-import { MailService } from '../../../support/mail/services/mail.service';
-import { AppUser } from '../../user/entities/user.entity';
-import { IAppUser } from '../../user/interfaces/user.interface';
-import { UserService } from '../../user/services/user.service';
-import { authMessages } from '../messages/auth.message';
-import { AuthChangePasswordRequest } from '../requests/auth-change-password.request';
-import { AuthEmailRequest } from '../requests/auth-email.request';
-import { AuthLoginRequest } from '../requests/auth-login.request';
-import { AuthRegisterRequest } from '../requests/auth-register.request';
+import { Injectable } from '@nestjs/common'
+import { JwtService } from '@nestjs/jwt'
+import * as bcrypt from 'bcrypt'
+import { config } from 'src/config'
+import { Exception } from '../../../../common/exceptions/index.exception'
+import { MailService } from '../../../support/mail/services/mail.service'
+import { AppUser } from '../../user/entities/user.entity'
+import { IAppUser } from '../../user/interfaces/user.interface'
+import { UserService } from '../../user/services/user.service'
+import { authMessages } from '../messages/auth.message'
+import { AuthChangePasswordRequest } from '../requests/auth-change-password.request'
+import { AuthEmailRequest } from '../requests/auth-email.request'
+import { AuthLoginRequest } from '../requests/auth-login.request'
+import { AuthRegisterRequest } from '../requests/auth-register.request'
 
 @Injectable()
 export class AuthApp {
   constructor(
     private readonly userService: UserService,
-    private readonly jwtService: JwtService
+    private readonly jwtService: JwtService,
   ) {}
 
   async register(req: AuthRegisterRequest): Promise<IAppUser> {
@@ -60,11 +60,14 @@ export class AuthApp {
     return user
   }
 
-  async passwordChange(req: AuthChangePasswordRequest): Promise<IAppUser | string> {
+  async passwordChange(
+    req: AuthChangePasswordRequest,
+  ): Promise<IAppUser | string> {
     const user = await this.userService.findOneByToken(req.token)
     if (!user) return authMessages.tokenInvalid
 
-    user.token != req.token && Exception.unprocessable(authMessages.tokenInvalid)
+    user.token != req.token &&
+      Exception.unprocessable(authMessages.tokenInvalid)
     user.password = await bcrypt.hash(req.password, 10)
     user.token = null
 
