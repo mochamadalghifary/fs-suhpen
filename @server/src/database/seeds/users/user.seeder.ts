@@ -23,7 +23,6 @@ export const userSeeder = async (): Promise<boolean> => {
   await repo.createQueryBuilder(table).insert().values(data).execute()
 
   Logger.log(
-    'Seeder',
     'Success run users seeders ',
     data.map((data) => data.email).toString(),
   )

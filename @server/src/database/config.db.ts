@@ -1,5 +1,6 @@
 import { config } from '@server/src/config'
 import { DataSource } from 'typeorm'
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 
 export const DataSourceConfig = {
   type: 'mysql',
@@ -17,4 +18,6 @@ export const DataSourceOptions = new DataSource({
   username: DataSourceConfig.username,
   password: DataSourceConfig.password,
   database: DataSourceConfig.database,
+  namingStrategy: new SnakeNamingStrategy(),
+  entities: ["dist/**/*.entity{.ts,.js}"],
 })

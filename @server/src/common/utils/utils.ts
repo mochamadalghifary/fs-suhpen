@@ -16,4 +16,15 @@ export class Utils {
     }
     return true
   }
+
+  static camelToSnake = (str: string) => {
+    str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`)
+  }
+
+  static fieldCamelToSnake = (model: object): object => {
+    const camelKeys = (Object.keys(model))
+    const snakeKeys = camelKeys.map((key) => this.camelToSnake(key))
+
+    return { ...snakeKeys }
+  }
 }
