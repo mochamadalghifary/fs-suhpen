@@ -1,3 +1,6 @@
+import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
+import { config } from '@server/src/config';
+import { diskStorage } from 'multer';
 import { Exception } from '../exceptions/index.exception';
 
 export class Utils {
@@ -6,6 +9,18 @@ export class Utils {
       Exception.badRequest('This file type is not allowed!')
     }
     callback(null, true);
+  }
+
+  static multerOptions = (): MulterOptions => {
+    return {
+      fileFilter: this.fileFilter,
+      storage: diskStorage({
+        destination: `.${config.assets.storage}`,
+        filename: (req, file, callback) => {
+          callback(null, `${Date.now() + '-'}${file.originalname}`)
+        }
+      })
+    }
   }
 
   static isValidJSON = (str: string): boolean => {
