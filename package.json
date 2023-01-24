@@ -50,7 +50,6 @@
     "rxjs": "^7.2.0",
     "typeorm": "^0.3.10",
     "typeorm-naming-strategies": "^4.1.0",
-    "typeorm-seeding": "^1.6.1",
     "typeorm-transactional-cls-hooked": "^0.1.21"
   },
   "devDependencies": {
@@ -80,7 +79,7 @@
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.1.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.4"
   },
   "jest": {
     "moduleFileExtensions": [

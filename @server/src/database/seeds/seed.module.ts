@@ -4,7 +4,7 @@ import { userSeeder } from './users/user.seeder'
 
 export const seeders = async () => {
   await DataSourceOptions.initialize()
-    .then(async () => Logger.log('Success connect seeder', 'Seeder'))
+    .then(async () => Logger.log('Success connect seeder', 'Automatic Seeder'))
     .catch((error) => Logger.error(error))
 
   await userSeeder()
