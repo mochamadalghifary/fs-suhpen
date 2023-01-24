@@ -12,12 +12,13 @@ import {
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { ApiTags } from '@nestjs/swagger'
-import { Utils } from '@server/src/common/utils/utils'
 import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.interface'
 import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
 import { Modules } from '@server/src/modules/modules'
 import { LoggedInGuard } from '@server/src/modules/users/auth/guards/logged-in.guard'
+import { diskStorage } from 'multer'
 import * as path from 'path'
+import { extname } from 'path'
 import { config } from '../../../../config'
 import { AttachmentUploadRequest } from '../requests/attachment-upload.request'
 import { FindAttachmentRequest } from '../requests/find-attachment.request'
@@ -41,16 +42,20 @@ export class AttachmentController {
 
   @Post()
   @UseInterceptors(
-    FileInterceptor(THIS_MODULE, { fileFilter: Utils.fileFilter }),
+    FileInterceptor(THIS_MODULE, {
+      storage: diskStorage({
+        destination: './uploads', filename: (req, file, cb) => {
+          cb(null, `${Date.now() + '-'}${extname(file.originalname)}`)
+        }
+      })
+    }),
   )
   async uploadAttachment(
     @UploadedFile() file: Express.Multer.File,
     @Body() req: AttachmentUploadRequest,
   ): Promise<IApiRes<AttachmentUploadResponse>> {
-    const fileUrl = file.path + '/' + Date.now() + '-' + file.originalname
-    const attachment = await this.attachmentService.upload(fileUrl, req)
-
-    return ApiRes.all(AttachmentUploadResponse.all(attachment))
+    const attachment = await this.attachmentService.upload(file.originalname, req)
+    return ApiRes.all(AttachmentUploadResponse.fromEntity(attachment))
   }
 
   @Get()
@@ -61,6 +66,6 @@ export class AttachmentController {
       findAttachmentRequest,
     )
 
-    return ApiRes.all(AttachmentUploadResponse.all(attachment))
+    return ApiRes.all(AttachmentUploadResponse.fromEntity(attachment))
   }
 }

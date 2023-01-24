@@ -1,6 +1,9 @@
 #Environment
 .env
 
+#Assets
+/uploads
+
 # compiled output
 /dist
 /node_modules

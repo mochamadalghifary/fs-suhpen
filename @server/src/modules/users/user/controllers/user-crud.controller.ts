@@ -33,19 +33,19 @@ export class UserCrudController implements BaseCrudController {
     @Query() req: UserIndexRequest,
   ): Promise<IApiRes<UserResponse[]>> {
     const res = await this.userCrudApp.fetch(req)
-    return ApiRes.all(UserResponse.alls(res.data), res.meta)
+    return ApiRes.all(UserResponse.fromEntities(res.data), res.meta)
   }
 
   @Post()
   async create(@Body() req: UserRequest): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.create(req)
-    return ApiRes.all(UserResponse.all(data))
+    return ApiRes.all(UserResponse.fromEntity(data))
   }
 
   @Get(':id')
   async findOneOrFail(@Param('id') id: string): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.findOneOrFail(id)
-    return ApiRes.all(UserResponse.all(data))
+    return ApiRes.all(UserResponse.fromEntity(data))
   }
 
   @Put(':id')
@@ -54,12 +54,12 @@ export class UserCrudController implements BaseCrudController {
     @Body() req: UserRequest,
   ): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.update(id, req)
-    return ApiRes.all(UserResponse.all(data))
+    return ApiRes.all(UserResponse.fromEntity(data))
   }
 
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.remove(id)
-    return ApiRes.all(UserResponse.all(data))
+    return ApiRes.all(UserResponse.fromEntity(data))
   }
 }

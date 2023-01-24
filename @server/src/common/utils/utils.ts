@@ -1,11 +1,11 @@
-import { Exception } from '../exceptions/index.exception'
+import { Exception } from '../exceptions/index.exception';
 
 export class Utils {
-  static fileFilter = (fileOriginalName: string): string => {
-    if (!fileOriginalName.match(/\.(jpg|jpeg|png|pdf)$/)) {
+  static fileFilter = (req: Request, file: any, callback: any) => {
+    if (!file.originalname.match(/\.(jpg|jpeg|png|pdf)$/)) {
       Exception.badRequest('This file type is not allowed!')
     }
-    return fileOriginalName
+    callback(null, true);
   }
 
   static isValidJSON = (str: string): boolean => {
