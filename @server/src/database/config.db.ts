@@ -19,5 +19,5 @@ export const DataSourceOptions = new DataSource({
   password: DataSourceConfig.password,
   database: DataSourceConfig.database,
   namingStrategy: new SnakeNamingStrategy(),
-  entities: ["dist/**/*.entity{.ts,.js}"],
+  entities: ['dist/**/*.entity{.ts,.js}'],
 })

@@ -8,21 +8,21 @@ import {
   Res,
   UploadedFile,
   UseGuards,
-  UseInterceptors
-} from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiTags } from '@nestjs/swagger';
-import { Utils } from '@server/src/common/utils/utils';
-import { config } from '@server/src/config';
-import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.interface';
-import { ApiRes } from '@server/src/infrastructure/interfaces/api.response';
-import { LoggedInGuard } from '@server/src/modules/iam/auth/guards/logged-in.guard';
-import { Modules } from '@server/src/modules/modules';
-import * as path from 'path';
-import { AttachmentUploadRequest } from '../requests/attachment-upload.request';
-import { FindAttachmentRequest } from '../requests/find-attachment.request';
-import { AttachmentUploadResponse } from '../responses/attachment-upload.response';
-import { AttachmentService } from '../services/attachment.service';
+  UseInterceptors,
+} from '@nestjs/common'
+import { FileInterceptor } from '@nestjs/platform-express'
+import { ApiTags } from '@nestjs/swagger'
+import { Utils } from '@server/src/common/utils/utils'
+import { config } from '@server/src/config'
+import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.interface'
+import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
+import { LoggedInGuard } from '@server/src/modules/iam/auth/guards/logged-in.guard'
+import { Modules } from '@server/src/modules/modules'
+import * as path from 'path'
+import { AttachmentUploadRequest } from '../requests/attachment-upload.request'
+import { FindAttachmentRequest } from '../requests/find-attachment.request'
+import { AttachmentUploadResponse } from '../responses/attachment-upload.response'
+import { AttachmentService } from '../services/attachment.service'
 
 const THIS_MODULE = Modules.Attachment
 
@@ -35,7 +35,7 @@ export class AttachmentController {
   @Get(':filePath')
   findUploadedAttachment(@Param('filePath') file: string, @Res() res: any) {
     return res.sendFile(file, {
-      root: path.resolve('./') + config.assets.storage
+      root: path.resolve('./') + config.assets.storage,
     })
   }
 
@@ -45,10 +45,7 @@ export class AttachmentController {
     @UploadedFile() file: Express.Multer.File,
     @Body() req: AttachmentUploadRequest,
   ): Promise<IApiRes<AttachmentUploadResponse>> {
-    const fileUrl =
-      config.server.host + '/' +
-      THIS_MODULE + '/' +
-      file.filename
+    const fileUrl = config.server.host + '/' + THIS_MODULE + '/' + file.filename
 
     const attachment = await this.attachmentService.upload(fileUrl, req)
     return ApiRes.all(AttachmentUploadResponse.fromEntity(attachment))

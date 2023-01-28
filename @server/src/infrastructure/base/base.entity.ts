@@ -9,7 +9,7 @@ import {
   DeleteDateColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from 'typeorm'
 import { IBaseEntity } from './base-entity.interface'
 
