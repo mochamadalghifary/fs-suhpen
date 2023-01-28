@@ -9,10 +9,10 @@ import {
 import { ValidationPipe } from './common/pipes/validation.pipe'
 import { DatabaseModule } from './database/database.module'
 import { FeatureModule } from './modules/feature/feature.module'
+import { AuthModule } from './modules/iam/auth/auth.module'
+import { RoleModule } from './modules/iam/role/role.module'
+import { UserModule } from './modules/iam/user/user.module'
 import { SupportModule } from './modules/support/support.module'
-import { AuthModule } from './modules/users/auth/auth.module'
-import { RoleModule } from './modules/users/role/role.module'
-import { UserModule } from './modules/users/user/user.module'
 
 @Module({
   imports: [

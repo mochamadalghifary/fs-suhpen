@@ -1,4 +1,4 @@
-import { IAppUser } from '@server/src/modules/users/user/interfaces/user.interface'
+import { IAppUser } from '@server/src/modules/iam/user/interfaces/user.interface'
 
 export interface IBaseEntity {
   id: string

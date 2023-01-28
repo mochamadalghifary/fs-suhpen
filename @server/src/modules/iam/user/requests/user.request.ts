@@ -1,5 +1,5 @@
 import { ApiProperty, OmitType } from '@nestjs/swagger'
-import { Role } from '@server/src/modules/users/role/enums/role.enum'
+import { Role } from '@server/src/modules/iam/role/enums/role.enum'
 import {
   IsEmail,
   IsNotEmpty,

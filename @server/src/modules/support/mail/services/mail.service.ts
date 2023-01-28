@@ -2,7 +2,7 @@ import { config } from '@server/src/config'
 import nodemailer from 'nodemailer'
 import { MailOptions } from 'nodemailer/lib/json-transport'
 import { Exception } from '../../../../common/exceptions/index.exception'
-import { IAppUser } from '../../../users/user/interfaces/user.interface'
+import { IAppUser } from '../../../iam/user/interfaces/user.interface'
 import { MailTemplatePasswordResetLink } from '../templates/password-reset-link.template'
 import { MailTemplatePasswordResetSuccess } from '../templates/password-reset-succes.template'
 

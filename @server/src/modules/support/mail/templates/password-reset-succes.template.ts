@@ -1,4 +1,4 @@
-import { IAppUser } from '../../../users/user/interfaces/user.interface'
+import { IAppUser } from '../../../iam/user/interfaces/user.interface'
 
 export const MailTemplatePasswordResetSuccess = (user: IAppUser): string => {
   return `

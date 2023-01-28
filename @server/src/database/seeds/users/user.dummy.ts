@@ -1,4 +1,4 @@
-import { Role } from '../../../modules/users/role/enums/role.enum'
+import { Role } from '../../../modules/iam/role/enums/role.enum'
 
 export const usersDummies = [
   {

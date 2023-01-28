@@ -1,8 +1,8 @@
 import { BaseEntity } from '@server/src/infrastructure/base/base.entity'
 import * as bcrypt from 'bcrypt'
 import { BeforeInsert, Column, Entity } from 'typeorm'
+import { Role } from '../../role/enums/role.enum'
 import { IAppUser } from '../interfaces/user.interface'
-import { Role } from './../../role/enums/role.enum'
 
 @Entity()
 export class AppUser extends BaseEntity implements IAppUser {
