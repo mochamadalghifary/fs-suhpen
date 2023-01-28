@@ -11,11 +11,10 @@ export const config = {
   },
 
   server: {
-    nodeEnv: process.env.SERVER_NODE_ENV || 'local',
+    nodeEnv: process.env.NODE_ENV || 'local',
     port: process.env.SERVER_PORT || 3000,
     host:
-      `${process.env.SERVER_HOST}:${process.env.SERVER_PORT}${process.env.APP_PREFIX}`
-      ||
+      `${process.env.SERVER_HOST}:${process.env.SERVER_PORT}${process.env.APP_PREFIX}` ||
       `http://localhost:${process.env.SERVER_PORT}${process.env.APP_PREFIX}`,
   },
 

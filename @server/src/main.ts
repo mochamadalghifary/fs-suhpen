@@ -5,7 +5,7 @@ import { SwaggerModule } from '@nestjs/swagger'
 import * as path from 'path'
 import {
   initializeTransactionalContext,
-  patchTypeORMRepositoryWithBaseRepository
+  patchTypeORMRepositoryWithBaseRepository,
 } from 'typeorm-transactional-cls-hooked'
 import { AppModule } from './app.module'
 import { config } from './config'
@@ -32,13 +32,7 @@ async function bootstrap() {
   await seeders()
   await app.listen(config.server.port)
 
-  Logger.log(
-    `Application running at ${server}`,
-    'NestApplication',
-  )
-  Logger.log(
-    `API Documentation Swagger at ${server}/${docsUrl}`,
-    'SwaggerUI',
-  )
+  Logger.log(`Application running at ${server}`, 'NestApplication')
+  Logger.log(`API Documentation Swagger at ${server}/${docsUrl}`, 'SwaggerUI')
 }
 bootstrap()
