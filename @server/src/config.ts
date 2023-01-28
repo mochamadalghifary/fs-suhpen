@@ -7,15 +7,16 @@ export const config = {
     name: process.env.APP_NAME,
     version: process.env.APP_VERSION,
     description: process.env.APP_DESCRIPTION,
-    tag: process.env.APP_TAG,
     prefix: process.env.APP_PREFIX || '/api/v1',
   },
 
   server: {
     nodeEnv: process.env.SERVER_NODE_ENV || 'local',
     port: process.env.SERVER_PORT || 3000,
-    host: process.env.SERVER_HOST || 'http://localhost:3000',
-    hostApi: process.env.SERVER_HOST_API || 'http://localhost:3000/api/v1',
+    host:
+      `${process.env.SERVER_HOST}:${process.env.SERVER_PORT}${process.env.APP_PREFIX}`
+      ||
+      `http://localhost:${process.env.SERVER_PORT}${process.env.APP_PREFIX}`,
   },
 
   database: {

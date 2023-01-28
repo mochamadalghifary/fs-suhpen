@@ -46,7 +46,7 @@ export class AuthApp {
     if (!user) return 'Failed'
 
     user.token = await this.jwtService.signAsync({ id: user.id })
-    const link = `${config.server.hostApi}/auth/password/${user.token}`
+    const link = `${config.server.host}/auth/password/${user.token}`
 
     await this.userService.update(user)
     await MailService.passwordResetLink(user, link)
