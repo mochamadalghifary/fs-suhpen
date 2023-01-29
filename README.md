@@ -18,3 +18,13 @@ $ yarn server:dev
 ```bash
 $ yarn client:dev
 ```
+
+## Results
+- Server url
+http://localhost:3000
+
+- Client url
+http://localhost:8080
+
+- API Documentation by Swagger UI
+http://localhost:3000/docs
