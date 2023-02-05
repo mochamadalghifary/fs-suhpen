@@ -1,23 +1,24 @@
-import { Injectable } from '@nestjs/common'
-import { JwtService } from '@nestjs/jwt'
-import { config } from '@server/src/config'
-import * as bcrypt from 'bcrypt'
-import { Exception } from '../../../../common/exceptions/index.exception'
-import { MailService } from '../../../support/mail/services/mail.service'
-import { AppUser } from '../../user/entities/user.entity'
-import { IAppUser } from '../../user/interfaces/user.interface'
-import { UserService } from '../../user/services/user.service'
-import { authMessages } from '../messages/auth.message'
-import { AuthChangePasswordRequest } from '../requests/auth-change-password.request'
-import { AuthEmailRequest } from '../requests/auth-email.request'
-import { AuthLoginRequest } from '../requests/auth-login.request'
-import { AuthRegisterRequest } from '../requests/auth-register.request'
+import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { config } from '@server/src/config';
+import * as bcrypt from 'bcrypt';
+import { Exception } from '../../../../common/exceptions/index.exception';
+import { AppUser } from '../../user/entities/user.entity';
+import { IAppUser } from '../../user/interfaces/user.interface';
+import { UserService } from '../../user/services/user.service';
+import { authMessages } from '../messages/auth.message';
+import { AuthChangePasswordRequest } from '../requests/auth-change-password.request';
+import { AuthEmailRequest } from '../requests/auth-email.request';
+import { AuthLoginRequest } from '../requests/auth-login.request';
+import { AuthRegisterRequest } from '../requests/auth-register.request';
+import { AuthPasswordService } from './../services/auth-password.service';
 
 @Injectable()
 export class AuthApp {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
+    private readonly authPasswordService: AuthPasswordService,
   ) {}
 
   async register(req: AuthRegisterRequest): Promise<IAppUser> {
@@ -49,7 +50,7 @@ export class AuthApp {
     const link = `${config.server.host}/auth/password/${user.token}`
 
     await this.userService.update(user)
-    await MailService.passwordResetLink(user, link)
+    await this.authPasswordService.passwordResetLink(user, link)
 
     return link
   }
@@ -72,7 +73,7 @@ export class AuthApp {
     user.token = null
 
     await this.userService.update(user)
-    await MailService.passwordResetSuccess(user)
+    await this.authPasswordService.passwordResetSuccess(user)
 
     return user
   }

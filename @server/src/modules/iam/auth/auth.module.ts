@@ -8,6 +8,7 @@ import { AuthApp } from './apps/auth.app'
 import { JwtModuleOption } from './configs/jwt-module.config'
 import { AuthPasswordController } from './controllers/auth-password.controller'
 import { AuthController } from './controllers/auth.controller'
+import { AuthPasswordService } from './services/auth-password.service'
 import { JwtStrategy } from './strategies/jwt.strategy'
 
 @Module({
@@ -16,8 +17,16 @@ import { JwtStrategy } from './strategies/jwt.strategy'
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync(JwtModuleOption),
   ],
-  controllers: [AuthPasswordController, AuthController],
-  providers: [UserService, AuthApp, JwtStrategy],
-  exports: [AuthApp, PassportModule, JwtStrategy, UserService],
+  controllers: [
+    AuthPasswordController,
+    AuthController
+  ],
+  providers: [
+    UserService,
+    AuthApp,
+    JwtStrategy,
+    AuthPasswordService
+  ],
+  exports: [],
 })
 export class AuthModule {}

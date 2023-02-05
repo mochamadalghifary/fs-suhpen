@@ -1,4 +1,4 @@
-import { GetUserLogged } from '@server/src/modules/iam/user/common/get-user.decorator'
+import { GetUserLogged } from '@server/src/modules/iam/user/common/get-user-logged.decorator'
 import { AppUser } from '@server/src/modules/iam/user/entities/user.entity'
 import { IAppUser } from '@server/src/modules/iam/user/interfaces/user.interface'
 import {
@@ -9,7 +9,7 @@ import {
   DeleteDateColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  UpdateDateColumn
 } from 'typeorm'
 import { IBaseEntity } from './base-entity.interface'
 

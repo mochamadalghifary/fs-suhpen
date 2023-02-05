@@ -1,10 +1,8 @@
+import { Logger } from '@nestjs/common'
 import { config } from '@server/src/config'
 import nodemailer from 'nodemailer'
 import { MailOptions } from 'nodemailer/lib/json-transport'
 import { Exception } from '../../../../common/exceptions/index.exception'
-import { IAppUser } from '../../../iam/user/interfaces/user.interface'
-import { MailTemplatePasswordResetLink } from '../templates/password-reset-link.template'
-import { MailTemplatePasswordResetSuccess } from '../templates/password-reset-succes.template'
 
 const emailFrom = 'fradotech.id@gmail.com'
 
@@ -17,38 +15,11 @@ const transporter = nodemailer.createTransport({
   },
 })
 
-const sendMail = (mailOptions: MailOptions) => {
+export const sendMail = (mailOptions: MailOptions) => {
+  mailOptions.from = emailFrom
   transporter.sendMail(mailOptions, (error, info) => {
     error && Exception.unprocessable(error)
     // eslint-disable-next-line
-    info && console.info('info - Success send email', info)
+    info && Logger.log('Success send mail to ' + info.accepted, 'Mail Service')
   })
-}
-
-export const MailService = {
-  passwordResetLink: async (user: IAppUser, link: string): Promise<boolean> => {
-    const mailOptions: MailOptions = {
-      from: emailFrom,
-      to: user.email,
-      subject: `Password Reset ${user.name} Link`,
-      html: MailTemplatePasswordResetLink(user, link),
-    }
-
-    sendMail(mailOptions)
-
-    return true
-  },
-
-  passwordResetSuccess: async (user: IAppUser): Promise<boolean> => {
-    const mailOptions: MailOptions = {
-      from: emailFrom,
-      to: user.email,
-      subject: `Password Reset ${user.name} Success`,
-      html: MailTemplatePasswordResetSuccess(user),
-    }
-
-    sendMail(mailOptions)
-
-    return true
-  },
 }
