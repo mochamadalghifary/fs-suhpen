@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { AppAttachment } from '../entities/attachment.entity'
-import { AttachmentUploadRequest } from '../requests/attachment-upload.request'
-import { FindAttachmentRequest } from '../requests/find-attachment.request'
+import { AttachmentUploadRequest } from './attachment-upload.request'
+import { AppAttachment } from './attachment.entity'
+import { AttachmentFindRequest } from './attachment.request'
 
 @Injectable()
 export class AttachmentService {
@@ -24,7 +24,7 @@ export class AttachmentService {
     return await this.attachmentRepo.save(attachment)
   }
 
-  async findOne(req: FindAttachmentRequest): Promise<AppAttachment> {
+  async findOne(req: AttachmentFindRequest): Promise<AppAttachment> {
     return await this.attachmentRepo.findOneOrFail({
       where: [{ fileUrl: req.fileUrl }, { module: req.module }],
     })

@@ -2,7 +2,7 @@ import { Logger } from '@nestjs/common'
 import { config } from '@server/src/config'
 import nodemailer from 'nodemailer'
 import { MailOptions } from 'nodemailer/lib/json-transport'
-import { Exception } from '../../../../common/exceptions/index.exception'
+import { Exception } from '../../../common/exceptions/index.exception'
 
 const emailFrom = 'fradotech.id@gmail.com'
 

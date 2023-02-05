@@ -8,7 +8,7 @@ import {
   Res,
   UploadedFile,
   UseGuards,
-  UseInterceptors,
+  UseInterceptors
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { ApiTags } from '@nestjs/swagger'
@@ -19,10 +19,10 @@ import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
 import { LoggedInGuard } from '@server/src/modules/iam/auth/guards/logged-in.guard'
 import { Modules } from '@server/src/modules/modules'
 import * as path from 'path'
-import { AttachmentUploadRequest } from '../requests/attachment-upload.request'
-import { FindAttachmentRequest } from '../requests/find-attachment.request'
-import { AttachmentUploadResponse } from '../responses/attachment-upload.response'
-import { AttachmentService } from '../services/attachment.service'
+import { AttachmentUploadRequest } from '../infrastructure/attachment-upload.request'
+import { AttachmentUploadResponse } from '../infrastructure/attachment-upload.response'
+import { AttachmentFindRequest } from '../infrastructure/attachment.request'
+import { AttachmentService } from '../infrastructure/attachment.service'
 
 const THIS_MODULE = Modules.Attachment
 
@@ -53,10 +53,10 @@ export class AttachmentController {
 
   @Get()
   async findAttachment(
-    @Query() findAttachmentRequest: FindAttachmentRequest,
+    @Query() attachmentFindRequest: AttachmentFindRequest,
   ): Promise<IApiRes<AttachmentUploadResponse>> {
     const attachment = await this.attachmentService.findOne(
-      findAttachmentRequest,
+      attachmentFindRequest,
     )
 
     return ApiRes.all(AttachmentUploadResponse.fromEntity(attachment))
