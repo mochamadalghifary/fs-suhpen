@@ -1,17 +1,17 @@
-import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { config } from '@server/src/config';
-import * as bcrypt from 'bcrypt';
-import { Exception } from '../../../../common/exceptions/index.exception';
-import { AppUser } from '../../user/entities/user.entity';
-import { IAppUser } from '../../user/interfaces/user.interface';
-import { UserService } from '../../user/services/user.service';
-import { authMessages } from '../messages/auth.message';
-import { AuthChangePasswordRequest } from '../requests/auth-change-password.request';
-import { AuthEmailRequest } from '../requests/auth-email.request';
-import { AuthLoginRequest } from '../requests/auth-login.request';
-import { AuthRegisterRequest } from '../requests/auth-register.request';
-import { AuthPasswordService } from './../services/auth-password.service';
+import { Injectable } from '@nestjs/common'
+import { JwtService } from '@nestjs/jwt'
+import { config } from '@server/src/config'
+import * as bcrypt from 'bcrypt'
+import { Exception } from '../../../../common/exceptions/index.exception'
+import { AppUser } from '../../user/entities/user.entity'
+import { IAppUser } from '../../user/interfaces/user.interface'
+import { UserService } from '../../user/services/user.service'
+import { authMessages } from '../messages/auth.message'
+import { AuthChangePasswordRequest } from '../requests/auth-change-password.request'
+import { AuthEmailRequest } from '../requests/auth-email.request'
+import { AuthLoginRequest } from '../requests/auth-login.request'
+import { AuthRegisterRequest } from '../requests/auth-register.request'
+import { AuthPasswordService } from './../services/auth-password.service'
 
 @Injectable()
 export class AuthApp {
