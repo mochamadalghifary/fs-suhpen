@@ -2,9 +2,9 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository, SelectQueryBuilder } from 'typeorm'
 import { IPaginateResponse } from '../../../../infrastructure/index/index.interface'
 import { BaseIndexService } from '../../../../infrastructure/index/index.service'
-import { AppUser } from '../entities/user.entity'
-import { IAppUser } from '../interfaces/user.interface'
-import { UserIndexRequest } from '../requests/user-index.request'
+import { AppUser } from './user.entity'
+import { IAppUser } from './user.interface'
+import { UserIndexRequest } from './user.request'
 
 export class UserIndexService extends BaseIndexService {
   constructor(

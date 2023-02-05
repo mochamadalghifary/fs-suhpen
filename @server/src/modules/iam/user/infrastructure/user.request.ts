@@ -1,4 +1,5 @@
 import { ApiProperty, OmitType } from '@nestjs/swagger'
+import { IndexRequest } from '@server/src/infrastructure/index/index.request'
 import { Role } from '@server/src/modules/iam/role/infrastructure/role.enum'
 import {
   IsEmail,
@@ -11,7 +12,9 @@ import {
   MinLength,
 } from 'class-validator'
 import { STRING_PASSWORD_CHARACTER } from '../common/character.constant'
-import { IAppUser } from '../interfaces/user.interface'
+import { IAppUser } from '../infrastructure/user.interface'
+
+export class UserIndexRequest extends IndexRequest {}
 
 export class UserRequest implements IAppUser {
   id: string

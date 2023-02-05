@@ -4,11 +4,11 @@ import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.int
 import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
 import { Modules } from '@server/src/modules/modules'
 import { LoggedInGuard } from '../../auth/common/logged-in.guard'
-import { UserCrudApp } from '../apps/user-crud.app'
 import { GetUserLogged } from '../common/get-user-logged.decorator'
-import { IAppUser } from '../interfaces/user.interface'
-import { UserUpdateRequest } from '../requests/user.request'
-import { UserResponse } from '../responses/user.response'
+import { UserCrudApp } from '../infrastructure/user-crud.app'
+import { IAppUser } from '../infrastructure/user.interface'
+import { UserUpdateRequest } from '../infrastructure/user.request'
+import { UserResponse } from '../infrastructure/user.response'
 
 const THIS_MODULE = Modules.Profile
 

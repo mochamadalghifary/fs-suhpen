@@ -15,10 +15,13 @@ import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.int
 import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
 import { Modules } from '@server/src/modules/modules'
 import { AdminGuard } from '../../auth/common/admin.guard'
-import { UserCrudApp } from '../apps/user-crud.app'
-import { UserIndexRequest } from '../requests/user-index.request'
-import { UserRequest } from '../requests/user.request'
-import { UserResponse } from '../responses/user.response'
+import { UserCrudApp } from '../infrastructure/user-crud.app'
+import {
+  UserIndexRequest,
+  UserRequest,
+  UserUpdateRequest,
+} from '../infrastructure/user.request'
+import { UserResponse } from '../infrastructure/user.response'
 
 const THIS_MODULE = Modules.Users
 
@@ -51,7 +54,7 @@ export class UserCrudController implements BaseCrudController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() req: UserRequest,
+    @Body() req: UserUpdateRequest,
   ): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.update(id, req)
     return ApiRes.all(UserResponse.fromEntity(data))

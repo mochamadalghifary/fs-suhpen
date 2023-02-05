@@ -1,5 +1,5 @@
 import { Role } from '../../role/infrastructure/role.enum'
-import { IAppUser } from '../interfaces/user.interface'
+import { IAppUser } from '../infrastructure/user.interface'
 
 export class UserResponse implements IAppUser {
   id: string

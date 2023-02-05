@@ -1,8 +1,8 @@
 import { Logger } from '@nestjs/common'
 import { DataSourceOptions } from '@server/src/database/config.db'
+import { AppUser } from '@server/src/modules/iam/user/infrastructure/user.entity'
+import { IAppUser } from '@server/src/modules/iam/user/infrastructure/user.interface'
 import { EntityManager, Repository } from 'typeorm'
-import { AppUser } from '../../../modules/iam/user/entities/user.entity'
-import { IAppUser } from '../../../modules/iam/user/interfaces/user.interface'
 import { usersDummies } from './user.dummy'
 
 export const userSeeder = async (): Promise<boolean> => {

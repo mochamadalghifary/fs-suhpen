@@ -3,9 +3,9 @@ import { JwtService } from '@nestjs/jwt'
 import { config } from '@server/src/config'
 import * as bcrypt from 'bcrypt'
 import { Exception } from '../../../../common/exceptions/index.exception'
-import { AppUser } from '../../user/entities/user.entity'
-import { IAppUser } from '../../user/interfaces/user.interface'
-import { UserService } from '../../user/services/user.service'
+import { AppUser } from '../../user/infrastructure/user.entity'
+import { IAppUser } from '../../user/infrastructure/user.interface'
+import { UserService } from '../../user/infrastructure/user.service'
 import { authMessages } from '../common/auth.message'
 import {
   AuthChangePasswordRequest,

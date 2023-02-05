@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger'
 import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.interface'
 import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
 import { Modules } from '@server/src/modules/modules'
-import { UserResponse } from '../../user/responses/user.response'
+import { UserResponse } from '../../user/infrastructure/user.response'
 import { AuthApp } from '../infrastructure/auth.app'
 import {
   AuthLoginRequest,

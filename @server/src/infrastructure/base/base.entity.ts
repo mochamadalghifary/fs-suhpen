@@ -1,6 +1,6 @@
 import { GetUserLogged } from '@server/src/modules/iam/user/common/get-user-logged.decorator'
-import { AppUser } from '@server/src/modules/iam/user/entities/user.entity'
-import { IAppUser } from '@server/src/modules/iam/user/interfaces/user.interface'
+import { AppUser } from '@server/src/modules/iam/user/infrastructure/user.entity'
+import { IAppUser } from '@server/src/modules/iam/user/infrastructure/user.interface'
 import {
   BeforeInsert,
   BeforeSoftRemove,

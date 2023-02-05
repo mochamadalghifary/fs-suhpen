@@ -1,4 +1,4 @@
-import { IAppUser } from '../../iam/user/interfaces/user.interface'
+import { IAppUser } from '../../iam/user/infrastructure/user.interface'
 
 // TODO: Create template with html or hbs file
 export const MailTemplatePasswordResetSuccess = (user: IAppUser): string => {

@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
 import { Exception } from '@server/src/common/exceptions/index.exception'
 import { ExtractJwt, Strategy } from 'passport-jwt'
-import { IAppUser } from '../../user/interfaces/user.interface'
-import { UserService } from '../../user/services/user.service'
+import { IAppUser } from '../../user/infrastructure/user.interface'
+import { UserService } from '../../user/infrastructure/user.service'
 import { IJwtPayload } from './jwt-payload-interface'
 
 @Injectable()

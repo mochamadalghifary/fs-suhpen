@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { BaseService } from '@server/src/infrastructure/base/base.service'
 import { Repository } from 'typeorm'
-import { AppUser } from '../entities/user.entity'
-import { IAppUser } from '../interfaces/user.interface'
+import { AppUser } from '../infrastructure/user.entity'
+import { IAppUser } from '../infrastructure/user.interface'
 
 @Injectable()
 export class UserService implements BaseService {
