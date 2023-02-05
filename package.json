@@ -14,7 +14,7 @@
     "server:start": "nest start",
     "server:dev": "nest start --watch",
     "server:debug": "nest start --debug --watch",
-    "server:prod": "node dist/@server/main",
+    "server:prod": "node dist/@server/src/main",
     "client:dev": "webpack-dev-server --open --hot --config webpack.config.js --mode=development",
     "client:build": "webpack --config webpack.config.js --mode=production",
     "client:serve": "webpack-dev-server --mode=production --config webpack.config.js "
