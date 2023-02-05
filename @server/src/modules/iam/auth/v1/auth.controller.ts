@@ -4,9 +4,11 @@ import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.int
 import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
 import { Modules } from '@server/src/modules/modules'
 import { UserResponse } from '../../user/responses/user.response'
-import { AuthApp } from '../apps/auth.app'
-import { AuthLoginRequest } from '../requests/auth-login.request'
-import { AuthRegisterRequest } from '../requests/auth-register.request'
+import { AuthApp } from '../infrastructure/auth.app'
+import {
+  AuthLoginRequest,
+  AuthRegisterRequest,
+} from '../infrastructure/auth.request'
 
 const THIS_MODULE = Modules.Auth
 

@@ -6,19 +6,21 @@ import { Exception } from '../../../../common/exceptions/index.exception'
 import { AppUser } from '../../user/entities/user.entity'
 import { IAppUser } from '../../user/interfaces/user.interface'
 import { UserService } from '../../user/services/user.service'
-import { authMessages } from '../messages/auth.message'
-import { AuthChangePasswordRequest } from '../requests/auth-change-password.request'
-import { AuthEmailRequest } from '../requests/auth-email.request'
-import { AuthLoginRequest } from '../requests/auth-login.request'
-import { AuthRegisterRequest } from '../requests/auth-register.request'
-import { AuthPasswordService } from './../services/auth-password.service'
+import { authMessages } from '../common/auth.message'
+import {
+  AuthChangePasswordRequest,
+  AuthEmailRequest,
+  AuthLoginRequest,
+  AuthRegisterRequest,
+} from './auth.request'
+import { AuthService } from './auth.service'
 
 @Injectable()
 export class AuthApp {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-    private readonly authPasswordService: AuthPasswordService,
+    private readonly authPasswordService: AuthService,
   ) {}
 
   async register(req: AuthRegisterRequest): Promise<IAppUser> {

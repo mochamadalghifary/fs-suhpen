@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
-import { Role } from '@server/src/modules/iam/role/enums/role.enum'
+import { Role } from '@server/src/modules/iam/role/infrastructure/role.enum'
 
 @Injectable()
 export class Admin2Guard extends AuthGuard('jwt') {

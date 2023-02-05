@@ -14,7 +14,7 @@ import { BaseCrudController } from '@server/src/infrastructure/base/base-crud.co
 import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.interface'
 import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
 import { Modules } from '@server/src/modules/modules'
-import { AdminGuard } from '../../auth/guards/admin.guard'
+import { AdminGuard } from '../../auth/common/admin.guard'
 import { UserCrudApp } from '../apps/user-crud.app'
 import { UserIndexRequest } from '../requests/user-index.request'
 import { UserRequest } from '../requests/user.request'

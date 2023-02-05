@@ -1,4 +1,4 @@
-import { IAppAttachment } from "./attachment.interface"
+import { IAppAttachment } from './attachment.interface'
 
 export class AttachmentUploadResponse implements IAppAttachment {
   id: string

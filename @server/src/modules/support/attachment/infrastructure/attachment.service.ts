@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { AttachmentUploadRequest } from './attachment-upload.request'
 import { AppAttachment } from './attachment.entity'
-import { AttachmentFindRequest } from './attachment.request'
+import {
+  AttachmentFindRequest,
+  AttachmentUploadRequest,
+} from './attachment.request'
 
 @Injectable()
 export class AttachmentService {

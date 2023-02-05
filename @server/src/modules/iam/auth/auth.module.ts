@@ -4,12 +4,12 @@ import { PassportModule } from '@nestjs/passport'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AppUser } from '../user/entities/user.entity'
 import { UserService } from '../user/services/user.service'
-import { AuthApp } from './apps/auth.app'
-import { JwtModuleOption } from './configs/jwt-module.config'
-import { AuthPasswordController } from './controllers/auth-password.controller'
-import { AuthController } from './controllers/auth.controller'
-import { AuthPasswordService } from './services/auth-password.service'
-import { JwtStrategy } from './strategies/jwt.strategy'
+import { JwtModuleOption } from './common/jwt-module.config'
+import { JwtStrategy } from './common/jwt.strategy'
+import { AuthApp } from './infrastructure/auth.app'
+import { AuthService } from './infrastructure/auth.service'
+import { AuthPasswordController } from './v1/auth-password.controller'
+import { AuthController } from './v1/auth.controller'
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { JwtStrategy } from './strategies/jwt.strategy'
     JwtModule.registerAsync(JwtModuleOption),
   ],
   controllers: [AuthPasswordController, AuthController],
-  providers: [UserService, AuthApp, JwtStrategy, AuthPasswordService],
+  providers: [UserService, AuthApp, JwtStrategy, AuthService],
   exports: [],
 })
 export class AuthModule {}

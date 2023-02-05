@@ -1,4 +1,4 @@
-import { Role } from '../../role/enums/role.enum'
+import { Role } from '../../role/infrastructure/role.enum'
 import { IAppUser } from '../interfaces/user.interface'
 
 export class UserResponse implements IAppUser {

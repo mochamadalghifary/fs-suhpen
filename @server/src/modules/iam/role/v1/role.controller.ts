@@ -2,11 +2,11 @@ import { Controller, Get, Query, UseGuards } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
 import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.interface'
 import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
-import { Role } from '@server/src/modules/iam/role/enums/role.enum'
+import { Role } from '@server/src/modules/iam/role/infrastructure/role.enum'
 import { Modules } from '@server/src/modules/modules'
-import { AdminGuard } from '../../auth/guards/admin.guard'
-import { IAppRole } from '../interfaces/role.interface'
-import { RoleService } from '../service/role.service'
+import { AdminGuard } from '../../auth/common/admin.guard'
+import { IAppRole } from '../infrastructure/role.interface'
+import { RoleService } from '../infrastructure/role.service'
 
 const THIS_MODULE = Modules.Roles
 

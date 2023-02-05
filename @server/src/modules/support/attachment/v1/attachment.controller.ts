@@ -8,7 +8,7 @@ import {
   Res,
   UploadedFile,
   UseGuards,
-  UseInterceptors
+  UseInterceptors,
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { ApiTags } from '@nestjs/swagger'
@@ -16,12 +16,14 @@ import { Utils } from '@server/src/common/utils/utils'
 import { config } from '@server/src/config'
 import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.interface'
 import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
-import { LoggedInGuard } from '@server/src/modules/iam/auth/guards/logged-in.guard'
+import { LoggedInGuard } from '@server/src/modules/iam/auth/common/logged-in.guard'
 import { Modules } from '@server/src/modules/modules'
 import * as path from 'path'
-import { AttachmentUploadRequest } from '../infrastructure/attachment-upload.request'
-import { AttachmentUploadResponse } from '../infrastructure/attachment-upload.response'
-import { AttachmentFindRequest } from '../infrastructure/attachment.request'
+import {
+  AttachmentFindRequest,
+  AttachmentUploadRequest,
+} from '../infrastructure/attachment.request'
+import { AttachmentUploadResponse } from '../infrastructure/attachment.response'
 import { AttachmentService } from '../infrastructure/attachment.service'
 
 const THIS_MODULE = Modules.Attachment

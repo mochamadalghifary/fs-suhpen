@@ -1,8 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { IndexRequest } from '@server/src/infrastructure/index/index.request'
 import { IsNotEmpty, IsString } from 'class-validator'
 
-export class AttachmentFindRequest extends IndexRequest {
+export class AttachmentUploadRequest {
+  @IsNotEmpty({ message: 'Field wajib diisi' })
+  @IsString()
+  @ApiProperty()
+  module: string
+}
+
+export class AttachmentFindRequest {
   @IsNotEmpty()
   @IsString()
   @ApiProperty()

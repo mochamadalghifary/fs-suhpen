@@ -4,9 +4,11 @@ import { IApiRes } from '@server/src/infrastructure/interfaces/api-responses.int
 import { ApiRes } from '@server/src/infrastructure/interfaces/api.response'
 import { Modules } from '@server/src/modules/modules'
 import { UserResponse } from '../../user/responses/user.response'
-import { AuthApp } from '../apps/auth.app'
-import { AuthChangePasswordRequest } from '../requests/auth-change-password.request'
-import { AuthEmailRequest } from '../requests/auth-email.request'
+import { AuthApp } from '../infrastructure/auth.app'
+import {
+  AuthChangePasswordRequest,
+  AuthEmailRequest,
+} from '../infrastructure/auth.request'
 
 const THIS_MODULE = Modules.Auth + '/password'
 

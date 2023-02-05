@@ -1,5 +1,5 @@
 import { IBaseEntity } from '@server/src/infrastructure/base/base-entity.interface'
-import { Role } from '../../role/enums/role.enum'
+import { Role } from '../../role/infrastructure/role.enum'
 
 export interface IAppUser extends IBaseEntity {
   name: string

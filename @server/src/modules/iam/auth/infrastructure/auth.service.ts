@@ -6,7 +6,7 @@ import { MailOptions } from 'nodemailer/lib/json-transport'
 import { IAppUser } from '../../user/interfaces/user.interface'
 
 @Injectable()
-export class AuthPasswordService {
+export class AuthService {
   async passwordResetLink(user: IAppUser, link: string): Promise<boolean> {
     const mailOptions: MailOptions = {
       to: user.email,
