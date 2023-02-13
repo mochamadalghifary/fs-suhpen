@@ -13,4 +13,6 @@ export class AttachmentFindRequest {
   module: string
 }
 
-export class AttachmentUploadRequest extends PickType(AttachmentFindRequest, ['module']) {}
+export class AttachmentUploadRequest extends PickType(AttachmentFindRequest, [
+  'module',
+]) {}

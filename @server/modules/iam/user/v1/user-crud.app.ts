@@ -4,7 +4,9 @@ import { UserIndexService } from '../infrastructure/user-index.service'
 import { AppUser } from '../infrastructure/user.entity'
 import { IAppUser } from '../infrastructure/user.interface'
 import {
-  UserCreateRequest, UserIndexRequest, UserUpdateRequest
+  UserCreateRequest,
+  UserIndexRequest,
+  UserUpdateRequest,
 } from '../infrastructure/user.request'
 import { UserService } from '../infrastructure/user.service'
 

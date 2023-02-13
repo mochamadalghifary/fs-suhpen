@@ -16,7 +16,9 @@ import { ApiRes } from '@server/infrastructure/interfaces/api.response'
 import { Modules } from '@server/modules/modules'
 import { AdminGuard } from '../../auth/common/admin.guard'
 import {
-  UserCreateRequest, UserIndexRequest, UserUpdateRequest
+  UserCreateRequest,
+  UserIndexRequest,
+  UserUpdateRequest
 } from '../infrastructure/user.request'
 import { UserStrictResponse } from '../infrastructure/user.response'
 import { UserCrudApp } from './user-crud.app'
@@ -34,17 +36,24 @@ export class UserCrudController implements BaseCrudController {
     @Query() req: UserIndexRequest,
   ): Promise<IApiRes<UserStrictResponse[]>> {
     const res = await this.userCrudApp.fetch(req)
-    return ApiRes.fromEntity(UserStrictResponse.fromEntities(res.data), res.meta)
+    return ApiRes.fromEntity(
+      UserStrictResponse.fromEntities(res.data),
+      res.meta,
+    )
   }
 
   @Post()
-  async create(@Body() req: UserCreateRequest): Promise<IApiRes<UserStrictResponse>> {
+  async create(
+    @Body() req: UserCreateRequest,
+  ): Promise<IApiRes<UserStrictResponse>> {
     const data = await this.userCrudApp.create(req)
     return ApiRes.fromEntity(UserStrictResponse.fromEntity(data))
   }
 
   @Get(':id')
-  async findOneOrFail(@Param('id') id: string): Promise<IApiRes<UserStrictResponse>> {
+  async findOneOrFail(
+    @Param('id') id: string,
+  ): Promise<IApiRes<UserStrictResponse>> {
     const data = await this.userCrudApp.findOneOrFail(id)
     return ApiRes.fromEntity(UserStrictResponse.fromEntity(data))
   }
@@ -60,7 +69,7 @@ export class UserCrudController implements BaseCrudController {
 
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<IApiRes<UserStrictResponse>> {
-    const data = await this.userCrudApp.remove(id)
+    const data = await this.userCrudApp.softRemove(id)
     return ApiRes.fromEntity(UserStrictResponse.fromEntity(data))
   }
 }

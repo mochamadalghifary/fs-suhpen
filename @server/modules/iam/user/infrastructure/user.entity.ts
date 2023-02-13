@@ -1,7 +1,7 @@
 import { BaseEntity } from '@server/infrastructure/base/base.entity'
 import * as bcrypt from 'bcrypt'
 import { BeforeInsert, Column, Entity } from 'typeorm'
-import { Role } from '../../role/infrastructure/role.enum'
+import { ERole } from '../../role/infrastructure/role.enum'
 import { IAppUser } from '../infrastructure/user.interface'
 
 @Entity()
@@ -15,8 +15,8 @@ export class AppUser extends BaseEntity implements IAppUser {
   @Column()
   password: string
 
-  @Column({ type: 'enum', enum: Role, default: Role.User })
-  role: Role
+  @Column({ type: 'enum', enum: ERole, default: ERole.User })
+  role: ERole
 
   @Column({ default: null })
   address?: string

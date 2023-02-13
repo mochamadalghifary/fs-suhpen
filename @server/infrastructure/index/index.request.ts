@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import {
   OrderDirectionEnum,
-  OrderDirectionType
+  OrderDirectionType,
 } from '@server/infrastructure/index/index.enum'
 import { IsEnum, IsNumber, IsOptional, IsString, Min } from 'class-validator'
 import { IPaginateRequest, ISortRequest } from './index.interface'
@@ -37,6 +37,10 @@ export class IndexRequest implements ISortRequest, IPaginateRequest {
 
   @IsString()
   @IsOptional()
-  @ApiProperty({ example: '', description: 'Search all entity column value', required: false })
+  @ApiProperty({
+    example: '',
+    description: 'Search all entity column value',
+    required: false,
+  })
   search?: string
 }

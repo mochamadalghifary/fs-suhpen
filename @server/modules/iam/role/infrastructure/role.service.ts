@@ -1,20 +1,20 @@
 import { Injectable } from '@nestjs/common'
 import { Exception } from '../../../../common/exceptions/index.exception'
-import { Role } from './role.enum'
+import { ERole } from './role.enum'
 import { IAppRole } from './role.interface'
 
 const roles: IAppRole[] = [
   {
     id: '1',
-    name: Role.Administrator,
+    name: ERole.Administrator,
   },
   {
     id: '2',
-    name: Role.AdminSecond,
+    name: ERole.AdminSecond,
   },
   {
     id: '3',
-    name: Role.User,
+    name: ERole.User,
   },
 ]
 

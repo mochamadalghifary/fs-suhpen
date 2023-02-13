@@ -5,7 +5,7 @@ import { SwaggerModule } from '@nestjs/swagger'
 import * as path from 'path'
 import {
   initializeTransactionalContext,
-  patchTypeORMRepositoryWithBaseRepository
+  patchTypeORMRepositoryWithBaseRepository,
 } from 'typeorm-transactional-cls-hooked'
 import { AppModule } from './app.module'
 import { config } from './config'

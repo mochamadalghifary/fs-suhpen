@@ -6,7 +6,7 @@ import { Modules } from '@server/modules/modules'
 import { UserResponse } from '../../user/infrastructure/user.response'
 import {
   AuthLoginRequest,
-  AuthRegisterRequest
+  AuthRegisterRequest,
 } from '../infrastructure/auth.request'
 import { AuthApp } from './auth.app'
 

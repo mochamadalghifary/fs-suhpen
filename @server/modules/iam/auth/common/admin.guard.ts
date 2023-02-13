@@ -2,10 +2,10 @@ import {
   ExecutionContext,
   ForbiddenException,
   Injectable,
-  UnauthorizedException
+  UnauthorizedException,
 } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
-import { Role } from '@server/modules/iam/role/infrastructure/role.enum'
+import { ERole } from '@server/modules/iam/role/infrastructure/role.enum'
 
 @Injectable()
 export class AdminGuard extends AuthGuard('jwt') {
@@ -15,7 +15,7 @@ export class AdminGuard extends AuthGuard('jwt') {
 
   handleRequest(err: any, user: any) {
     if (err || !user) throw err || new UnauthorizedException()
-    if (user.role != Role.Administrator) throw err || new ForbiddenException()
+    if (user.role != ERole.Administrator) throw err || new ForbiddenException()
 
     return user
   }

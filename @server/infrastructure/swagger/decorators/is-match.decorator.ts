@@ -3,11 +3,14 @@ import {
   ValidationArguments,
   ValidationOptions,
   ValidatorConstraint,
-  ValidatorConstraintInterface
+  ValidatorConstraintInterface,
 } from 'class-validator'
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export function IsMatch(property: string, validationOptions?: ValidationOptions) {
+export function IsMatch(
+  property: string,
+  validationOptions?: ValidationOptions,
+) {
   return (object: any, propertyName: string) => {
     registerDecorator({
       target: object.constructor,

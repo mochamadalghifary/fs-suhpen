@@ -16,7 +16,7 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].bundle.js',
       chunkFilename: '[id].js',
-      publicPath: '',
+      publicPath: '/',
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],

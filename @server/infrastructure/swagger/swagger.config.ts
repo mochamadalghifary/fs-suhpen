@@ -6,10 +6,12 @@ export const swaggerConfig = new DocumentBuilder()
   .setDescription(config.app.description)
   .setVersion(config.app.version)
   .setExternalDoc('Download Collection', '/docs-json')
-  .addBearerAuth({
-    type: 'http',
-    scheme: 'bearer',
-    bearerFormat: 'JWT'
-  }, '_accessToken',
+  .addBearerAuth(
+    {
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+    },
+    '_accessToken',
   )
   .build()

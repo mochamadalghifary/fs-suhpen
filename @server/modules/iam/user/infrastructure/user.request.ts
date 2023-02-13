@@ -1,6 +1,6 @@
 import { ApiProperty, OmitType } from '@nestjs/swagger'
 import { IndexRequest } from '@server/infrastructure/index/index.request'
-import { Role } from '@server/modules/iam/role/infrastructure/role.enum'
+import { ERole } from '@server/modules/iam/role/infrastructure/role.enum'
 import {
   IsEmail,
   IsNotEmpty,
@@ -9,7 +9,7 @@ import {
   IsPhoneNumber,
   IsString,
   Matches,
-  MinLength
+  MinLength,
 } from 'class-validator'
 import { STRING_PASSWORD_CHARACTER } from '../common/character.constant'
 import { IAppUser } from '../infrastructure/user.interface'
@@ -77,7 +77,7 @@ export class UserRequest implements IAppUser {
   @ApiProperty()
   token: string
 
-  role: Role
+  role: ERole
   isVerified: boolean
 }
 
@@ -88,7 +88,6 @@ export class UserCreateRequest extends OmitType(UserRequest, [
   'isVerified',
   'token',
 ]) {}
-
 
 export class UserUpdateRequest extends OmitType(UserRequest, [
   'email',
