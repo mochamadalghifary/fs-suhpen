@@ -10,6 +10,7 @@ module.exports = (env, argv) => {
     devtool: devMode ? 'inline-source-map' : false,
     devServer: {
       contentBase: './dist',
+      historyApiFallback: true,
     },
     entry: './client/index.tsx',
     output: {

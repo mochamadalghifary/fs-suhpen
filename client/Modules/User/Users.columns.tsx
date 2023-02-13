@@ -11,12 +11,10 @@ export const usersColumns: ColumnsType<UserResponse> = [
   {
     title: 'Name',
     dataIndex: 'name',
-    key: 'name',
   },
   {
     title: 'Email',
     dataIndex: 'email',
-    key: 'email',
   },
   {
     title: 'Role',
@@ -33,11 +31,9 @@ export const usersColumns: ColumnsType<UserResponse> = [
   {
     title: 'Phone Number',
     dataIndex: 'phoneNumber',
-    key: 'phoneNumber',
   },
   {
     title: 'Action',
-    key: 'action',
     width: '130px',
     render: (data: UserResponse) => {
       return (

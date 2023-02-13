@@ -1,6 +1,6 @@
 import {
   AuthLoginRequest,
-  AuthRegisterRequest
+  AuthRegisterRequest,
 } from '@server/modules/iam/auth/infrastructure/auth.request'
 import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
 import { Route } from '../../Enums/Route'

@@ -20,6 +20,7 @@ function DataTable<T extends object = any>(
   const handlePageChange: PaginationProps['onChange'] = (page, pageSize) => {
     props.onPageChange(page, pageSize)
   }
+
   return (
     <Space.Compact direction="vertical" style={tableLayout}>
       <Table<T>
