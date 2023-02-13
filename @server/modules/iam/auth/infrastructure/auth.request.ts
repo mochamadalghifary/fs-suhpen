@@ -1,6 +1,6 @@
 import { ApiProperty, PickType } from '@nestjs/swagger'
 import { IsNotEmpty } from 'class-validator'
-import { Match } from '../../../../infrastructure/swagger/decorators/match.decorator'
+import { IsMatch } from '../../../../infrastructure/swagger/decorators/is-match.decorator'
 import { UserRequest } from '../../user/infrastructure/user.request'
 
 export class AuthRegisterRequest extends PickType(UserRequest, [
@@ -9,7 +9,7 @@ export class AuthRegisterRequest extends PickType(UserRequest, [
   'password',
   'passwordConfirmation',
 ]) {
-  @Match('password')
+  @IsMatch('password')
   passwordConfirmation!: string
 }
 
@@ -26,6 +26,6 @@ export class AuthChangePasswordRequest extends PickType(UserRequest, [
   'passwordConfirmation',
   'token',
 ]) {
-  @Match('password')
+  @IsMatch('password')
   passwordConfirmation!: string
 }
