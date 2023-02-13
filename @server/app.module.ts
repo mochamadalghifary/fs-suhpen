@@ -4,7 +4,7 @@ import {
   EntityNotFoundExceptionFilter,
   HttpExceptionFilter,
   QueryErrorFilter,
-  RelationNotFoundExceptionFilter,
+  RelationNotFoundExceptionFilter
 } from './common/filters/http-exeception.filter'
 import { ValidationPipe } from './common/pipes/validation.pipe'
 import { DatabaseModule } from './database/database.module'
@@ -17,8 +17,8 @@ import { SupportModule } from './modules/support/support.module'
 @Module({
   imports: [
     DatabaseModule,
-    SupportModule,
     AuthModule,
+    SupportModule,
     UserModule,
     RoleModule,
     FeatureModule,
