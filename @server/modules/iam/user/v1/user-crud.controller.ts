@@ -18,7 +18,7 @@ import { AdminGuard } from '../../auth/common/admin.guard'
 import {
   UserCreateRequest, UserIndexRequest, UserUpdateRequest
 } from '../infrastructure/user.request'
-import { UserResponse } from '../infrastructure/user.response'
+import { UserStrictResponse } from '../infrastructure/user.response'
 import { UserCrudApp } from './user-crud.app'
 
 const THIS_MODULE = Modules.Users
@@ -32,35 +32,35 @@ export class UserCrudController implements BaseCrudController {
   @Get()
   async fetch(
     @Query() req: UserIndexRequest,
-  ): Promise<IApiRes<UserResponse[]>> {
+  ): Promise<IApiRes<UserStrictResponse[]>> {
     const res = await this.userCrudApp.fetch(req)
-    return ApiRes.fromEntity(UserResponse.fromEntities(res.data), res.meta)
+    return ApiRes.fromEntity(UserStrictResponse.fromEntities(res.data), res.meta)
   }
 
   @Post()
-  async create(@Body() req: UserCreateRequest): Promise<IApiRes<UserResponse>> {
+  async create(@Body() req: UserCreateRequest): Promise<IApiRes<UserStrictResponse>> {
     const data = await this.userCrudApp.create(req)
-    return ApiRes.fromEntity(UserResponse.fromEntity(data))
+    return ApiRes.fromEntity(UserStrictResponse.fromEntity(data))
   }
 
   @Get(':id')
-  async findOneOrFail(@Param('id') id: string): Promise<IApiRes<UserResponse>> {
+  async findOneOrFail(@Param('id') id: string): Promise<IApiRes<UserStrictResponse>> {
     const data = await this.userCrudApp.findOneOrFail(id)
-    return ApiRes.fromEntity(UserResponse.fromEntity(data))
+    return ApiRes.fromEntity(UserStrictResponse.fromEntity(data))
   }
 
   @Put(':id')
   async update(
     @Param('id') id: string,
     @Body() req: UserUpdateRequest,
-  ): Promise<IApiRes<UserResponse>> {
+  ): Promise<IApiRes<UserStrictResponse>> {
     const data = await this.userCrudApp.update(id, req)
-    return ApiRes.fromEntity(UserResponse.fromEntity(data))
+    return ApiRes.fromEntity(UserStrictResponse.fromEntity(data))
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string): Promise<IApiRes<UserResponse>> {
+  async delete(@Param('id') id: string): Promise<IApiRes<UserStrictResponse>> {
     const data = await this.userCrudApp.remove(id)
-    return ApiRes.fromEntity(UserResponse.fromEntity(data))
+    return ApiRes.fromEntity(UserStrictResponse.fromEntity(data))
   }
 }
