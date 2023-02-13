@@ -5,7 +5,7 @@ import { IAppUser } from '@server/modules/iam/user/infrastructure/user.interface
 import { EntityManager, Repository } from 'typeorm'
 import { usersDummies } from './user.dummy'
 
-export const userSeeder = async (): Promise<boolean> => {
+export const userCreateSeeder = async (): Promise<boolean> => {
   const data = usersDummies
   const repo = new Repository<IAppUser>(
     AppUser,

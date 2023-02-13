@@ -1,5 +1,6 @@
 import { Role } from '../../../modules/iam/role/infrastructure/role.enum'
 
+// <--- KEY: email --->
 export const usersDummies = [
   {
     name: 'Admin',
