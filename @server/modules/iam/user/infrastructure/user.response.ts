@@ -8,7 +8,9 @@ export class UserResponse extends AppUser {
   static fromEntity(data: IAppUser): UserResponse {
     const res = new UserResponse()
     Object.assign(res, data)
+
     delete res.password
+    delete res.token
 
     res._accessToken = data.token
 
