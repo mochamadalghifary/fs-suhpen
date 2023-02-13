@@ -5,10 +5,10 @@ import { ApiRes } from '@server/infrastructure/interfaces/api.response'
 import { Modules } from '@server/modules/modules'
 import { LoggedInGuard } from '../../auth/common/logged-in.guard'
 import { GetUserLogged } from '../common/get-user-logged.decorator'
-import { UserCrudApp } from '../infrastructure/user-crud.app'
 import { IAppUser } from '../infrastructure/user.interface'
 import { UserUpdateRequest } from '../infrastructure/user.request'
 import { UserResponse } from '../infrastructure/user.response'
+import { UserCrudApp } from './user-crud.app'
 
 const THIS_MODULE = Modules.Profile
 

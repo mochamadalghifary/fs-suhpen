@@ -15,13 +15,13 @@ import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interfa
 import { ApiRes } from '@server/infrastructure/interfaces/api.response'
 import { Modules } from '@server/modules/modules'
 import { AdminGuard } from '../../auth/common/admin.guard'
-import { UserCrudApp } from '../infrastructure/user-crud.app'
 import {
   UserIndexRequest,
   UserRequest,
   UserUpdateRequest
 } from '../infrastructure/user.request'
 import { UserResponse } from '../infrastructure/user.response'
+import { UserCrudApp } from './user-crud.app'
 
 const THIS_MODULE = Modules.Users
 

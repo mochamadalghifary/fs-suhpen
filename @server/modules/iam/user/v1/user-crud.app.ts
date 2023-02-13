@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common'
 import { IPaginateResponse } from '@server/infrastructure/index/index.interface'
-import { UserIndexService } from './user-index.service'
-import { AppUser } from './user.entity'
-import { IAppUser } from './user.interface'
+import { UserIndexService } from '../infrastructure/user-index.service'
+import { AppUser } from '../infrastructure/user.entity'
+import { IAppUser } from '../infrastructure/user.interface'
 import {
   UserIndexRequest,
   UserRequest,
   UserUpdateRequest
-} from './user.request'
-import { UserService } from './user.service'
+} from '../infrastructure/user.request'
+import { UserService } from '../infrastructure/user.service'
 
 @Injectable()
 export class UserCrudApp {

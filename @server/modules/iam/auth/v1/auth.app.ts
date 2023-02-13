@@ -7,13 +7,8 @@ import { AppUser } from '../../user/infrastructure/user.entity'
 import { IAppUser } from '../../user/infrastructure/user.interface'
 import { UserService } from '../../user/infrastructure/user.service'
 import { authMessages } from '../common/auth.message'
-import {
-  AuthChangePasswordRequest,
-  AuthEmailRequest,
-  AuthLoginRequest,
-  AuthRegisterRequest
-} from './auth.request'
-import { AuthService } from './auth.service'
+import { AuthChangePasswordRequest, AuthEmailRequest, AuthLoginRequest, AuthRegisterRequest } from '../infrastructure/auth.request'
+import { AuthService } from '../infrastructure/auth.service'
 
 @Injectable()
 export class AuthApp {
