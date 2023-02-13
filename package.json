@@ -11,13 +11,13 @@
     "prepare": "husky install",
     "server:prebuild": "rimraf dist",
     "server:build": "nest build",
-    "server:start": "nest start",
+    "server": "nest start",
     "server:dev": "nest start --watch",
     "server:debug": "nest start --debug --watch",
     "server:prod": "node dist/@server/main",
     "client:dev": "webpack-dev-server --open --hot --config webpack.config.js --mode=development",
     "client:build": "webpack --config webpack.config.js --mode=production",
-    "client:serve": "webpack-dev-server --mode=production --config webpack.config.js "
+    "client": "webpack-dev-server --mode=production --config webpack.config.js "
   },
   "engines": {
     "node": "16.x"
