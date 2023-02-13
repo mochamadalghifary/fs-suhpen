@@ -41,7 +41,7 @@ const Register: React.FC = () => {
             htmlType="submit"
             disabled={
               form.getFieldsError().filter(({ errors }) => errors.length)
-                .length > 0 && isLoading
+                .length > 0 || isLoading
             }
           >
             Register

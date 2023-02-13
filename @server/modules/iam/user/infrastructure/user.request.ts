@@ -55,17 +55,17 @@ export class UserRequest implements IAppUser {
   @IsString()
   @IsPhoneNumber('ID')
   @ApiProperty({ example: '085123456789' })
-  phoneNumber: string
+  phoneNumber?: string
 
   @IsOptional()
   @IsString()
   @ApiProperty()
-  avatar: string
+  avatar?: string
 
   @IsOptional()
   @IsString()
   @ApiProperty()
-  address: string
+  address?: string
 
   @IsNotEmpty()
   @IsNumber()

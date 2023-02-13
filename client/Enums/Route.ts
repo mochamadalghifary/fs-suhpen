@@ -25,8 +25,8 @@ export const Route = {
 
   Users: '/users',
   UserDetail: '/users/:id',
-  UserCreate: '/users/create',
-  UserEdit: '/users/edit',
+  UserForm: '/users/save',
+  UserEdit: '/users/save/:id',
 
   // <--- Feature --->
 }

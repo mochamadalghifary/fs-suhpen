@@ -7,6 +7,7 @@ import Register from './Modules/Auth/Register'
 import Dashboard from './Modules/Dashboard/Dashboard'
 import NotFound from './Modules/NotFound'
 import UserDetail from './Modules/User/UserDetail'
+import UserForm from './Modules/User/UserForm'
 import Users from './Modules/User/Users'
 
 const Routers: React.FC = () => (
@@ -27,7 +28,9 @@ const Routers: React.FC = () => (
           {/* <--- User ---> */}
 
           <Route path={HttpRoute.Users} element={<Users />} />
+          <Route path={HttpRoute.UserForm} element={<UserForm />} />
           <Route path={HttpRoute.UserDetail} element={<UserDetail />} />
+          <Route path={HttpRoute.UserEdit} element={<UserForm />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -3,12 +3,15 @@ import { IPaginateResponse } from '@server/infrastructure/index/index.interface'
 import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
 import { Button } from 'antd'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import DataTable from '../../Components/Organs/DataTable/DataTable'
 import { useTableFilter } from '../../Components/Organs/DataTable/useTableFilter'
+import { Route } from '../../Enums/Route'
 import { userAction } from './User.action'
 import { usersColumns } from './Users.columns'
 
 const Users: React.FC = () => {
+  const navigate = useNavigate()
   const [props, setProps] = React.useState<IPaginateResponse<UserResponse>>()
   const {
     setQueryParams,
@@ -23,9 +26,7 @@ const Users: React.FC = () => {
     <>
       <Button
         type="primary"
-        onClick={() => {
-          alert('Tambah Fitur Create User?')
-        }}
+        onClick={() => navigate(Route.UserForm)}
         style={{
           float: 'right',
         }}
@@ -37,7 +38,6 @@ const Users: React.FC = () => {
         columns={usersColumns}
         dataSource={props?.data?.map((item) => ({
           ...item,
-          // key: item.id,
         }))}
         meta={props?.meta}
         onPageChange={(page, pageSize) =>

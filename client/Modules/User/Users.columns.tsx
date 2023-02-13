@@ -47,9 +47,7 @@ export const usersColumns: ColumnsType<UserResponse> = [
             {
               type: 'edit',
               title: 'edit',
-              onClick: () => {
-                alert('Cooming soon edit')
-              },
+              href: `${Route.UserForm}/${data.id}`,
             },
             {
               type: 'delete',
