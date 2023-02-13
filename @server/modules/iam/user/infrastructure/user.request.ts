@@ -81,6 +81,15 @@ export class UserRequest implements IAppUser {
   isVerified: boolean
 }
 
+export class UserCreateRequest extends OmitType(UserRequest, [
+  'passwordConfirmation',
+  'role',
+  'otp',
+  'isVerified',
+  'token',
+]) {}
+
+
 export class UserUpdateRequest extends OmitType(UserRequest, [
   'email',
   'passwordConfirmation',

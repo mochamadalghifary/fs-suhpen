@@ -50,7 +50,7 @@ export class AttachmentController {
     const fileUrl = config.server.host + '/' + THIS_MODULE + '/' + file.filename
 
     const attachment = await this.attachmentService.upload(fileUrl, req)
-    return ApiRes.all(AttachmentUploadResponse.fromEntity(attachment))
+    return ApiRes.fromEntity(AttachmentUploadResponse.fromEntity(attachment))
   }
 
   @Get()
@@ -61,6 +61,6 @@ export class AttachmentController {
       attachmentFindRequest,
     )
 
-    return ApiRes.all(AttachmentUploadResponse.fromEntity(attachment))
+    return ApiRes.fromEntity(AttachmentUploadResponse.fromEntity(attachment))
   }
 }

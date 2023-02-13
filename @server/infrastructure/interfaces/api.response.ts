@@ -4,10 +4,10 @@ import { IApiRes } from './api-responses.interface'
 
 export class ApiRes implements IApiRes<any> {
   message!: string
-  meta?: IPaginationMeta
   data: any
+  meta?: IPaginationMeta
 
-  static all(
+  static fromEntity(
     data?: IBaseEntity | IBaseEntity[] | any,
     meta?: IPaginationMeta,
     message?: string,

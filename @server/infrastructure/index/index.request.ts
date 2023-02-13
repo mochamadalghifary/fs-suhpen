@@ -37,6 +37,6 @@ export class IndexRequest implements ISortRequest, IPaginateRequest {
 
   @IsString()
   @IsOptional()
-  @ApiProperty({ example: '', description: 'Search all entity column value' })
+  @ApiProperty({ example: '', description: 'Search all entity column value', required: false })
   search?: string
 }

@@ -20,13 +20,13 @@ export class AuthPasswordController {
   @Post('send')
   async send(@Body() req: AuthEmailRequest): Promise<IApiRes<UserResponse>> {
     const link = await this.authApp.passwordSendLink(req)
-    return ApiRes.all(link)
+    return ApiRes.fromEntity(link)
   }
 
   @Get(':token')
   async token(@Param('token') token: string): Promise<IApiRes<UserResponse>> {
     const user = await this.authApp.passwordGetLink(token)
-    return ApiRes.all(user)
+    return ApiRes.fromEntity(user)
   }
 
   @Put('change')
@@ -34,6 +34,6 @@ export class AuthPasswordController {
     @Body() req: AuthChangePasswordRequest,
   ): Promise<IApiRes<UserResponse>> {
     const user = await this.authApp.passwordChange(req)
-    return ApiRes.all(user)
+    return ApiRes.fromEntity(user)
   }
 }

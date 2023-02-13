@@ -16,9 +16,7 @@ import { ApiRes } from '@server/infrastructure/interfaces/api.response'
 import { Modules } from '@server/modules/modules'
 import { AdminGuard } from '../../auth/common/admin.guard'
 import {
-  UserIndexRequest,
-  UserRequest,
-  UserUpdateRequest
+  UserCreateRequest, UserIndexRequest, UserUpdateRequest
 } from '../infrastructure/user.request'
 import { UserResponse } from '../infrastructure/user.response'
 import { UserCrudApp } from './user-crud.app'
@@ -36,19 +34,19 @@ export class UserCrudController implements BaseCrudController {
     @Query() req: UserIndexRequest,
   ): Promise<IApiRes<UserResponse[]>> {
     const res = await this.userCrudApp.fetch(req)
-    return ApiRes.all(UserResponse.fromEntities(res.data), res.meta)
+    return ApiRes.fromEntity(UserResponse.fromEntities(res.data), res.meta)
   }
 
   @Post()
-  async create(@Body() req: UserRequest): Promise<IApiRes<UserResponse>> {
+  async create(@Body() req: UserCreateRequest): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.create(req)
-    return ApiRes.all(UserResponse.fromEntity(data))
+    return ApiRes.fromEntity(UserResponse.fromEntity(data))
   }
 
   @Get(':id')
   async findOneOrFail(@Param('id') id: string): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.findOneOrFail(id)
-    return ApiRes.all(UserResponse.fromEntity(data))
+    return ApiRes.fromEntity(UserResponse.fromEntity(data))
   }
 
   @Put(':id')
@@ -57,12 +55,12 @@ export class UserCrudController implements BaseCrudController {
     @Body() req: UserUpdateRequest,
   ): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.update(id, req)
-    return ApiRes.all(UserResponse.fromEntity(data))
+    return ApiRes.fromEntity(UserResponse.fromEntity(data))
   }
 
   @Delete(':id')
   async delete(@Param('id') id: string): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.remove(id)
-    return ApiRes.all(UserResponse.fromEntity(data))
+    return ApiRes.fromEntity(UserResponse.fromEntity(data))
   }
 }

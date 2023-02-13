@@ -19,7 +19,7 @@ export class RoleController {
   @Get()
   async find(): Promise<IApiRes<IAppRole[]>> {
     const res = await this.roleService.find()
-    return ApiRes.all(res)
+    return ApiRes.fromEntity(res)
   }
 
   @Get(':name')
@@ -27,6 +27,6 @@ export class RoleController {
     @Query('name') name: Role,
   ): Promise<IApiRes<IAppRole | undefined>> {
     const res = await this.roleService.findOne(name)
-    return ApiRes.all(res)
+    return ApiRes.fromEntity(res)
   }
 }
