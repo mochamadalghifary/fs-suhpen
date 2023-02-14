@@ -5,11 +5,11 @@ import MainLayout from './Layouts/MainLayout/MainLayout'
 import Dashboard from './Modules/Dashboard/Dashboard'
 import Login from './Modules/Iam/Auth/Login'
 import Register from './Modules/Iam/Auth/Register'
+import Profile from './Modules/Iam/Profile/Profile'
+import UserDetail from './Modules/Iam/User/UserDetail'
+import UserForm from './Modules/Iam/User/UserForm'
+import Users from './Modules/Iam/User/Users'
 import NotFound from './Modules/NotFound'
-import Profile from './Modules/Profile/Profile'
-import UserDetail from './Modules/User/UserDetail'
-import UserForm from './Modules/User/UserForm'
-import Users from './Modules/User/Users'
 
 const Routers: React.FC = () => (
   <>
