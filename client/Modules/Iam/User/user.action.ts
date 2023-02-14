@@ -5,9 +5,9 @@ import {
   UserIndexRequest,
   UserUpdateRequest,
 } from '@server/modules/iam/user/infrastructure/user.request'
-import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
-import { Route } from '../../Enums/Route'
-import { axiosService } from '../../services/axios.service'
+import { Route } from '../../../Enums/Route'
+import { axiosService } from '../../../services/axios.service'
+import UserResponse from './user.model'
 
 export const userAction = {
   fetch: async (

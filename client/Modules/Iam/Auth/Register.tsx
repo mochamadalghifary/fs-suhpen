@@ -1,10 +1,10 @@
 import { AuthRegisterRequest } from '@server/modules/iam/auth/infrastructure/auth.request'
 import { Button, Form, Input } from 'antd'
 import React from 'react'
-import { PageHeader } from '../../Components/Molecules/Headers/PageHeader'
-import { Section } from '../../Components/Molecules/Section/Section'
-import { FormContainer } from '../../Components/Organs/FormContainer'
-import { Route } from '../../Enums/Route'
+import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
+import { Section } from '../../../Components/Molecules/Section/Section'
+import { FormContainer } from '../../../Components/Organs/FormContainer'
+import { Route } from '../../../Enums/Route'
 import { authAction } from './auth.action'
 
 const Register: React.FC = () => {

@@ -1,11 +1,11 @@
 import { IPaginateResponse } from '@server/infrastructure/index/index.interface'
-import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
 import React from 'react'
-import { PageHeader } from '../../Components/Molecules/Headers/PageHeader'
-import DataTable from '../../Components/Organs/DataTable/DataTable'
-import { useTableFilter } from '../../Components/Organs/DataTable/useTableFilter'
-import { Route } from '../../Enums/Route'
+import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
+import DataTable from '../../../Components/Organs/DataTable/DataTable'
+import { useTableFilter } from '../../../Components/Organs/DataTable/useTableFilter'
+import { Route } from '../../../Enums/Route'
 import { userAction } from './user.action'
+import UserResponse from './user.model'
 import { usersColumns } from './users.columns'
 
 const Users: React.FC = () => {

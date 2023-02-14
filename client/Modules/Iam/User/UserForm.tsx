@@ -2,8 +2,8 @@ import { UserCreateRequest } from '@server/modules/iam/user/infrastructure/user.
 import { Button, Form, Input } from 'antd'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { PageHeader } from '../../Components/Molecules/Headers/PageHeader'
-import { FormContainer } from '../../Components/Organs/FormContainer'
+import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
+import { FormContainer } from '../../../Components/Organs/FormContainer'
 import { userAction } from './user.action'
 
 const UserForm: React.FC = () => {

@@ -1,11 +1,11 @@
 import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
-import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
 import { Descriptions, Tag } from 'antd'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import DescriptionContainer from '../../Components/Molecules/DescriptionContainer/DescriptionContainer'
-import { PageHeader } from '../../Components/Molecules/Headers/PageHeader'
+import DescriptionContainer from '../../../Components/Molecules/DescriptionContainer/DescriptionContainer'
+import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
 import { userAction } from './user.action'
+import UserResponse from './user.model'
 
 const UserDetail: React.FC = () => {
   const { id } = useParams()
