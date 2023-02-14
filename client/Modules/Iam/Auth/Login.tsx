@@ -6,6 +6,7 @@ import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
 import { Section } from '../../../Components/Molecules/Section/Section'
 import { FormContainer } from '../../../Components/Organs/FormContainer'
 import { Route } from '../../../Enums/Route'
+import { formRule } from '../../../utils/form.rules'
 import { authAction } from './auth.action'
 
 const Login: React.FC = () => {
@@ -51,7 +52,7 @@ const Login: React.FC = () => {
           </Button>,
         ]}
       >
-        <Form.Item label="Email" name="email" required>
+        <Form.Item label="Email" name="email" rules={[formRule.email]} required>
           <Input type="email" />
         </Form.Item>
 

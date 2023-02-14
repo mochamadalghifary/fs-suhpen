@@ -11,7 +11,7 @@ import {
   Matches,
   MinLength,
 } from 'class-validator'
-import { STRING_PASSWORD_CHARACTER } from '../common/character.constant'
+import { REGEX_PASSWORD } from '../common/character.constant'
 import { IAppUser } from '../infrastructure/user.interface'
 
 export class UserIndexRequest extends IndexRequest {}
@@ -34,7 +34,7 @@ export class UserRequest implements IAppUser {
   @IsNotEmpty()
   @IsString()
   @MinLength(6)
-  @Matches(STRING_PASSWORD_CHARACTER, {
+  @Matches(REGEX_PASSWORD, {
     message:
       'Password should contain number, under case, and upper case character',
   })
@@ -44,7 +44,7 @@ export class UserRequest implements IAppUser {
   @IsNotEmpty()
   @IsString()
   @MinLength(6)
-  @Matches(STRING_PASSWORD_CHARACTER, {
+  @Matches(REGEX_PASSWORD, {
     message:
       'Password should contain number, under case, and upper case character',
   })

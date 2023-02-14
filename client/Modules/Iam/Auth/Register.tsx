@@ -5,6 +5,7 @@ import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
 import { Section } from '../../../Components/Molecules/Section/Section'
 import { FormContainer } from '../../../Components/Organs/FormContainer'
 import { Route } from '../../../Enums/Route'
+import { formRule } from '../../../utils/form.rules'
 import { authAction } from './auth.action'
 
 const Register: React.FC = () => {
@@ -50,17 +51,41 @@ const Register: React.FC = () => {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Email" name="email" required>
+        <Form.Item label="Email" name="email" rules={[formRule.email]} required>
           <Input type="email" />
         </Form.Item>
 
-        <Form.Item label="Password" name="password" required>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[formRule.password]}
+          required
+        >
           <Input.Password type="password" />
         </Form.Item>
 
         <Form.Item
           label="Password Confirmation"
           name="passwordConfirmation"
+          rules={[formRule.password]}
+          required
+        >
+          <Input.Password type="password" />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[formRule.password]}
+          required
+        >
+          <Input.Password type="password" />
+        </Form.Item>
+
+        <Form.Item
+          label="Password Confirmation"
+          name="passwordConfirmation"
+          rules={[formRule.password]}
           required
         >
           <Input.Password type="password" />

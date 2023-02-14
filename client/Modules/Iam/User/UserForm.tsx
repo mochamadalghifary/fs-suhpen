@@ -24,7 +24,6 @@ const UserForm: React.FC = () => {
     const data = form.getFieldsValue()
 
     try {
-      await form.validateFields()
       await userAction.create(data)
       setIsLoading(false)
     } catch (e) {
@@ -53,24 +52,13 @@ const UserForm: React.FC = () => {
           </Button>,
         ]}
       >
-        <Form.Item label="Name" name="name" required>
-          <Input />
-        </Form.Item>
-
-        <Form.Item label="Email" name="email" required>
-          <Input type="email" />
-        </Form.Item>
-
-        <Form.Item label="Password" name="password" required>
-          <Input.Password type="password" />
-        </Form.Item>
-
         <Form.Item
-          label="Password Confirmation"
-          name="passwordConfirmation"
+          label="Name"
+          name="name"
+          rules={[{ required: true }]}
           required
         >
-          <Input.Password type="password" />
+          <Input />
         </Form.Item>
       </FormContainer>
     </>
