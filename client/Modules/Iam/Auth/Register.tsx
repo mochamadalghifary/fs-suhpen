@@ -35,14 +35,7 @@ const Register: React.FC = () => {
         layout="vertical"
         centered
         buttonAction={[
-          <Button
-            type="primary"
-            htmlType="submit"
-            disabled={
-              form.getFieldsError().filter(({ errors }) => errors.length)
-                .length > 0 || isLoading
-            }
-          >
+          <Button type="primary" htmlType="submit" disabled={isLoading}>
             Register
           </Button>,
         ]}

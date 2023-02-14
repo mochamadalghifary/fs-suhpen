@@ -4,6 +4,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
 import { FormContainer } from '../../../Components/Organs/FormContainer'
+import { formRule } from '../../../utils/form.rules'
 import { userAction } from './user.action'
 
 const UserForm: React.FC = () => {
@@ -24,7 +25,8 @@ const UserForm: React.FC = () => {
     const data = form.getFieldsValue()
 
     try {
-      await userAction.create(data)
+      id && (await userAction.update(data))
+      !id && (await userAction.create(data))
       setIsLoading(false)
     } catch (e) {
       setIsLoading(false)
@@ -40,14 +42,7 @@ const UserForm: React.FC = () => {
         layout="vertical"
         centered
         buttonAction={[
-          <Button
-            type="primary"
-            htmlType="submit"
-            disabled={
-              form.getFieldsError().filter(({ errors }) => errors.length)
-                .length > 0 || isLoading
-            }
-          >
+          <Button type="primary" htmlType="submit" disabled={isLoading}>
             Save
           </Button>,
         ]}
@@ -55,7 +50,7 @@ const UserForm: React.FC = () => {
         <Form.Item
           label="Name"
           name="name"
-          rules={[{ required: true }]}
+          rules={[formRule.required]}
           required
         >
           <Input />
