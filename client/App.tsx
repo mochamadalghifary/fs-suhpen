@@ -7,11 +7,9 @@ import { globalThemeConfig } from './utils/theme'
 
 const App: React.FC = () => {
   return (
-    <>
-      <ConfigProvider theme={globalThemeConfig} locale={locale}>
-        <Routers />
-      </ConfigProvider>
-    </>
+    <ConfigProvider theme={globalThemeConfig} locale={locale}>
+      <Routers />
+    </ConfigProvider>
   )
 }
 
