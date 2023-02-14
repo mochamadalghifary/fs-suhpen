@@ -1,10 +1,10 @@
 import { UserCreateRequest } from '@server/modules/iam/user/infrastructure/user.request'
-import { Button, Form, Input, Space } from 'antd'
+import { Button, Form, Input } from 'antd'
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { PageHeader } from '../../Components/Molecules/Headers/PageHeader'
 import { FormContainer } from '../../Components/Organs/FormContainer'
-import { defaultSizeSpace } from '../../utils/theme'
-import { userAction } from './User.action'
+import { userAction } from './user.action'
 
 const UserForm: React.FC = () => {
   const { id } = useParams()
@@ -12,10 +12,11 @@ const UserForm: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState(false)
 
   React.useEffect(() => {
-    ;(async () => {
-      const res = await userAction.findOne(id)
-      form.setFieldsValue(res.data)
-    })()
+    id &&
+      (async () => {
+        const res = await userAction.findOne(id)
+        form.setFieldsValue(res.data)
+      })()
   }, [])
 
   const onFinish = async () => {
@@ -32,11 +33,8 @@ const UserForm: React.FC = () => {
   }
 
   return (
-    <Space
-      direction="vertical"
-      size={defaultSizeSpace}
-      style={{ width: '100%' }}
-    >
+    <>
+      <PageHeader title="User Form" />
       <FormContainer
         onFinish={onFinish}
         form={form}
@@ -75,7 +73,7 @@ const UserForm: React.FC = () => {
           <Input.Password type="password" />
         </Form.Item>
       </FormContainer>
-    </Space>
+    </>
   )
 }
 

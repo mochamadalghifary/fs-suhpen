@@ -3,8 +3,8 @@ import React from 'react'
 import ButtonFormAction from './ButtonFormAction'
 
 interface IFormProps extends FormProps {
-  isFieldCentered?: boolean //centered by field as point (use case: for form basic with horizontal layout)
-  centered?: boolean //centered by form as point
+  isFieldCentered?: boolean
+  centered?: boolean
   justifyButton?: 'start' | 'end'
   buttonAction?: React.ReactNode[]
 }

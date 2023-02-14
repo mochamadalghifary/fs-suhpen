@@ -3,6 +3,7 @@ import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interfa
 import {
   UserCreateRequest,
   UserIndexRequest,
+  UserUpdateRequest,
 } from '@server/modules/iam/user/infrastructure/user.request'
 import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
 import { Route } from '../../Enums/Route'
@@ -21,6 +22,10 @@ export const userAction = {
 
   findOne: async (id: string): Promise<IApiRes<UserResponse>> => {
     return await axiosService.get(`${Route.Users}/${id}`)
+  },
+
+  update: async (data: UserUpdateRequest): Promise<IApiRes<UserResponse>> => {
+    return await axiosService.put(Route.Profile, data)
   },
 
   remove: async (id: string): Promise<IApiRes<UserResponse>> => {

@@ -6,6 +6,7 @@ import Login from './Modules/Auth/Login'
 import Register from './Modules/Auth/Register'
 import Dashboard from './Modules/Dashboard/Dashboard'
 import NotFound from './Modules/NotFound'
+import Profile from './Modules/Profile/Profile'
 import UserDetail from './Modules/User/UserDetail'
 import UserForm from './Modules/User/UserForm'
 import Users from './Modules/User/Users'
@@ -24,6 +25,11 @@ const Routers: React.FC = () => (
           {/* <--- Dashboard ---> */}
 
           <Route path={HttpRoute.Dashboard} element={<Dashboard />} />
+
+          {/* <--- Profile ---> */}
+
+          <Route path={HttpRoute.Profile} element={<Profile />} />
+          <Route path={HttpRoute.ProfileEdit} element={<Profile />} />
 
           {/* <--- User ---> */}
 

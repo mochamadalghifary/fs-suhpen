@@ -1,13 +1,17 @@
-import { Col, Row, Space } from 'antd'
+import { PlusCircleFilled } from '@ant-design/icons'
+import { Button, Col, Row, Space } from 'antd'
 import Title from 'antd/es/typography/Title'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface IProps {
   title: string
-  topActions?: React.ReactNode[]
+  hrefCreate?: string
 }
 
 export const PageHeader: React.FC<IProps> = (props: IProps) => {
+  const navigate = useNavigate()
+
   return (
     <Row style={{ marginBottom: '16px' }}>
       <Col flex="auto">
@@ -17,9 +21,14 @@ export const PageHeader: React.FC<IProps> = (props: IProps) => {
       </Col>
       <Col>
         <Space>
-          {props.topActions?.map((field, key) => (
-            <React.Fragment key={key}>{field}</React.Fragment>
-          ))}
+          <React.Fragment>
+            {props.hrefCreate && (
+              <Button type="primary" onClick={() => navigate(props.hrefCreate)}>
+                <PlusCircleFilled />
+                New {props.title}
+              </Button>
+            )}
+          </React.Fragment>
         </Space>
       </Col>
     </Row>

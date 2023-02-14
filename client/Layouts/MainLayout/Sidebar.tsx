@@ -3,7 +3,7 @@ import { ConfigProvider, Menu } from 'antd'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Route } from '../../Enums/Route'
-import { authAction } from '../../Modules/Auth/Auth.action'
+import { authAction } from '../../Modules/Auth/auth.action'
 import { sidebarThemeConfig } from '../../utils/theme'
 import { menuItems } from './MainItems'
 

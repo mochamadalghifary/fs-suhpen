@@ -1,11 +1,12 @@
 import { AuthLoginRequest } from '@server/modules/iam/auth/infrastructure/auth.request'
-import { Button, Form, Input, Space } from 'antd'
+import { Button, Form, Input } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { PageHeader } from '../../Components/Molecules/Headers/PageHeader'
+import { Section } from '../../Components/Molecules/Section/Section'
 import { FormContainer } from '../../Components/Organs/FormContainer'
 import { Route } from '../../Enums/Route'
-import { defaultSizeSpace } from '../../utils/theme'
-import { authAction } from './Auth.action'
+import { authAction } from './auth.action'
 
 const Login: React.FC = () => {
   const user = authAction.loggedUser()
@@ -30,11 +31,8 @@ const Login: React.FC = () => {
   user && navigate(Route.Dashboard)
 
   return (
-    <Space
-      direction="vertical"
-      size={defaultSizeSpace}
-      style={{ width: '100%' }}
-    >
+    <Section>
+      <PageHeader title="Login" />
       <FormContainer
         onFinish={onFinish}
         form={form}
@@ -61,7 +59,7 @@ const Login: React.FC = () => {
           <Input.Password type="password" />
         </Form.Item>
       </FormContainer>
-    </Space>
+    </Section>
   )
 }
 
