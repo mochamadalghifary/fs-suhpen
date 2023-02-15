@@ -58,7 +58,7 @@ export interface IDataTableProps<T> extends Omit<TableProps<T>, 'onChange'> {
   batchActionMenus?: ItemType[]
   filterComponents?: {
     name: string
-    component: React.ReactNode
+    enum: Record<string, any>
   }[]
   search?: string
   onChange?: (filters: FilterState<T>) => void

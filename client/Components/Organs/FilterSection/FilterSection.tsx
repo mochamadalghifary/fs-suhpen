@@ -1,11 +1,11 @@
 import { SearchOutlined } from '@ant-design/icons'
-import { Col, Form, FormInstance, Input, Row } from 'antd'
+import { Col, Form, FormInstance, Input, Row, Select } from 'antd'
 import React from 'react'
 
 export interface IFilterSection {
   filters?: {
     name: string
-    component: React.ReactNode
+    enum: Record<string, any>
   }[]
   onFiltersChange?: (values: Record<string, any>) => void
   selectedRows?: React.Key[]
@@ -55,7 +55,16 @@ export const FilterSection = (props: IFilterSection) => {
             return (
               <Col key={index} style={{ margin: '2px' }}>
                 <Form.Item name={item.name} noStyle>
-                  {item.component}
+                  <Select
+                    placeholder={item.name}
+                    options={React.useMemo(() => {
+                      return Object.keys(item.enum).map((key) => {
+                        return { label: key, value: key }
+                      })
+                    }, [])}
+                    allowClear
+                    style={{ width: '150px' }}
+                  />
                 </Form.Item>
               </Col>
             )
@@ -72,7 +81,7 @@ export const FilterSection = (props: IFilterSection) => {
             onChange={(e) => setValue(e.target.value)}
             value={value}
             allowClear
-            style={{ margin: '2px', width: '250px' }}
+            style={{ margin: '2px', width: '350px' }}
           />
         </Col>
       )}

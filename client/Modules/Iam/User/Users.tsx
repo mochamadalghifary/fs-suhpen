@@ -1,7 +1,6 @@
 import { IPaginateResponse } from '@server/infrastructure/index/index.interface'
 import { UserIndexRequest } from '@server/modules/iam/user/infrastructure/user.request'
 import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
-import { Select } from 'antd'
 import React from 'react'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
 import DataTable, {
@@ -30,19 +29,8 @@ const Users: React.FC = () => {
       <DataTable
         filterComponents={[
           {
-            name: 'role',
-            component: (
-              <Select
-                placeholder="Role"
-                options={React.useMemo(() => {
-                  return Object.keys(ERole).map((key) => {
-                    return { label: key, value: key }
-                  })
-                }, [])}
-                allowClear
-                style={{ width: '100px' }}
-              />
-            ),
+            name: 'Role',
+            enum: ERole,
           },
         ]}
         onChange={({ ...filtersState }) => setQueryParams({ ...filtersState })}
