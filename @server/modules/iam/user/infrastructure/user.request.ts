@@ -14,7 +14,13 @@ import {
 import { REGEX_PASSWORD } from '../common/character.constant'
 import { IAppUser } from '../infrastructure/user.interface'
 
-export class UserIndexRequest extends IndexRequest {}
+export class UserIndexRequest extends IndexRequest {
+  @IsOptional()
+  @IsString()
+  @IsEmail()
+  @ApiProperty({ example: ERole.User })
+  role?: string
+}
 
 export class UserRequest implements IAppUser {
   id: string

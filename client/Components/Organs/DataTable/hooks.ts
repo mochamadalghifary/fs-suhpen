@@ -1,16 +1,9 @@
 import { IndexRequest } from '@server/infrastructure/index/index.request'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 
-type TOrderAntD = 'ASC' | 'DESC' | undefined
-
-export type TPropsTableFilter<T> = Omit<IndexRequest, 'perPage' | 'order'> & {
-  per_page?: number
-  order?: TOrderAntD
-} & T
+export type TPropsTableFilter<T> = IndexRequest & T
 
 export const useTableFilter = <T>() => {
-  const navigate = useNavigate()
   const [status, setStatus] = React.useState({
     isFetching: false,
   })
@@ -65,10 +58,9 @@ export const useTableFilter = <T>() => {
       }
 
       setFilters(data)
-      navigate(window.location.pathname)
-      setStatus({ isFetching: true })
     },
     filters: filters as TPropsTableFilter<T>,
     status,
+    setStatus,
   }
 }

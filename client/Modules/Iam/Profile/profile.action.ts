@@ -1,8 +1,8 @@
 import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
 import { UserUpdateRequest } from '@server/modules/iam/user/infrastructure/user.request'
+import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
 import { Route } from '../../../Enums/Route'
 import { axiosService } from '../../../services/axios.service'
-import UserResponse from '../User/user.model'
 
 export const profileAction = {
   getUserLogged: async (): Promise<IApiRes<UserResponse>> => {

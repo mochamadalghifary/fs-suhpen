@@ -1,10 +1,10 @@
 import { UserOutlined } from '@ant-design/icons'
 import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
+import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
 import { Avatar, Descriptions, Row, Tag } from 'antd'
 import React from 'react'
 import DescriptionContainer from '../../../Components/Molecules/DescriptionContainer/DescriptionContainer'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
-import UserResponse from '../User/user.model'
 import { profileAction } from './profile.action'
 
 const Profile: React.FC = () => {

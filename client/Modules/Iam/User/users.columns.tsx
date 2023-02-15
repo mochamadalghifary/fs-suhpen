@@ -1,3 +1,4 @@
+import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
 import { Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import React from 'react'
@@ -5,7 +6,6 @@ import { RowActionButtons } from '../../../Components/Molecules/RowActionButtons
 import { ERole } from '../../../Enums/Role.enum'
 import { Route } from '../../../Enums/Route'
 import { userAction } from './user.action'
-import UserResponse from './user.model'
 
 export const usersColumns: ColumnsType<UserResponse> = [
   {
