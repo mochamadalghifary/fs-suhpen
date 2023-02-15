@@ -4,10 +4,7 @@ import axios from 'axios'
 const host = 'http://localhost:3000/api/v1'
 
 export const axiosService = {
-  get: async (
-    endpoint: string,
-    params?: Record<string, any>,
-  ): Promise<Record<string, any>> => {
+  get: async (endpoint: string, params?: any): Promise<any> => {
     try {
       const { data } = await axios.get(`${host}${endpoint}`, {
         headers: {
@@ -25,9 +22,9 @@ export const axiosService = {
 
   post: async (
     endpoint: string,
-    dataPost?: Record<string, Record<string, any>>,
+    dataPost?: Record<string, any>,
     isCatch?: boolean,
-  ): Promise<Record<string, any>> => {
+  ): Promise<any> => {
     try {
       const { data } = await axios.post(`${host}${endpoint}`, dataPost, {
         headers: {
@@ -44,9 +41,9 @@ export const axiosService = {
 
   put: async (
     endpoint: string,
-    dataPost?: Record<string, any>,
+    dataPost?: any,
     isCatch?: boolean,
-  ): Promise<Record<string, any>> => {
+  ): Promise<any> => {
     try {
       const { data } = await axios.put(`${host}${endpoint}`, dataPost, {
         headers: {
@@ -61,7 +58,7 @@ export const axiosService = {
     }
   },
 
-  delete: async (endpoint: string): Promise<Record<string, any>> => {
+  delete: async (endpoint: string): Promise<any> => {
     try {
       const { data } = await axios.delete(`${host}${endpoint}`, {
         headers: {
