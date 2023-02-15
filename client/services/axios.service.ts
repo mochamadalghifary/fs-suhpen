@@ -1,10 +1,13 @@
 import axios from 'axios'
 
-// const host = 'https://bookompak.up.railway.app/api/v1'
+// const host = 'https://nest.fradotech.up.railway.app/api/v1'
 const host = 'http://localhost:3000/api/v1'
 
 export const axiosService = {
-  get: async (endpoint: string, params?: any): Promise<any> => {
+  get: async (
+    endpoint: string,
+    params?: Record<string, any>,
+  ): Promise<Record<string, any>> => {
     try {
       const { data } = await axios.get(`${host}${endpoint}`, {
         headers: {
@@ -22,9 +25,9 @@ export const axiosService = {
 
   post: async (
     endpoint: string,
-    dataPost?: any,
+    dataPost?: Record<string, Record<string, any>>,
     isCatch?: boolean,
-  ): Promise<any> => {
+  ): Promise<Record<string, any>> => {
     try {
       const { data } = await axios.post(`${host}${endpoint}`, dataPost, {
         headers: {
@@ -41,9 +44,9 @@ export const axiosService = {
 
   put: async (
     endpoint: string,
-    dataPost?: any,
+    dataPost?: Record<string, any>,
     isCatch?: boolean,
-  ): Promise<any> => {
+  ): Promise<Record<string, any>> => {
     try {
       const { data } = await axios.put(`${host}${endpoint}`, dataPost, {
         headers: {
@@ -58,7 +61,7 @@ export const axiosService = {
     }
   },
 
-  delete: async (endpoint: string): Promise<any> => {
+  delete: async (endpoint: string): Promise<Record<string, any>> => {
     try {
       const { data } = await axios.delete(`${host}${endpoint}`, {
         headers: {
