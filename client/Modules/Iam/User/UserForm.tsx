@@ -1,13 +1,15 @@
 import { UserCreateRequest } from '@server/modules/iam/user/infrastructure/user.request'
 import { Button, Form, Input } from 'antd'
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
-import { FormContainer } from '../../../Components/Organs/FormContainer'
+import FormContainer from '../../../Components/Organs/FormContainer/FormContainer'
+import { Route } from '../../../Enums/Route'
 import { formRule } from '../../../utils/form.rules'
 import { userAction } from './user.action'
 
 const UserForm: React.FC = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
   const [form] = Form.useForm<UserCreateRequest>()
   const [isLoading, setIsLoading] = React.useState(false)
@@ -25,9 +27,10 @@ const UserForm: React.FC = () => {
     const data = form.getFieldsValue()
 
     try {
-      id && (await userAction.update(data))
-      !id && (await userAction.create(data))
+      id && (await userAction.update(data)) && alert('Success update data')
+      !id && (await userAction.create(data)) && alert('Success create data')
       setIsLoading(false)
+      navigate(Route.Users)
     } catch (e) {
       setIsLoading(false)
     }
@@ -55,6 +58,17 @@ const UserForm: React.FC = () => {
         >
           <Input />
         </Form.Item>
+
+        {!id && (
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[formRule.email]}
+            required
+          >
+            <Input type="email" />
+          </Form.Item>
+        )}
       </FormContainer>
     </>
   )

@@ -17,7 +17,10 @@ export const userAction = {
   },
 
   create: async (data: UserCreateRequest): Promise<IApiRes<UserResponse>> => {
-    return await axiosService.post(Route.Users, data)
+    data.password = data.email
+    const res = await axiosService.post(Route.Users, data)
+    !res.data && alert(res)
+    return res
   },
 
   findOne: async (id: string): Promise<IApiRes<UserResponse>> => {
@@ -25,7 +28,9 @@ export const userAction = {
   },
 
   update: async (data: UserUpdateRequest): Promise<IApiRes<UserResponse>> => {
-    return await axiosService.put(Route.Profile, data)
+    const res = await axiosService.put(Route.Profile, data)
+    !res.data && alert(res)
+    return res
   },
 
   remove: async (id: string): Promise<IApiRes<UserResponse>> => {
