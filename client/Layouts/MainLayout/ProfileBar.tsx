@@ -23,7 +23,6 @@ const ProfileBar: React.FC<IProps> = (props: IProps) => {
         alignItems: 'center',
         height: '1000x',
         padding: '8px 16px',
-        marginLeft: '10px',
         marginTop: '30px',
         marginBottom: '20px',
       }}
