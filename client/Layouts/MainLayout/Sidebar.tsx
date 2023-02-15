@@ -52,18 +52,11 @@ const Sidebar: React.FC = () => {
         >
           <Menu
             items={menuItems}
-            theme="light"
-            style={{ backgroundColor: '#253DA1' }}
-            mode="inline"
             defaultOpenKeys={[defaultOpenedKey]}
             selectedKeys={[activeMenuKey]}
           />
 
-          <Menu
-            theme="light"
-            style={{ backgroundColor: '#253DA1' }}
-            mode="inline"
-          >
+          <Menu>
             <Menu.Divider />
             <Menu.Item key="logout" icon={<LogoutOutlined />}>
               <Link to="#" onClick={handleLogout}>

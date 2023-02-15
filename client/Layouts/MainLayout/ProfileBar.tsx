@@ -30,17 +30,17 @@ const ProfileBar: React.FC<IProps> = (props: IProps) => {
     >
       <Link to={Route.Profile}>
         <Space size="small">
-          <Avatar size="default" icon={<UserOutlined />} />
+          <Avatar icon={<UserOutlined />} />
 
           <Space.Compact direction="vertical" size="small">
             <Text
               style={{
                 fontWeight: '500',
                 fontSize: '14px',
-                color: '#ffffff',
+                color: '#000000',
               }}
             >
-              {props?.user?.name || 'Nanang Ari Alfin Ayong'}
+              {props?.user?.name}
             </Text>
           </Space.Compact>
         </Space>

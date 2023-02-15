@@ -2,6 +2,7 @@ import { Layout } from 'antd'
 import React from 'react'
 import { Section } from '../../Components/Molecules/Section/Section'
 import useUser from '../../Hooks/useUser'
+import { sidebarThemeConfig } from '../../utils/theme'
 import ProfileBar from './ProfileBar'
 import Sidebar from './Sidebar'
 
@@ -20,8 +21,10 @@ const MainLayout: React.FC<IProps> = ({ children }: IProps) => {
   return (
     <Layout style={{ height: '100vh' }}>
       <Sider
-        theme="light"
-        style={{ backgroundColor: '#253DA1', height: '100vh' }}
+        style={{
+          backgroundColor: sidebarThemeConfig.components.Menu.colorItemBg,
+          height: '100vh',
+        }}
       >
         <div
           style={{

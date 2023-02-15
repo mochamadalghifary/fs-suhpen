@@ -3,7 +3,7 @@ import type { ThemeConfig } from 'antd/es/config-provider/context'
 import type { CSSProperties } from 'react'
 
 export const themeColors = {
-  primary: '#253DA1',
+  primary: '#007fd0',
   secondary: '',
   success: '',
   warning: '',
@@ -18,13 +18,13 @@ export const iconActionTableStyle: CSSProperties = {
 export const sidebarThemeConfig: ThemeConfig = {
   components: {
     Menu: {
-      colorItemText: '#ffffff',
+      colorItemText: '#767676',
       colorItemTextHover: '#ffffff',
       colorItemTextSelected: '#ffffff',
-      colorItemBgHover: '#3A98D0',
-      colorItemBgSelected: '#3A98D0',
+      colorItemBgHover: themeColors.primary,
+      colorItemBgSelected: themeColors.primary,
       fontSize: 14,
-      colorItemBg: themeColors.primary,
+      colorItemBg: '#ffffff',
     },
   },
 }
@@ -44,8 +44,8 @@ export const globalThemeConfig: ThemeConfig = {
       colorPrimaryHover: themeColors.primary,
     },
     Table: {
-      controlItemBgActive: '#E6FFFB',
-      controlItemBgActiveHover: '#E6FFFB',
+      controlItemBgActive: themeColors.primary,
+      controlItemBgActiveHover: themeColors.primary,
     },
     Steps: {
       colorPrimary: themeColors.primary,
