@@ -41,17 +41,14 @@ export const usersColumns: ColumnsType<UserResponse> = [
           actions={[
             {
               type: 'view',
-              title: 'view',
               href: `${Route.Users}/${data.id}`,
             },
             {
               type: 'edit',
-              title: 'edit',
               href: `${Route.UserForm}/${data.id}`,
             },
             {
               type: 'delete',
-              title: 'delete',
               onClick: async () => {
                 confirm('Are you sure?') &&
                   (await userAction.remove(data.id)) &&

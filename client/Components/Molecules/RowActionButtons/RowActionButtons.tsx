@@ -7,7 +7,6 @@ import {
 } from '@ant-design/icons'
 import { Button, Space, Tooltip } from 'antd'
 import React from 'react'
-import { iconActionTableStyle } from '../../../utils/theme'
 
 type ButtonType = 'view' | 'edit' | 'delete' | 'check' | 'close'
 
@@ -16,7 +15,6 @@ interface IRowActionButtonsProps {
   href?: string
   onClick?: () => void
   icon?: React.ReactNode
-  title?: string
   disabled?: boolean
 }
 
@@ -26,7 +24,7 @@ interface IRowActionProps {
 
 export const RowActionButtons: React.FC<IRowActionProps> = ({ actions }) => {
   const renderButton = (action: IRowActionButtonsProps) => {
-    const { type, href, onClick, title, disabled } = action
+    const { type, href, onClick, disabled } = action
     let { icon } = action
 
     if (!icon) {
@@ -35,7 +33,7 @@ export const RowActionButtons: React.FC<IRowActionProps> = ({ actions }) => {
           icon = <EyeOutlined style={{ color: 'green' }} />
           break
         case 'edit':
-          icon = <EditOutlined style={iconActionTableStyle} />
+          icon = <EditOutlined style={{ color: 'blue' }} />
           break
         case 'delete':
           icon = <DeleteOutlined style={{ color: 'red' }} />
@@ -53,7 +51,7 @@ export const RowActionButtons: React.FC<IRowActionProps> = ({ actions }) => {
     }
 
     return (
-      <Tooltip title={title} key={title}>
+      <Tooltip title={type} key={type}>
         <Button
           type="text"
           shape="circle"
