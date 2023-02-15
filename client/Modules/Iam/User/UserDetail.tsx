@@ -10,10 +10,10 @@ import { userAction } from './user.action'
 const UserDetail: React.FC = () => {
   const { id } = useParams()
   const [props, setProps] = React.useState<IApiRes<UserResponse>>()
-  const fetching = async () => setProps(await userAction.findOne(id))
+  const fetch = async () => setProps(await userAction.findOne(id))
 
   React.useEffect(() => {
-    fetching()
+    fetch()
   }, [])
 
   return (

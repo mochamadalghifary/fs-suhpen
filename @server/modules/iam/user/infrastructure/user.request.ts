@@ -3,6 +3,7 @@ import { IndexRequest } from '@server/infrastructure/index/index.request'
 import { ERole } from '@server/modules/iam/role/infrastructure/role.enum'
 import {
   IsEmail,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -17,7 +18,7 @@ import { IAppUser } from '../infrastructure/user.interface'
 export class UserIndexRequest extends IndexRequest {
   @IsOptional()
   @IsString()
-  @IsEmail()
+  @IsEnum(ERole)
   @ApiProperty({ example: ERole.User })
   role?: string
 }

@@ -16,6 +16,7 @@ const stylePaginantion: React.CSSProperties = {
   padding: '8px',
   backgroundColor: 'white',
 }
+
 const tableLayout: React.CSSProperties = { width: '100%' }
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

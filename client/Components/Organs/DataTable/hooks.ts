@@ -4,28 +4,24 @@ import React from 'react'
 export type TPropsTableFilter<T> = IndexRequest & T
 
 export const useTableFilter = <T>() => {
-  const [status, setStatus] = React.useState({
-    isFetching: false,
-  })
+  const [isFetching, setStatus] = React.useState(false)
 
-  const [filters, setFilters] = React.useState<TPropsTableFilter<T> | any>(
-    () => {
-      const queryParams = new URLSearchParams(window.location.search)
-      const filtersObj = {}
-      for (const [key, value] of queryParams.entries()) {
-        filtersObj[key] = value
-      }
-      return filtersObj
-    },
-  )
+  const [query, setQuery] = React.useState<TPropsTableFilter<T> | any>(() => {
+    const queryParams = new URLSearchParams(window.location.search)
+    const filtersObj = {}
+    for (const [key, value] of queryParams.entries()) {
+      filtersObj[key] = value
+    }
+    return filtersObj
+  })
 
   const existingParams = React.useMemo(
     () =>
-      Object.keys(filters).reduce(
-        (a, c) => (filters[c] ? { ...a, [c]: filters[c] } : a),
+      Object.keys(query).reduce(
+        (a, c) => (query[c] ? { ...a, [c]: query[c] } : a),
         {},
       ),
-    [filters],
+    [query],
   ) as TPropsTableFilter<T>
 
   return {
@@ -57,10 +53,10 @@ export const useTableFilter = <T>() => {
         }
       }
 
-      setFilters(data)
+      setQuery(data)
     },
-    filters: filters as TPropsTableFilter<T>,
-    status,
+    query: query as TPropsTableFilter<T>,
+    isFetching,
     setStatus,
   }
 }

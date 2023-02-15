@@ -15,19 +15,14 @@ import { usersColumns } from './users.columns'
 
 const Users: React.FC = () => {
   const [props, setProps] = React.useState<IPaginateResponse<UserResponse>>()
-  const fetching = async () => {
-    setProps(await userAction.fetch(filters))
-  }
+  const fetch = async () => setProps(await userAction.fetch(query))
 
-  const {
-    setQueryParams,
-    filters,
-    status: { isFetching },
-  } = useTableFilter<UserIndexRequest>()
+  const { setQueryParams, query, isFetching } =
+    useTableFilter<UserIndexRequest>()
 
   React.useEffect(() => {
-    fetching()
-  }, [filters])
+    fetch()
+  }, [query])
 
   return (
     <>
@@ -44,23 +39,17 @@ const Users: React.FC = () => {
                     return { label: key, value: key }
                   })
                 }, [])}
-                defaultValue={filters.role}
                 allowClear
                 style={{ width: '100px' }}
               />
             ),
           },
         ]}
-        onChange={({ ...filtersState }) => {
-          setQueryParams({
-            ...filtersState,
-            role: filters.role,
-          })
-        }}
+        onChange={({ ...filtersState }) => setQueryParams({ ...filtersState })}
         columns={usersColumns}
         dataSource={props?.data}
         rowKey="id"
-        search={filters.search}
+        search={query.search}
         pagination={paginationTransform(props?.meta)}
         loading={isFetching}
       />

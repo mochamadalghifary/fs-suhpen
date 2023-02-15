@@ -18,13 +18,17 @@ export class UserIndexService extends BaseIndexService {
     query: SelectQueryBuilder<IAppUser>,
     req: UserIndexRequest,
   ): SelectQueryBuilder<IAppUser> {
-    req
-    // Do Additional Query
+    if (req.role) {
+      query.andWhere('user.role = :role', {
+        role: req.role,
+      })
+    }
+
     return query
   }
 
   async fetch(req: UserIndexRequest): Promise<IPaginateResponse<IAppUser>> {
-    const tableName = AppUser.name
+    const tableName = 'user'
     const tableKey = Object.keys(new AppUser())
 
     const query = this.additionalQuery(
@@ -32,10 +36,11 @@ export class UserIndexService extends BaseIndexService {
       req,
     )
 
-    req.search &&
-      query.where(this.querySearch(tableName, tableKey), {
+    if (req.search) {
+      query.andWhere(this.querySearch(tableName, tableKey), {
         search: `%${req.search.toLowerCase()}%`,
       })
+    }
 
     query.orderBy(
       this.orderByKey(tableName, tableKey, req.sort),

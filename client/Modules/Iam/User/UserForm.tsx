@@ -13,13 +13,13 @@ const UserForm: React.FC = () => {
   const { id } = useParams()
   const [form] = Form.useForm<UserCreateRequest>()
   const [isLoading, setIsLoading] = React.useState(false)
+  const fetch = async () => {
+    const res = await userAction.findOne(id)
+    form.setFieldsValue(res.data)
+  }
 
   React.useEffect(() => {
-    id &&
-      (async () => {
-        const res = await userAction.findOne(id)
-        form.setFieldsValue(res.data)
-      })()
+    id && fetch()
   }, [])
 
   const onFinish = async () => {
