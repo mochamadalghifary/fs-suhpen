@@ -16,11 +16,12 @@ const Users: React.FC = () => {
   const [props, setProps] = React.useState<IPaginateResponse<UserResponse>>()
   const fetch = async () => setProps(await userAction.fetch(query))
 
-  const { setQueryParams, query, isFetching } =
-    useTableFilter<UserIndexRequest>()
+  const { setQueryParams, query, status } = useTableFilter<UserIndexRequest>()
 
   React.useEffect(() => {
+    status.isFetching = true
     fetch()
+    status.isFetching = false
   }, [query])
 
   return (
@@ -39,7 +40,7 @@ const Users: React.FC = () => {
         rowKey="id"
         search={query.search}
         pagination={paginationTransform(props?.meta)}
-        loading={isFetching}
+        loading={status.isFetching}
       />
     </>
   )

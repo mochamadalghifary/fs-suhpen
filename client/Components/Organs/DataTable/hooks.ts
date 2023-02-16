@@ -4,7 +4,9 @@ import React from 'react'
 export type TPropsTableFilter<T> = IndexRequest & T
 
 export const useTableFilter = <T>() => {
-  const [isFetching, setStatus] = React.useState(false)
+  const [status, setStatus] = React.useState({
+    isFetching: false,
+  })
 
   const [query, setQuery] = React.useState<TPropsTableFilter<T> | any>(() => {
     const queryParams = new URLSearchParams(window.location.search)
@@ -56,7 +58,7 @@ export const useTableFilter = <T>() => {
       setQuery(data)
     },
     query: query as TPropsTableFilter<T>,
-    isFetching,
+    status,
     setStatus,
   }
 }
