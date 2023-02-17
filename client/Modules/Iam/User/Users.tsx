@@ -30,7 +30,7 @@ const Users: React.FC = () => {
       <DataTable
         filterComponents={[
           {
-            name: 'Role',
+            name: 'role',
             enum: ERole,
           },
         ]}

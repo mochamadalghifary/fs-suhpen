@@ -32,6 +32,13 @@ export class Utils {
     return true
   }
 
+  static titleCase = (str: string) => {
+    return str
+      .split(' ')
+      .map((w) => w[0].toUpperCase() + w.substring(1).toLowerCase())
+      .join(' ')
+  }
+
   static camelToSnake = (str: string) => {
     str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
   }

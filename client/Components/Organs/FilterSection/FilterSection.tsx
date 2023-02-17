@@ -1,6 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons'
 import { Col, Form, FormInstance, Input, Row, Select } from 'antd'
 import React from 'react'
+import { Utils } from '../../../utils/utils'
 
 export interface IFilterSection {
   filters?: {
@@ -56,7 +57,7 @@ export const FilterSection = (props: IFilterSection) => {
               <Col key={index} style={{ margin: '2px' }}>
                 <Form.Item name={item.name} noStyle>
                   <Select
-                    placeholder={item.name}
+                    placeholder={Utils.titleCase(item.name)}
                     options={React.useMemo(() => {
                       return Object.keys(item.enum).map((key) => {
                         return { label: key, value: key }

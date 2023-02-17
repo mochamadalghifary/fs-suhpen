@@ -18,6 +18,8 @@ export class UserIndexService extends BaseIndexService {
     query: SelectQueryBuilder<IAppUser>,
     req: UserIndexRequest,
   ): SelectQueryBuilder<IAppUser> {
+    req
+
     if (req.role) {
       query.andWhere('user.role = :role', {
         role: req.role,
