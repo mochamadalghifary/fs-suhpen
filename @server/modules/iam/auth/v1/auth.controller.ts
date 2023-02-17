@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
 import { ApiRes } from '@server/infrastructure/interfaces/api.response'
 import { Modules } from '@server/modules/modules'
@@ -14,6 +14,7 @@ const THIS_MODULE = Modules.Auth
 
 @Controller(THIS_MODULE)
 @ApiTags(THIS_MODULE)
+@ApiBearerAuth()
 export class AuthController {
   constructor(private readonly authApp: AuthApp) {}
 

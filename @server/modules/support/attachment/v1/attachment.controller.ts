@@ -11,7 +11,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 import { Utils } from '@server/common/utils/utils'
 import { config } from '@server/config'
 import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
@@ -30,6 +30,7 @@ const THIS_MODULE = Modules.Attachment
 
 @Controller(THIS_MODULE)
 @ApiTags(THIS_MODULE)
+@ApiBearerAuth()
 @UseGuards(LoggedInGuard)
 export class AttachmentController {
   constructor(private readonly attachmentService: AttachmentService) {}

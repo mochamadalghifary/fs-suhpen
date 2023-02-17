@@ -9,7 +9,7 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 import { BaseCrudController } from '@server/infrastructure/base/base-crud.controller'
 import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
 import { ApiRes } from '@server/infrastructure/interfaces/api.response'
@@ -27,6 +27,7 @@ const THIS_MODULE = Modules.Users
 
 @Controller(THIS_MODULE)
 @ApiTags(THIS_MODULE)
+@ApiBearerAuth()
 @UseGuards(AdminGuard)
 export class UserCrudController implements BaseCrudController {
   constructor(private readonly userCrudApp: UserCrudApp) {}

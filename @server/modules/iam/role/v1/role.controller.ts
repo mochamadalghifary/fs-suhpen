@@ -1,5 +1,5 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
 import { ApiRes } from '@server/infrastructure/interfaces/api.response'
 import { ERole } from '@server/modules/iam/role/infrastructure/role.enum'
@@ -12,6 +12,7 @@ const THIS_MODULE = Modules.Roles
 
 @Controller(THIS_MODULE)
 @ApiTags(THIS_MODULE)
+@ApiBearerAuth()
 @UseGuards(AdminGuard)
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
