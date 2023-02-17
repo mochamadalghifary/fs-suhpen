@@ -43,4 +43,12 @@ export class IndexRequest implements ISortRequest, IPaginateRequest {
     required: false,
   })
   search?: string
+
+  @IsString()
+  @IsOptional()
+  startAt?: string
+
+  @IsString()
+  @IsOptional()
+  endAt?: string
 }

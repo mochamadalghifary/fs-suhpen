@@ -27,8 +27,17 @@ const Users: React.FC = () => {
     <>
       <PageHeader title="User" hrefCreate={Route.UserForm} />
       <DataTable
-        filterComponents={[{ name: 'role', enum: ERole }]}
-        onChange={({ ...filtersState }) => setQueryParams({ ...filtersState })}
+        filterComponents={[
+          { name: 'role', enum: ERole },
+          { name: 'dateRangePicker' },
+        ]}
+        onChange={({ dateRangePicker, ...filtersState }) => {
+          setQueryParams({
+            ...filtersState,
+            startAt: dateRangePicker?.[0]?.toISOString(),
+            endAt: dateRangePicker?.[1]?.toISOString(),
+          })
+        }}
         columns={usersColumns}
         dataSource={props?.data}
         rowKey="id"

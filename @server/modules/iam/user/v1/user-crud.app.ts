@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { IPaginateResponse } from '@server/infrastructure/index/index.interface'
-import { UserIndexService } from '../infrastructure/user-index.service'
+import { UserIndexApp } from '../infrastructure/user-index.app'
 import { AppUser } from '../infrastructure/user.entity'
 import { IAppUser } from '../infrastructure/user.interface'
 import {
@@ -13,7 +13,7 @@ import { UserService } from '../infrastructure/user.service'
 @Injectable()
 export class UserCrudApp {
   constructor(
-    private readonly userIndexApp: UserIndexService,
+    private readonly userIndexApp: UserIndexApp,
     private readonly userService: UserService,
   ) {}
 

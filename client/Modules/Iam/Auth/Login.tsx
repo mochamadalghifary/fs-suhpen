@@ -1,8 +1,8 @@
 import { AuthLoginRequest } from '@server/modules/iam/auth/infrastructure/auth.request'
 import { Button, Form, Input } from 'antd'
+import Title from 'antd/es/typography/Title'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
 import { Section } from '../../../Components/Molecules/Section/Section'
 import FormContainer from '../../../Components/Organs/FormContainer/FormContainer'
 import { Route } from '../../../Enums/Route'
@@ -33,26 +33,33 @@ const Login: React.FC = () => {
 
   return (
     <Section>
-      <PageHeader title="Login" />
-      <FormContainer
-        onFinish={onFinish}
-        form={form}
-        layout="vertical"
-        centered
-        buttonAction={[
-          <Button type="primary" htmlType="submit" disabled={isLoading}>
-            Login
-          </Button>,
-        ]}
-      >
-        <Form.Item label="Email" name="email" rules={[formRule.email]} required>
-          <Input type="email" />
-        </Form.Item>
+      <div style={{ backgroundColor: '#eeeeee', justifyContent: 'center' }}>
+        <Title>Login</Title>
+        <FormContainer
+          onFinish={onFinish}
+          form={form}
+          layout="vertical"
+          centered
+          buttonAction={[
+            <Button type="primary" htmlType="submit" disabled={isLoading}>
+              Login
+            </Button>,
+          ]}
+        >
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[formRule.email]}
+            required
+          >
+            <Input type="email" />
+          </Form.Item>
 
-        <Form.Item label="Password" name="password" required>
-          <Input.Password type="password" />
-        </Form.Item>
-      </FormContainer>
+          <Form.Item label="Password" name="password" required>
+            <Input.Password type="password" />
+          </Form.Item>
+        </FormContainer>
+      </div>
     </Section>
   )
 }

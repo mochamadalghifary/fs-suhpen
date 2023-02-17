@@ -1,15 +1,14 @@
 import { SearchOutlined } from '@ant-design/icons'
-import { Col, Form, FormInstance, Input, Row, Select } from 'antd'
+import { Col, DatePicker, Form, FormInstance, Input, Row, Select } from 'antd'
 import React from 'react'
 import { Utils } from '../../../utils/utils'
 
 export interface IFilterSection {
   filters?: {
     name: string
-    enum: Record<string, any>
+    enum?: Record<string, any>
   }[]
   onFiltersChange?: (values: Record<string, any>) => void
-  selectedRows?: React.Key[]
   onSearch?: (value: string) => void
   searchValue?: string
 }
@@ -54,18 +53,22 @@ export const FilterSection = (props: IFilterSection) => {
         <Row gutter={[8, 0]} align="middle">
           {props.filters?.map((item, index) => {
             return (
-              <Col key={index} style={{ margin: '2px' }}>
+              <Col key={index}>
                 <Form.Item name={item.name} noStyle>
-                  <Select
-                    placeholder={Utils.titleCase(item.name)}
-                    options={React.useMemo(() => {
-                      return Object.keys(item.enum).map((key) => {
-                        return { label: key, value: key }
-                      })
-                    }, [])}
-                    allowClear
-                    style={{ width: '150px' }}
-                  />
+                  {item.name == 'dateRangePicker' ? (
+                    <DatePicker.RangePicker />
+                  ) : (
+                    <Select
+                      placeholder={Utils.titleCase(item.name)}
+                      options={React.useMemo(() => {
+                        return Object.keys(item.enum).map((key) => {
+                          return { label: key, value: key }
+                        })
+                      }, [])}
+                      allowClear
+                      style={{ minWidth: '120px' }}
+                    />
+                  )}
                 </Form.Item>
               </Col>
             )
@@ -73,19 +76,16 @@ export const FilterSection = (props: IFilterSection) => {
         </Row>
       </Form>
 
-      {/* Search */}
-      {props.onSearch && (
-        <Col flex="auto">
-          <Input
-            prefix={<SearchOutlined />}
-            placeholder="Search"
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-            allowClear
-            style={{ margin: '2px', width: '350px' }}
-          />
-        </Col>
-      )}
+      <Col flex="auto">
+        <Input
+          prefix={<SearchOutlined />}
+          placeholder="Search"
+          onChange={(e) => setValue(e.target.value)}
+          value={value}
+          allowClear
+          style={{ width: 'auto' }}
+        />
+      </Col>
     </Row>
   )
 }
