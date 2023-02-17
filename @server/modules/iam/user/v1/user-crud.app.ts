@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { IPaginateResponse } from '@server/infrastructure/index/index.interface'
 import { UserIndexApp } from '../infrastructure/user-index.app'
-import { AppUser } from '../infrastructure/user.entity'
+import { EttUser } from '../infrastructure/user.entity'
 import { IUser } from '../infrastructure/user.interface'
 import {
   UserCreateRequest,
@@ -23,7 +23,7 @@ export class UserCrudApp {
   }
 
   async create(req: UserCreateRequest): Promise<IUser> {
-    const data = new AppUser()
+    const data = new EttUser()
     Object.assign(data, req)
 
     return await this.userService.create(data)

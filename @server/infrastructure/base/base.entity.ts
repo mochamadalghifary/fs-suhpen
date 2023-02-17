@@ -1,5 +1,4 @@
-import { GetUserLogged } from '@server/modules/iam/user/common/get-user-logged.decorator'
-import { AppUser } from '@server/modules/iam/user/infrastructure/user.entity'
+import { EttUser } from '@server/modules/iam/user/infrastructure/user.entity'
 import { IUser } from '@server/modules/iam/user/infrastructure/user.interface'
 import {
   BeforeInsert,
@@ -17,37 +16,37 @@ export class BaseEntity implements IBaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn()
   createdAt: Date
 
-  @ManyToOne(() => AppUser)
+  @ManyToOne(() => EttUser)
   createdBy: IUser
 
-  @UpdateDateColumn({ name: 'updated_at' })
+  @UpdateDateColumn()
   updatedAt: Date
 
-  @ManyToOne(() => AppUser)
+  @ManyToOne(() => EttUser)
   updatedBy: IUser
 
-  @DeleteDateColumn({ name: 'deleted_at' })
+  @DeleteDateColumn()
   deletedAt: Date
 
-  @ManyToOne(() => AppUser)
+  @ManyToOne(() => EttUser)
   deletedBy: IUser
 
   @BeforeInsert()
-  beforeInsert(@GetUserLogged() user: IUser): void {
-    this.createdBy = user
+  beforeInsert(): void {
+    // this.createdBy = user
   }
 
   @BeforeUpdate()
-  beforeUpdate(@GetUserLogged() user: IUser): void {
-    this.updatedBy = user
+  beforeUpdate(): void {
+    // this.updatedBy = user
     this.updatedAt = new Date()
   }
 
   @BeforeSoftRemove()
-  beforeSoftRemove(@GetUserLogged() user: IUser): void {
-    this.deletedBy = user
+  beforeSoftRemove(): void {
+    // this.deletedBy = user
   }
 }

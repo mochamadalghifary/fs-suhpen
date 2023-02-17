@@ -5,7 +5,7 @@ import { ERole } from '../../role/infrastructure/role.enum'
 import { IUser } from '../infrastructure/user.interface'
 
 @Entity()
-export class AppUser extends BaseEntity implements IUser {
+export class EttUser extends BaseEntity implements IUser {
   @Column()
   name: string
 

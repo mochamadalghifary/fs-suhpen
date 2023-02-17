@@ -3,7 +3,7 @@ import { IUser } from '@server/modules/iam/user/infrastructure/user.interface'
 import { Repository, SelectQueryBuilder } from 'typeorm'
 import { IPaginateResponse } from '../../../../infrastructure/index/index.interface'
 import { BaseIndexService } from '../../../../infrastructure/index/index.service'
-import { AppUser } from './user.entity'
+import { EttUser } from './user.entity'
 import { UserIndexRequest } from './user.request'
 
 const tableName = 'user'
@@ -11,7 +11,7 @@ const tableKeys = ['name', 'email', 'role', 'phoneNumber']
 
 export class UserIndexApp extends BaseIndexService {
   constructor(
-    @InjectRepository(AppUser)
+    @InjectRepository(EttUser)
     private readonly userRepo: Repository<IUser>,
   ) {
     super()

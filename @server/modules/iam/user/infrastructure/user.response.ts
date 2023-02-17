@@ -1,7 +1,7 @@
 import { IUser } from '../infrastructure/user.interface'
-import { AppUser } from './user.entity'
+import { EttUser } from './user.entity'
 
-export class UserResponse extends AppUser {
+export class UserResponse extends EttUser {
   otpExpiredAt?: Date
   _accessToken?: string
 
