@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { IPaginateResponse } from '@server/infrastructure/index/index.interface'
 import { UserIndexApp } from '../infrastructure/user-index.app'
 import { AppUser } from '../infrastructure/user.entity'
-import { IAppUser } from '../infrastructure/user.interface'
+import { IUser } from '../infrastructure/user.interface'
 import {
   UserCreateRequest,
   UserIndexRequest,
@@ -17,27 +17,27 @@ export class UserCrudApp {
     private readonly userService: UserService,
   ) {}
 
-  async fetch(req: UserIndexRequest): Promise<IPaginateResponse<IAppUser>> {
+  async fetch(req: UserIndexRequest): Promise<IPaginateResponse<IUser>> {
     const res = await this.userIndexApp.fetch(req)
     return res
   }
 
-  async create(req: UserCreateRequest): Promise<IAppUser> {
+  async create(req: UserCreateRequest): Promise<IUser> {
     const data = new AppUser()
     Object.assign(data, req)
 
     return await this.userService.create(data)
   }
 
-  async find(): Promise<IAppUser[]> {
+  async find(): Promise<IUser[]> {
     return await this.userService.find()
   }
 
-  async findOneOrFail(id: string): Promise<IAppUser> {
+  async findOneOrFail(id: string): Promise<IUser> {
     return await this.userService.findOneOrFail(id)
   }
 
-  async update(id: string, req: UserUpdateRequest): Promise<IAppUser> {
+  async update(id: string, req: UserUpdateRequest): Promise<IUser> {
     const data = await this.userService.findOneOrFail(id)
 
     data.name = req.name
@@ -48,13 +48,13 @@ export class UserCrudApp {
     return await this.userService.update(data)
   }
 
-  async remove(id: string): Promise<IAppUser> {
+  async remove(id: string): Promise<IUser> {
     const data = this.userService.findOneOrFail(id)
     await this.userService.remove(id)
     return data
   }
 
-  async softRemove(id: string): Promise<IAppUser> {
+  async softRemove(id: string): Promise<IUser> {
     const data = this.userService.findOneOrFail(id)
     await this.userService.softRemove(id)
     return data

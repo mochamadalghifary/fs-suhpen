@@ -13,7 +13,7 @@ import {
   MinLength,
 } from 'class-validator'
 import { REGEX_PASSWORD } from '../common/character.constant'
-import { IAppUser } from '../infrastructure/user.interface'
+import { IUser } from '../infrastructure/user.interface'
 
 export class UserIndexRequest extends IndexRequest {
   @IsOptional()
@@ -23,7 +23,7 @@ export class UserIndexRequest extends IndexRequest {
   role?: string
 }
 
-export class UserRequest implements IAppUser {
+export class UserRequest implements IUser {
   id: string
 
   @IsNotEmpty()

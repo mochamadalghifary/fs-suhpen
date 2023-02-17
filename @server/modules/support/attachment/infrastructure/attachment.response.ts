@@ -1,8 +1,8 @@
 import { AppAttachment } from './attachment.entity'
-import { IAppAttachment } from './attachment.interface'
+import { IAttachment } from './attachment.interface'
 
 export class AttachmentUploadResponse extends AppAttachment {
-  static fromEntity(data: IAppAttachment): AttachmentUploadResponse {
+  static fromEntity(data: IAttachment): AttachmentUploadResponse {
     return Object.assign(new AttachmentUploadResponse(), data)
   }
 }

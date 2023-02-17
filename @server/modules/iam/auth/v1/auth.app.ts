@@ -4,7 +4,7 @@ import { config } from '@server/config'
 import * as bcrypt from 'bcrypt'
 import { Exception } from '../../../../common/exceptions/index.exception'
 import { AppUser } from '../../user/infrastructure/user.entity'
-import { IAppUser } from '../../user/infrastructure/user.interface'
+import { IUser } from '../../user/infrastructure/user.interface'
 import { UserService } from '../../user/infrastructure/user.service'
 import { authMessages } from '../common/auth.message'
 import {
@@ -23,14 +23,14 @@ export class AuthApp {
     private readonly authPasswordService: AuthService,
   ) {}
 
-  async register(req: AuthRegisterRequest): Promise<IAppUser> {
+  async register(req: AuthRegisterRequest): Promise<IUser> {
     const user = new AppUser()
     Object.assign(user, req)
 
     return await this.userService.create(user)
   }
 
-  async login(req: AuthLoginRequest): Promise<IAppUser> {
+  async login(req: AuthLoginRequest): Promise<IUser> {
     const { email, password } = req
     const user = await this.userService.findOneByEmail(email)
 
@@ -57,7 +57,7 @@ export class AuthApp {
     return link
   }
 
-  async passwordGetLink(token: string): Promise<IAppUser | string> {
+  async passwordGetLink(token: string): Promise<IUser | string> {
     const user = await this.userService.findOneByToken(token)
     if (!user) return authMessages.tokenInvalid
     return user
@@ -65,7 +65,7 @@ export class AuthApp {
 
   async passwordChange(
     req: AuthChangePasswordRequest,
-  ): Promise<IAppUser | string> {
+  ): Promise<IUser | string> {
     const user = await this.userService.findOneByToken(req.token)
     if (!user) return authMessages.tokenInvalid
 

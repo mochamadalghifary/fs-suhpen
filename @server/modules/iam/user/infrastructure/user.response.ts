@@ -1,11 +1,11 @@
-import { IAppUser } from '../infrastructure/user.interface'
+import { IUser } from '../infrastructure/user.interface'
 import { AppUser } from './user.entity'
 
 export class UserResponse extends AppUser {
   otpExpiredAt?: Date
   _accessToken?: string
 
-  static fromEntity(data: IAppUser): UserResponse {
+  static fromEntity(data: IUser): UserResponse {
     const res = new UserResponse()
     Object.assign(res, data)
 
@@ -17,7 +17,7 @@ export class UserResponse extends AppUser {
     return res
   }
 
-  static fromEntities(data: IAppUser[]): UserResponse[] {
+  static fromEntities(data: IUser[]): UserResponse[] {
     return data.map((data) => this.fromEntity(data))
   }
 }
@@ -25,7 +25,7 @@ export class UserResponse extends AppUser {
 export class UserStrictResponse extends UserResponse {
   otpExpiredAt?: Date
 
-  static fromEntity(data: IAppUser): UserResponse {
+  static fromEntity(data: IUser): UserResponse {
     const res = new UserResponse()
     Object.assign(res, data)
 
@@ -36,7 +36,7 @@ export class UserStrictResponse extends UserResponse {
     return res
   }
 
-  static fromEntities(data: IAppUser[]): UserResponse[] {
+  static fromEntities(data: IUser[]): UserResponse[] {
     return data.map((data) => this.fromEntity(data))
   }
 }

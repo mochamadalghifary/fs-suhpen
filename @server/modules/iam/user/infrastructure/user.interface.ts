@@ -1,7 +1,7 @@
 import { IBaseEntity } from '@server/infrastructure/base/base-entity.interface'
 import { ERole } from '../../role/infrastructure/role.enum'
 
-export interface IAppUser extends IBaseEntity {
+export interface IUser extends IBaseEntity {
   name: string
   email: string
   password: string

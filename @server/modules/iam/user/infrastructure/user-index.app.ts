@@ -1,5 +1,5 @@
 import { InjectRepository } from '@nestjs/typeorm'
-import { IAppUser } from '@server/modules/iam/user/infrastructure/user.interface'
+import { IUser } from '@server/modules/iam/user/infrastructure/user.interface'
 import { Repository, SelectQueryBuilder } from 'typeorm'
 import { IPaginateResponse } from '../../../../infrastructure/index/index.interface'
 import { BaseIndexService } from '../../../../infrastructure/index/index.service'
@@ -12,15 +12,15 @@ const tableKeys = ['name', 'email', 'role', 'phoneNumber']
 export class UserIndexApp extends BaseIndexService {
   constructor(
     @InjectRepository(AppUser)
-    private readonly userRepo: Repository<IAppUser>,
+    private readonly userRepo: Repository<IUser>,
   ) {
     super()
   }
 
   additionalQuery(
-    query: SelectQueryBuilder<IAppUser>,
+    query: SelectQueryBuilder<IUser>,
     req: UserIndexRequest,
-  ): SelectQueryBuilder<IAppUser> {
+  ): SelectQueryBuilder<IUser> {
     if (req.role) {
       query.andWhere('user.role = :role', {
         role: req.role,
@@ -30,7 +30,7 @@ export class UserIndexApp extends BaseIndexService {
     return query
   }
 
-  async fetch(req: UserIndexRequest): Promise<IPaginateResponse<IAppUser>> {
+  async fetch(req: UserIndexRequest): Promise<IPaginateResponse<IUser>> {
     const query = this.additionalQuery(
       this.userRepo.createQueryBuilder(tableName),
       req,

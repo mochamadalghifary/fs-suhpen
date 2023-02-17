@@ -1,5 +1,5 @@
 import { UserOutlined } from '@ant-design/icons'
-import { IAppUser } from '@server/modules/iam/user/infrastructure/user.interface'
+import { IUser } from '@server/modules/iam/user/infrastructure/user.interface'
 import { Avatar, Space, Typography } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -8,7 +8,7 @@ import { Route } from '../../Enums/Route'
 type IProps = {
   children?: React.ReactNode
   headerRightMenu?: React.FC
-  user: IAppUser
+  user: IUser
 }
 
 const { Text } = Typography

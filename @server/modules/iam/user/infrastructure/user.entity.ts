@@ -2,10 +2,10 @@ import { BaseEntity } from '@server/infrastructure/base/base.entity'
 import * as bcrypt from 'bcrypt'
 import { BeforeInsert, Column, Entity } from 'typeorm'
 import { ERole } from '../../role/infrastructure/role.enum'
-import { IAppUser } from '../infrastructure/user.interface'
+import { IUser } from '../infrastructure/user.interface'
 
 @Entity()
-export class AppUser extends BaseEntity implements IAppUser {
+export class AppUser extends BaseEntity implements IUser {
   @Column()
   name: string
 

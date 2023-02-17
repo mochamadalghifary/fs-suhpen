@@ -5,7 +5,7 @@ import { ApiRes } from '@server/infrastructure/interfaces/api.response'
 import { Modules } from '@server/modules/modules'
 import { LoggedInGuard } from '../../auth/common/logged-in.guard'
 import { GetUserLogged } from '../common/get-user-logged.decorator'
-import { IAppUser } from '../infrastructure/user.interface'
+import { IUser } from '../infrastructure/user.interface'
 import { UserUpdateRequest } from '../infrastructure/user.request'
 import { UserResponse } from '../infrastructure/user.response'
 import { UserCrudApp } from './user-crud.app'
@@ -21,7 +21,7 @@ export class UserProfileController {
 
   @Get()
   async GetUserLogged(
-    @GetUserLogged() user: IAppUser,
+    @GetUserLogged() user: IUser,
   ): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.findOneOrFail(user.id)
     return ApiRes.fromEntity(UserResponse.fromEntity(data))
@@ -29,7 +29,7 @@ export class UserProfileController {
 
   @Put()
   async update(
-    @GetUserLogged() user: IAppUser,
+    @GetUserLogged() user: IUser,
     @Body() req: UserUpdateRequest,
   ): Promise<IApiRes<UserResponse>> {
     const data = await this.userCrudApp.update(user.id, req)

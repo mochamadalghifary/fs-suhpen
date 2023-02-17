@@ -1,9 +1,9 @@
 import { BaseEntity } from '@server/infrastructure/base/base.entity'
 import { Column, Entity } from 'typeorm'
-import { IAppAttachment } from './attachment.interface'
+import { IAttachment } from './attachment.interface'
 
 @Entity()
-export class AppAttachment extends BaseEntity implements IAppAttachment {
+export class AppAttachment extends BaseEntity implements IAttachment {
   @Column()
   fileUrl: string
 

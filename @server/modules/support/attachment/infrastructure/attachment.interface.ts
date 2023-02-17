@@ -1,6 +1,6 @@
 import { IBaseEntity } from '@server/infrastructure/base/base-entity.interface'
 
-export interface IAppAttachment extends IBaseEntity {
+export interface IAttachment extends IBaseEntity {
   fileUrl: string
   module: string
 }
