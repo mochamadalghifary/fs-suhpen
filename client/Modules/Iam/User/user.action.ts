@@ -19,7 +19,7 @@ export const userAction = {
   create: async (data: UserCreateRequest): Promise<IApiRes<UserResponse>> => {
     data.password = data.email
     const res = await axiosService.post(Route.Users, data)
-    !res.data && alert(res)
+    !res.data && alert(res.response.data.message)
     return res
   },
 
@@ -29,7 +29,7 @@ export const userAction = {
 
   update: async (data: UserUpdateRequest): Promise<IApiRes<UserResponse>> => {
     const res = await axiosService.put(Route.Profile, data)
-    !res.data && alert(res)
+    !res.data && alert(res.response.data.message)
     return res
   },
 
