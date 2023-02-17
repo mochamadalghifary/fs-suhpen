@@ -15,7 +15,6 @@ import { usersColumns } from './users.columns'
 const Users: React.FC = () => {
   const [props, setProps] = React.useState<IPaginateResponse<UserResponse>>()
   const fetch = async () => setProps(await userAction.fetch(query))
-
   const { setQueryParams, query, status } = useTableFilter<UserIndexRequest>()
 
   React.useEffect(() => {
@@ -28,12 +27,7 @@ const Users: React.FC = () => {
     <>
       <PageHeader title="User" hrefCreate={Route.UserForm} />
       <DataTable
-        filterComponents={[
-          {
-            name: 'role',
-            enum: ERole,
-          },
-        ]}
+        filterComponents={[{ name: 'role', enum: ERole }]}
         onChange={({ ...filtersState }) => setQueryParams({ ...filtersState })}
         columns={usersColumns}
         dataSource={props?.data}

@@ -38,7 +38,7 @@ const UserForm: React.FC = () => {
 
   return (
     <>
-      <PageHeader title="User Form" />
+      <PageHeader title={id ? 'User Edit' : 'User Create'} />
       <FormContainer
         onFinish={onFinish}
         form={form}
