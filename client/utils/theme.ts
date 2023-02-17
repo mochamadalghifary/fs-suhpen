@@ -19,10 +19,10 @@ export const sidebarThemeConfig: ThemeConfig = {
   components: {
     Menu: {
       colorItemText: '#767676',
-      colorItemTextHover: themeColors.primary,
       colorItemTextSelected: '#ffffff',
-      colorItemBgHover: '#eeeeee',
       colorItemBgSelected: themeColors.primary,
+      colorItemTextHover: '#000000',
+      colorItemBgHover: '#dddddd',
       fontSize: 14,
       colorItemBg: '#ffffff',
     },
