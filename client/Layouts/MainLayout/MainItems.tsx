@@ -1,5 +1,6 @@
 import {
   DashboardOutlined,
+  IdcardOutlined,
   UsergroupAddOutlined,
   UserSwitchOutlined,
 } from '@ant-design/icons'
@@ -33,13 +34,20 @@ const itemsRoleAdministrator: MenuItem[] =
     ? [
         {
           key: Route.Users,
-          label: <Link to={Route.Users}>User</Link>,
-          icon: <UsergroupAddOutlined />,
-        },
-        {
-          key: Route.Roles,
-          label: <Link to={Route.Roles}>Role</Link>,
-          icon: <UserSwitchOutlined />,
+          label: 'Iam',
+          icon: <IdcardOutlined />,
+          children: [
+            {
+              key: Route.Users,
+              label: <Link to={Route.Users}>User</Link>,
+              icon: <UsergroupAddOutlined />,
+            },
+            {
+              key: Route.Roles,
+              label: <Link to={Route.Roles}>Role</Link>,
+              icon: <UserSwitchOutlined />,
+            },
+          ],
         },
       ]
     : []

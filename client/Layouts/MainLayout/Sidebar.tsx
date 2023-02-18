@@ -49,6 +49,7 @@ const Sidebar: React.FC = () => {
           }}
         >
           <Menu
+            mode="inline"
             items={menuItems}
             defaultOpenKeys={[defaultOpenedKey]}
             selectedKeys={[activeMenuKey]}
