@@ -18,11 +18,11 @@ export const iconActionTableStyle: CSSProperties = {
 export const sidebarThemeConfig: ThemeConfig = {
   components: {
     Menu: {
-      colorItemText: '#767676',
-      colorItemTextSelected: '#ffffff',
-      colorItemBgSelected: themeColors.primary,
-      colorItemTextHover: '#000000',
-      colorItemBgHover: '#dddddd',
+      colorItemText: '#777777',
+      colorItemTextSelected: themeColors.primary,
+      colorItemBgSelected: '#daf1ff',
+      colorItemTextHover: themeColors.primary,
+      colorItemBgHover: '#daf1ff',
       fontSize: 14,
       colorItemBg: '#ffffff',
     },
