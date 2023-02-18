@@ -16,13 +16,20 @@ const getBase64 = (file: RcFile): Promise<string> =>
 
 interface IProps {
   total: number
+  data?: string[]
 }
 
 const Attachment: React.FC<IProps> = (props: IProps) => {
+  const defaultValues = () =>
+    props.data?.length > 0 &&
+    props?.data?.map((data) => {
+      return { uid: data, name: data, url: data }
+    })
+
   const [previewOpen, setPreviewOpen] = React.useState(false)
   const [previewImage, setPreviewImage] = React.useState('')
   const [previewTitle, setPreviewTitle] = React.useState('')
-  const [fileList, setFileList] = React.useState<UploadFile[]>([])
+  const [fileList, setFileList] = React.useState<UploadFile[]>(defaultValues())
 
   const handleCancel = () => setPreviewOpen(false)
 

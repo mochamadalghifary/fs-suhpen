@@ -7,16 +7,14 @@ import {
   Query,
   Res,
   UploadedFile,
-  UseGuards,
   UseInterceptors,
 } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
+import { ApiTags } from '@nestjs/swagger'
 import { Utils } from '@server/common/utils/utils'
 import { config } from '@server/config'
 import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
 import { ApiRes } from '@server/infrastructure/interfaces/api.response'
-import { LoggedInGuard } from '@server/modules/iam/auth/common/logged-in.guard'
 import { Modules } from '@server/modules/modules'
 import * as path from 'path'
 import {
@@ -33,8 +31,6 @@ const THIS_MODULE = Modules.Attachment
 export class AttachmentController {
   constructor(private readonly attachmentService: AttachmentService) {}
 
-  @ApiBearerAuth()
-  @UseGuards(LoggedInGuard)
   @Get(':filePath')
   findUploadedAttachment(@Param('filePath') file: string, @Res() res: any) {
     return res.sendFile(file, {
@@ -54,8 +50,6 @@ export class AttachmentController {
     return ApiRes.fromEntity(AttachmentUploadResponse.fromEntity(attachment))
   }
 
-  @ApiBearerAuth()
-  @UseGuards(LoggedInGuard)
   @Get()
   async findAttachment(
     @Query() attachmentFindRequest: AttachmentFindRequest,
