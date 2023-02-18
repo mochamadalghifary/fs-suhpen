@@ -3,14 +3,14 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Route } from '../Enums/Route'
 
-const Home: React.FC = () => {
+const Unauthorized: React.FC = () => {
   const navigate = useNavigate()
 
   return (
     <Result
-      status="500"
-      title="500"
-      subTitle="Slicing Home"
+      status="403"
+      title="403"
+      subTitle="Unauthorized"
       extra={
         <Button onClick={() => navigate(Route.Login)} type="primary">
           Login
@@ -19,4 +19,4 @@ const Home: React.FC = () => {
     />
   )
 }
-export default Home
+export default Unauthorized

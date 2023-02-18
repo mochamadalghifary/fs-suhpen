@@ -16,8 +16,6 @@ const { Sider, Content } = Layout
 const MainLayout: React.FC<IProps> = ({ children }: IProps) => {
   const { user } = useUser()
 
-  if (!user) return null
-
   return (
     <Layout style={{ height: '100vh' }}>
       <Sider
