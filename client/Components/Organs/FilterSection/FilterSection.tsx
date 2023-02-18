@@ -83,7 +83,6 @@ export const FilterSection = (props: IFilterSection) => {
           onChange={(e) => setValue(e.target.value)}
           value={value}
           allowClear
-          style={{ width: 'auto' }}
         />
       </Col>
     </Row>
