@@ -45,12 +45,7 @@ const Register: React.FC = () => {
             <Input />
           </Form.Item>
 
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[formRule.email]}
-            required
-          >
+          <Form.Item label="Email" name="email" rules={[formRule.email]}>
             <Input type="email" />
           </Form.Item>
 
@@ -58,7 +53,6 @@ const Register: React.FC = () => {
             label="Password"
             name="password"
             rules={[formRule.password]}
-            required
           >
             <Input.Password type="password" />
           </Form.Item>
@@ -67,7 +61,6 @@ const Register: React.FC = () => {
             label="Password Confirmation"
             name="passwordConfirmation"
             rules={[formRule.password]}
-            required
           >
             <Input.Password type="password" />
           </Form.Item>

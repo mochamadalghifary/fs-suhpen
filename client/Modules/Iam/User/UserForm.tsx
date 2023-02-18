@@ -1,5 +1,5 @@
 import { UserCreateRequest } from '@server/modules/iam/user/infrastructure/user.request'
-import { Button, Form, Input } from 'antd'
+import { Button, Divider, Form, Input } from 'antd'
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
@@ -55,25 +55,45 @@ const UserForm: React.FC = () => {
           <Attachment total={1} />
         </Form.Item>
 
-        <Form.Item
-          label="Name"
-          name="name"
-          rules={[formRule.required]}
-          required
-        >
+        <Form.Item label="Name" name="name" rules={[formRule.required]}>
           <Input />
         </Form.Item>
 
         {!id && (
-          <Form.Item
-            label="Email"
-            name="email"
-            rules={[formRule.email]}
-            required
-          >
-            <Input type="email" />
-          </Form.Item>
+          <>
+            <Form.Item label="Email" name="email" rules={[formRule.email]}>
+              <Input type="email" />
+            </Form.Item>
+
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[formRule.password]}
+              required
+            >
+              <Input.Password type="password" />
+            </Form.Item>
+
+            <Form.Item
+              label="Password Confirmation"
+              name="passwordConfirmation"
+              rules={[formRule.password]}
+              required
+            >
+              <Input.Password type="password" />
+            </Form.Item>
+          </>
         )}
+
+        <Divider />
+
+        <Form.Item label="Phone Number" name="phoneNumber">
+          <Input />
+        </Form.Item>
+
+        <Form.Item label="Address" name="address">
+          <Input />
+        </Form.Item>
       </FormContainer>
     </>
   )
