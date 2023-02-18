@@ -1,8 +1,8 @@
 import { AuthLoginRequest } from '@server/modules/iam/auth/infrastructure/auth.request'
 import { Button, Form, Input } from 'antd'
-import Title from 'antd/es/typography/Title'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
 import { Section } from '../../../Components/Molecules/Section/Section'
 import FormContainer from '../../../Components/Organs/FormContainer/FormContainer'
 import { Route } from '../../../Enums/Route'
@@ -34,7 +34,7 @@ const Login: React.FC = () => {
   return (
     <Section>
       <div style={{ backgroundColor: '#eeeeee', justifyContent: 'center' }}>
-        <Title>Login</Title>
+        <PageHeader title="Login" />
         <FormContainer
           onFinish={onFinish}
           form={form}

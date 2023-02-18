@@ -28,62 +28,51 @@ const Register: React.FC = () => {
 
   return (
     <Section>
-      <PageHeader title="Register" />
-      <FormContainer
-        onFinish={onFinish}
-        form={form}
-        layout="vertical"
-        centered
-        buttonAction={[
-          <Button type="primary" htmlType="submit" disabled={isLoading}>
-            Register
-          </Button>,
-        ]}
-      >
-        <Form.Item label="Name" name="name" required>
-          <Input />
-        </Form.Item>
-
-        <Form.Item label="Email" name="email" rules={[formRule.email]} required>
-          <Input type="email" />
-        </Form.Item>
-
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[formRule.password]}
-          required
+      <div style={{ backgroundColor: '#eeeeee', justifyContent: 'center' }}>
+        <PageHeader title="Register" />
+        <FormContainer
+          onFinish={onFinish}
+          form={form}
+          layout="vertical"
+          centered
+          buttonAction={[
+            <Button type="primary" htmlType="submit" disabled={isLoading}>
+              Register
+            </Button>,
+          ]}
         >
-          <Input.Password type="password" />
-        </Form.Item>
+          <Form.Item label="Name" name="name" required>
+            <Input />
+          </Form.Item>
 
-        <Form.Item
-          label="Password Confirmation"
-          name="passwordConfirmation"
-          rules={[formRule.password]}
-          required
-        >
-          <Input.Password type="password" />
-        </Form.Item>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[formRule.email]}
+            required
+          >
+            <Input type="email" />
+          </Form.Item>
 
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[formRule.password]}
-          required
-        >
-          <Input.Password type="password" />
-        </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[formRule.password]}
+            required
+          >
+            <Input.Password type="password" />
+          </Form.Item>
 
-        <Form.Item
-          label="Password Confirmation"
-          name="passwordConfirmation"
-          rules={[formRule.password]}
-          required
-        >
-          <Input.Password type="password" />
-        </Form.Item>
-      </FormContainer>
+          <Form.Item
+            label="Password Confirmation"
+            name="passwordConfirmation"
+            rules={[formRule.password]}
+            required
+          >
+            <Input.Password type="password" />
+          </Form.Item>
+        </FormContainer>
+      </div>
     </Section>
   )
 }
