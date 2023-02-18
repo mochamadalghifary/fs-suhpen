@@ -51,6 +51,6 @@ export const config = {
   },
 
   assets: {
-    storage: process.env.ASSETS_STORAGE || '/uploads/',
+    storage: process.env.ASSETS_STORAGE || '/public/uploads',
   },
 }

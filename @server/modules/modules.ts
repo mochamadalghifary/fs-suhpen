@@ -3,5 +3,5 @@ export enum Modules {
   Users = 'users',
   Roles = 'roles',
   Profile = 'profile',
-  Attachment = 'attachment',
+  Attachment = 'attachments',
 }

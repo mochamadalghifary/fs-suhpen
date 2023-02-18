@@ -30,11 +30,11 @@ const THIS_MODULE = Modules.Attachment
 
 @Controller(THIS_MODULE)
 @ApiTags(THIS_MODULE)
-@ApiBearerAuth()
-@UseGuards(LoggedInGuard)
 export class AttachmentController {
   constructor(private readonly attachmentService: AttachmentService) {}
 
+  @ApiBearerAuth()
+  @UseGuards(LoggedInGuard)
   @Get(':filePath')
   findUploadedAttachment(@Param('filePath') file: string, @Res() res: any) {
     return res.sendFile(file, {
@@ -54,6 +54,8 @@ export class AttachmentController {
     return ApiRes.fromEntity(AttachmentUploadResponse.fromEntity(attachment))
   }
 
+  @ApiBearerAuth()
+  @UseGuards(LoggedInGuard)
   @Get()
   async findAttachment(
     @Query() attachmentFindRequest: AttachmentFindRequest,

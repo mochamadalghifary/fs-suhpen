@@ -1,5 +1,5 @@
 import { ApiProperty, PickType } from '@nestjs/swagger'
-import { IsNotEmpty, IsString } from 'class-validator'
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator'
 
 export class AttachmentFindRequest {
   @IsNotEmpty()
@@ -7,10 +7,10 @@ export class AttachmentFindRequest {
   @ApiProperty()
   fileUrl: string
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @ApiProperty()
-  module: string
+  module?: string
 }
 
 export class AttachmentUploadRequest extends PickType(AttachmentFindRequest, [

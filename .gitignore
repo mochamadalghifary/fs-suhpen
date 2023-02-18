@@ -2,7 +2,7 @@
 .env
 
 #Assets
-/uploads
+/public
 
 # compiled output
 /dist

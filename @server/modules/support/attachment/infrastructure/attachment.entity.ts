@@ -7,6 +7,6 @@ export class EttAttachment extends BaseEntity implements IAttachment {
   @Column()
   fileUrl: string
 
-  @Column()
-  module: string
+  @Column({ nullable: true })
+  module?: string
 }

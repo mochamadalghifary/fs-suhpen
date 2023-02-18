@@ -14,6 +14,7 @@ export const Route = {
 
   Home: '/',
   Dashboard: '/dashboard',
+
   Login: '/auth/login',
   Register: '/auth/register',
   Logout: '/auth/logout',
@@ -27,6 +28,8 @@ export const Route = {
   UserDetail: '/users/:id',
   UserForm: '/users/save',
   UserEdit: '/users/save/:id',
+
+  Attachment: '/attachments',
 
   // <--- Feature --->
 }

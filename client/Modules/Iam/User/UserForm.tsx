@@ -3,6 +3,7 @@ import { Button, Form, Input } from 'antd'
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
+import Attachment from '../../../Components/Organs/Attachment/Attachment'
 import FormContainer from '../../../Components/Organs/FormContainer/FormContainer'
 import { Route } from '../../../Enums/Route'
 import { formRule } from '../../../utils/form.rules'
@@ -27,8 +28,8 @@ const UserForm: React.FC = () => {
     const data = form.getFieldsValue()
 
     try {
-      id && (await userAction.update(data)) && alert('Success update data')
       !id && (await userAction.create(data)) && alert('Success create data')
+      id && (await userAction.update(data)) && alert('Success update data')
       setIsLoading(false)
       navigate(Route.Users)
     } catch (e) {
@@ -50,6 +51,10 @@ const UserForm: React.FC = () => {
           </Button>,
         ]}
       >
+        <Form.Item label="Avatar" name="avatar">
+          <Attachment total={1} />
+        </Form.Item>
+
         <Form.Item
           label="Name"
           name="name"
