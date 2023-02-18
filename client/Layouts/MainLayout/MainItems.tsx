@@ -1,4 +1,8 @@
-import { DashboardOutlined, UsergroupAddOutlined } from '@ant-design/icons'
+import {
+  DashboardOutlined,
+  UsergroupAddOutlined,
+  UserSwitchOutlined,
+} from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 import { ERole } from '../../Modules/Iam/Role/Role.enum'
 
@@ -31,6 +35,11 @@ const itemsRoleAdministrator: MenuItem[] =
           key: Route.Users,
           label: <Link to={Route.Users}>User</Link>,
           icon: <UsergroupAddOutlined />,
+        },
+        {
+          key: Route.Roles,
+          label: <Link to={Route.Roles}>Role</Link>,
+          icon: <UserSwitchOutlined />,
         },
       ]
     : []

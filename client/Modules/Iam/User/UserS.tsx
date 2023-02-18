@@ -12,7 +12,7 @@ import { ERole } from '../Role/Role.enum'
 import { userAction } from './user.action'
 import { usersColumns } from './users.columns'
 
-const Users: React.FC = () => {
+const UserS: React.FC = () => {
   const [props, setProps] = React.useState<IPaginateResponse<UserResponse>>()
   const fetch = async () => setProps(await userAction.fetch(query))
   const { setQueryParams, query, status } = useTableFilter<UserIndexRequest>()
@@ -40,7 +40,6 @@ const Users: React.FC = () => {
         }}
         columns={usersColumns}
         dataSource={props?.data}
-        rowKey="id"
         search={query.search}
         pagination={paginationTransform(props?.meta)}
         loading={status.isFetching}
@@ -49,4 +48,4 @@ const Users: React.FC = () => {
   )
 }
 
-export default Users
+export default UserS

@@ -8,9 +8,10 @@ import { authAction } from './Modules/Iam/Auth/auth.action'
 import Login from './Modules/Iam/Auth/Login'
 import Register from './Modules/Iam/Auth/Register'
 import Profile from './Modules/Iam/Profile/Profile'
+import RoleS from './Modules/Iam/Role/RoleS'
 import UserDetail from './Modules/Iam/User/UserDetail'
 import UserForm from './Modules/Iam/User/UserForm'
-import Users from './Modules/Iam/User/Users'
+import UserS from './Modules/Iam/User/UserS'
 import NotFound from './Modules/NotFound'
 import Unauthorized from './Modules/Unauthorized'
 
@@ -40,10 +41,14 @@ const Routers: React.FC = () => (
 
             {/* <--- User ---> */}
 
-            <Route path={HttpRoute.Users} element={<Users />} />
+            <Route path={HttpRoute.Users} element={<UserS />} />
             <Route path={HttpRoute.UserForm} element={<UserForm />} />
             <Route path={HttpRoute.UserDetail} element={<UserDetail />} />
             <Route path={HttpRoute.UserEdit} element={<UserForm />} />
+
+            {/* <--- Role ---> */}
+
+            <Route path={HttpRoute.Roles} element={<RoleS />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

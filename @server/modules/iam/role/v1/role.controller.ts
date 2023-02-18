@@ -5,7 +5,8 @@ import { ApiRes } from '@server/infrastructure/interfaces/api.response'
 import { ERole } from '@server/modules/iam/role/infrastructure/role.enum'
 import { Modules } from '@server/modules/modules'
 import { AdminGuard } from '../../auth/common/admin.guard'
-import { IAppRole } from '../infrastructure/role.interface'
+import { IRole } from '../infrastructure/role.interface'
+import { RoleResponse } from '../infrastructure/role.response'
 import { RoleService } from '../infrastructure/role.service'
 
 const THIS_MODULE = Modules.Roles
@@ -18,16 +19,16 @@ export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
   @Get()
-  async find(): Promise<IApiRes<IAppRole[]>> {
+  async find(): Promise<IApiRes<IRole[]>> {
     const res = await this.roleService.find()
-    return ApiRes.fromEntity(res)
+    return ApiRes.fromEntity(RoleResponse.fromEntities(res))
   }
 
   @Get(':name')
   async findOne(
     @Query('name') name: ERole,
-  ): Promise<IApiRes<IAppRole | undefined>> {
+  ): Promise<IApiRes<IRole | undefined>> {
     const res = await this.roleService.findOne(name)
-    return ApiRes.fromEntity(res)
+    return ApiRes.fromEntity(RoleResponse.fromEntity(res))
   }
 }
