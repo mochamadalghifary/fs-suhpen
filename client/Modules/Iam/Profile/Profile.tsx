@@ -31,18 +31,18 @@ const Profile: React.FC = () => {
           <Descriptions.Item label="Name">
             {props?.data?.name}
           </Descriptions.Item>
-          <Descriptions.Item label="Email">
-            {props?.data?.email}
-          </Descriptions.Item>
-          <Descriptions.Item label="Phone Number">
-            {props?.data?.phoneNumber}
-          </Descriptions.Item>
           <Descriptions.Item label="Role">
             {props?.data.role == ERole.Administrator ? (
               <Tag color="blue">{props?.data.role}</Tag>
             ) : (
               <Tag color="green">{props?.data.role}</Tag>
             )}
+          </Descriptions.Item>
+          <Descriptions.Item label="Email">
+            {props?.data?.email}
+          </Descriptions.Item>
+          <Descriptions.Item label="Phone Number">
+            {props?.data?.phoneNumber}
           </Descriptions.Item>
           <Descriptions.Item label="Address">
             {props?.data?.address}
