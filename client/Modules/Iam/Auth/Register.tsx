@@ -18,8 +18,8 @@ const Register: React.FC = () => {
 
     try {
       await form.validateFields()
-      const user = await authAction.login(data)
-      user && location.replace(Route.Dashboard)
+      const res = await authAction.register(data)
+      res.data && location.replace(Route.Dashboard)
       setIsLoading(false)
     } catch (e) {
       setIsLoading(false)

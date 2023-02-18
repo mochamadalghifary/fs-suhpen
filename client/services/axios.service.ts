@@ -13,9 +13,11 @@ export const axiosService = {
         params,
       })
 
+      axiosService.catch(data)
+
       return data
     } catch (error) {
-      alert(error)
+      alert(error.response.data.message)
       return error
     }
   },
@@ -32,9 +34,11 @@ export const axiosService = {
         },
       })
 
+      axiosService.catch(data)
+
       return data
     } catch (error) {
-      isCatch && alert(error)
+      !isCatch && alert(error.response.data.message)
       return error
     }
   },
@@ -51,9 +55,11 @@ export const axiosService = {
         },
       })
 
+      axiosService.catch(data)
+
       return data
     } catch (error) {
-      isCatch && alert(error)
+      !isCatch && alert(error.response.data.message)
       return error
     }
   },
@@ -66,10 +72,16 @@ export const axiosService = {
         },
       })
 
+      axiosService.catch(data)
+
       return data
     } catch (error) {
-      alert(error)
+      alert(error.response.data.message)
       return error
     }
+  },
+
+  catch: (res: any): void => {
+    !res.data && alert(res.response.data.message)
   },
 }

@@ -1,3 +1,4 @@
+import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
 import {
   AuthLoginRequest,
   AuthRegisterRequest,
@@ -13,13 +14,14 @@ export const authAction = {
   login: async (req: AuthLoginRequest): Promise<UserResponse> => {
     const data = await axiosService.post(Route.Login, req, false)
     const user = data?.data
-    !user && alert('Wrong email or password')
     localStorage.setItem('_accessToken', user._accessToken || '')
     localStorage.setItem('user', JSON.stringify(user))
     return user
   },
 
-  register: async (req: AuthRegisterRequest): Promise<UserResponse> => {
+  register: async (
+    req: AuthRegisterRequest,
+  ): Promise<IApiRes<UserResponse>> => {
     return await axiosService.post(Route.Register, req)
   },
 
