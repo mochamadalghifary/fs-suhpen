@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common'
-import { sendMail } from '@server/modules/support/mail/mail.service'
-import { MailTemplatePasswordResetLink } from '@server/modules/support/mail/password-reset-link.template'
-import { MailTemplatePasswordResetSuccess } from '@server/modules/support/mail/password-reset-succes.template'
+import { MailService } from '@server/modules/support/mail/infrastructure/mail.service'
 import { MailOptions } from 'nodemailer/lib/json-transport'
 import { IUser } from '../../user/infrastructure/user.interface'
+import { MailTemplatePasswordResetLink } from '../templates/password-reset-link.template'
+import { MailTemplatePasswordResetSuccess } from '../templates/password-reset-succes.template'
 
 @Injectable()
 export class AuthService {
+  constructor(private readonly mailService: MailService) {}
+
   async passwordResetLink(user: IUser, link: string): Promise<boolean> {
     const mailOptions: MailOptions = {
       to: user.email,
@@ -14,7 +16,7 @@ export class AuthService {
       html: MailTemplatePasswordResetLink(user, link),
     }
 
-    sendMail(mailOptions)
+    this.mailService.send(mailOptions)
 
     return true
   }
@@ -26,7 +28,7 @@ export class AuthService {
       html: MailTemplatePasswordResetSuccess(user),
     }
 
-    sendMail(mailOptions)
+    this.mailService.send(mailOptions)
 
     return true
   }

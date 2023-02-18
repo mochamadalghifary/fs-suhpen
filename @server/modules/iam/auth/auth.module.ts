@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { JwtModule } from '@nestjs/jwt'
 import { PassportModule } from '@nestjs/passport'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { MailService } from '@server/modules/support/mail/infrastructure/mail.service'
 import { EttUser } from '../user/infrastructure/user.entity'
 import { UserService } from '../user/infrastructure/user.service'
 import { JwtModuleOption } from './common/jwt-module.config'
@@ -18,7 +19,7 @@ import { AuthController } from './v1/auth.controller'
     JwtModule.registerAsync(JwtModuleOption),
   ],
   controllers: [AuthController, AuthPasswordController],
-  providers: [UserService, AuthApp, JwtStrategy, AuthService],
+  providers: [UserService, AuthApp, JwtStrategy, AuthService, MailService],
   exports: [],
 })
 export class AuthModule {}
