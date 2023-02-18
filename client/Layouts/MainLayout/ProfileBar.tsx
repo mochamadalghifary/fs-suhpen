@@ -34,6 +34,7 @@ const ProfileBar: React.FC<IProps> = (props: IProps) => {
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: '10px 10px',
+          marginBottom: '10px',
         }}
       >
         <Space size="small">

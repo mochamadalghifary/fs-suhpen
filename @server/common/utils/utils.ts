@@ -32,6 +32,13 @@ export class Utils {
     return true
   }
 
+  static fieldCamelToSnake = (model: object): object => {
+    const camelKeys = Object.keys(model)
+    const snakeKeys = camelKeys.map((key) => this.camelToSnake(key))
+
+    return { ...snakeKeys }
+  }
+
   static titleCase = (str: string) => {
     return str
       .split(' ')
@@ -46,12 +53,5 @@ export class Utils {
   static camelToTitle = (str: string) => {
     const result = str.replace(/([A-Z])/g, ' $1')
     return result.charAt(0).toUpperCase() + result.slice(1)
-  }
-
-  static fieldCamelToSnake = (model: object): object => {
-    const camelKeys = Object.keys(model)
-    const snakeKeys = camelKeys.map((key) => this.camelToSnake(key))
-
-    return { ...snakeKeys }
   }
 }
