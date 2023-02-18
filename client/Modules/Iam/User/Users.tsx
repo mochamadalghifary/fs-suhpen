@@ -7,8 +7,8 @@ import DataTable, {
   paginationTransform,
 } from '../../../Components/Organs/DataTable/DataTable'
 import { useTableFilter } from '../../../Components/Organs/DataTable/hooks'
-import { ERole } from '../../../Enums/Role.enum'
 import { Route } from '../../../Enums/Route'
+import { ERole } from '../Role/Role.enum'
 import { userAction } from './user.action'
 import { usersColumns } from './users.columns'
 

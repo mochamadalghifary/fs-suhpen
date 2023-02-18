@@ -1,6 +1,6 @@
 import { DashboardOutlined, UsergroupAddOutlined } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
-import { ERole } from '../../Enums/Role.enum'
+import { ERole } from '../../Modules/Iam/Role/Role.enum'
 
 import React from 'react'
 import { Link } from 'react-router-dom'

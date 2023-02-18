@@ -5,20 +5,27 @@ import { Avatar, Descriptions, Row, Tag } from 'antd'
 import React from 'react'
 import DescriptionContainer from '../../../Components/Molecules/DescriptionContainer/DescriptionContainer'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
+import { ERole } from '../Role/Role.enum'
 import { profileAction } from './profile.action'
 
 const Profile: React.FC = () => {
   const [props, setProps] = React.useState<IApiRes<UserResponse>>()
+  const fetch = async () => setProps(await profileAction.getUserLogged())
 
   React.useEffect(() => {
-    ;(async () => setProps(await profileAction.getUserLogged()))()
+    fetch()
   }, [])
 
   return (
     <>
       <PageHeader title="Profile" />
       <Row>
-        <Avatar size={250} icon={<UserOutlined />} style={{ margin: '32px' }} />
+        <Avatar
+          size={250}
+          icon={<UserOutlined />}
+          style={{ margin: '32px' }}
+          src={props?.data.avatar}
+        />
         <DescriptionContainer>
           <Descriptions.Item label="ID">{props?.data?.id}</Descriptions.Item>
           <Descriptions.Item label="Name">
@@ -31,7 +38,11 @@ const Profile: React.FC = () => {
             {props?.data?.phoneNumber}
           </Descriptions.Item>
           <Descriptions.Item label="Role">
-            <Tag>{props?.data?.role}</Tag>
+            {props?.data.role == ERole.Administrator ? (
+              <Tag color="blue">{props?.data.role}</Tag>
+            ) : (
+              <Tag color="green">{props?.data.role}</Tag>
+            )}
           </Descriptions.Item>
           <Descriptions.Item label="Address">
             {props?.data?.address}

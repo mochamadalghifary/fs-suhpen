@@ -1,35 +1,16 @@
-export type RouteType = {
-  permissions: string[]
-  name: string
-  href: string
-  icon?: any
-}
-
-export type RouteListType = RouteType & {
-  items?: RouteType[]
-}
+import { routesDashboard } from '../Modules/Dashboard/dashboard.route'
+import { routesAuth } from '../Modules/Iam/Auth/auth.route'
+import { routesProfile } from '../Modules/Iam/Profile/profile.route'
+import { routesUser } from '../Modules/Iam/User/user.route'
 
 export const Route = {
-  // <--- IAM --->
-
   Home: '/',
-  Dashboard: '/dashboard',
-
-  Login: '/auth/login',
-  Register: '/auth/register',
-  Logout: '/auth/logout',
-
-  Profile: '/profile',
-  ProfileEdit: '/profile/edit',
-
-  Roles: '/roles',
-
-  Users: '/users',
-  UserDetail: '/users/:id',
-  UserForm: '/users/save',
-  UserEdit: '/users/save/:id',
-
   Attachment: '/attachments',
+
+  ...routesDashboard,
+  ...routesAuth,
+  ...routesProfile,
+  ...routesUser,
 
   // <--- Feature --->
 }

@@ -1,15 +1,13 @@
 import { LogoutOutlined } from '@ant-design/icons'
 import { ConfigProvider, Menu } from 'antd'
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Route } from '../../Enums/Route'
 import { authAction } from '../../Modules/Iam/Auth/auth.action'
 import { sidebarThemeConfig } from '../../utils/theme'
 import { menuItems } from './MainItems'
 
 const Sidebar: React.FC = () => {
-  const navigate = useNavigate()
-
   const activeMenuKey = React.useMemo(
     () => window.location.pathname,
     [window.location.pathname],
@@ -36,7 +34,7 @@ const Sidebar: React.FC = () => {
   ) => {
     event.preventDefault()
     const isConfirm = confirm('Are you sure to logout? ')
-    isConfirm && authAction.logout() && navigate(Route.Login)
+    isConfirm && authAction.logout() && location.replace(Route.Login)
   }
 
   return (

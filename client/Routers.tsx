@@ -23,7 +23,7 @@ const Routers: React.FC = () => (
         <Route path={HttpRoute.Home} element={<Home />} />
         <Route path={HttpRoute.Login} element={<Login />} />
         <Route path={HttpRoute.Register} element={<Register />} />
-        <Route path="*" element={<Unauthorized />} />
+        {!user && <Route path="*" element={<Unauthorized />} />}
       </Routes>
 
       {user && (

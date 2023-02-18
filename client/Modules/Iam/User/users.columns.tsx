@@ -3,8 +3,8 @@ import { Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import React from 'react'
 import { RowActionButtons } from '../../../Components/Molecules/RowActionButtons/RowActionButtons'
-import { ERole } from '../../../Enums/Role.enum'
 import { Route } from '../../../Enums/Route'
+import { ERole } from '../Role/Role.enum'
 import { userAction } from './user.action'
 
 export const usersColumns: ColumnsType<UserResponse> = [
