@@ -25,7 +25,7 @@ const { Header, Sider, Content } = Layout
 const LayoutMain: React.FC<IProps> = ({ children }: IProps) => {
   const { user } = useUser()
   const [isCollapsed, setIsCollapsed] = React.useState(
-    localStorage.getItem('isSidebarCollapsed') == 'true' ? false : true,
+    localStorage.getItem('isSidebarCollapsed') == 'false' ? true : false,
   )
 
   const handleLogout = (
@@ -66,12 +66,7 @@ const LayoutMain: React.FC<IProps> = ({ children }: IProps) => {
         </div>
       </Sider>
       <Layout>
-        <Header
-          style={{
-            height: '9%',
-            background: '#ffffff',
-          }}
-        >
+        <Header style={{ background: '#ffffff' }}>
           <a onClick={handleSidebarCollapse}>
             {isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </a>
