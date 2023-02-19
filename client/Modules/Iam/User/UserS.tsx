@@ -14,19 +14,26 @@ import { usersColumns } from './users.columns'
 
 const UserS: React.FC = () => {
   const [props, setProps] = React.useState<IPaginateResponse<UserResponse>>()
-  const fetch = async () => setProps(await userAction.fetch(query))
   const { setQueryParams, query, status } = useTableFilter<UserIndexRequest>()
+  const fetch = async () => {
+    status.isFetching = true
+    setProps(await userAction.fetch(query))
+    status.isFetching = false
+  }
 
   React.useEffect(() => {
-    status.isFetching = true
     fetch()
-    status.isFetching = false
   }, [query])
 
   return (
     <>
       <PageHeader title="User" hrefCreate={Route.UserForm} />
       <DataTable
+        columns={usersColumns}
+        dataSource={props?.data}
+        search={query.search}
+        pagination={paginationTransform(props?.meta)}
+        loading={status.isFetching}
         filterComponents={[
           { name: 'role', enum: ERole },
           { name: 'dateRangePicker' },
@@ -38,11 +45,6 @@ const UserS: React.FC = () => {
             endAt: dateRangePicker?.[1]?.toISOString(),
           })
         }}
-        columns={usersColumns}
-        dataSource={props?.data}
-        search={query.search}
-        pagination={paginationTransform(props?.meta)}
-        loading={status.isFetching}
       />
     </>
   )

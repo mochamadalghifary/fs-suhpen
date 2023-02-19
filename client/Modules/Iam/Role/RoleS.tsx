@@ -12,14 +12,16 @@ import { rolesColumns } from './roles.columns'
 
 const RoleS: React.FC = () => {
   const [props, setProps] = React.useState<IPaginateResponse<RoleResponse>>()
-  const fetch = async () => setProps(await roleAction.fetch())
   const { status } = useTableFilter<RoleIndexRequest>()
+  const fetch = async () => {
+    status.isFetching = true
+    setProps(await roleAction.fetch())
+    status.isFetching = false
+  }
 
   React.useEffect(() => {
-    status.isFetching = true
     fetch()
-    status.isFetching = false
-  }, [])
+  }, [status])
 
   return (
     <>

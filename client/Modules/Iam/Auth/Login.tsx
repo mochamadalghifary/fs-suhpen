@@ -29,34 +29,36 @@ const Login: React.FC = () => {
     }
   }
 
-  user && navigate(Route.Dashboard)
+  if (user) {
+    navigate(Route.Dashboard)
+    return undefined
+  } else
+    return (
+      <Section>
+        <div style={{ backgroundColor: '#eeeeee', justifyContent: 'center' }}>
+          <PageHeader title="Login" />
+          <FormContainer
+            onFinish={onFinish}
+            form={form}
+            layout="vertical"
+            centered
+            buttonAction={[
+              <Button type="primary" htmlType="submit" disabled={isLoading}>
+                Login
+              </Button>,
+            ]}
+          >
+            <Form.Item label="Email" name="email" rules={[formRule.email]}>
+              <Input type="email" />
+            </Form.Item>
 
-  return (
-    <Section>
-      <div style={{ backgroundColor: '#eeeeee', justifyContent: 'center' }}>
-        <PageHeader title="Login" />
-        <FormContainer
-          onFinish={onFinish}
-          form={form}
-          layout="vertical"
-          centered
-          buttonAction={[
-            <Button type="primary" htmlType="submit" disabled={isLoading}>
-              Login
-            </Button>,
-          ]}
-        >
-          <Form.Item label="Email" name="email" rules={[formRule.email]}>
-            <Input type="email" />
-          </Form.Item>
-
-          <Form.Item label="Password" name="password">
-            <Input.Password type="password" />
-          </Form.Item>
-        </FormContainer>
-      </div>
-    </Section>
-  )
+            <Form.Item label="Password" name="password">
+              <Input.Password type="password" />
+            </Form.Item>
+          </FormContainer>
+        </div>
+      </Section>
+    )
 }
 
 export default Login
