@@ -52,7 +52,7 @@ const itemsRoleAdministrator: MenuItem[] =
       ]
     : []
 
-export const menuItems: MenuItem[] = [
+export const layoutItems: MenuItem[] = [
   ...itemsRoleUser,
   ...itemsRoleAdministrator,
 ]

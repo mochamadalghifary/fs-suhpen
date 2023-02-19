@@ -25,8 +25,8 @@ export class UserResponse extends EttUser {
 export class UserStrictResponse extends UserResponse {
   otpExpiredAt?: Date
 
-  static fromEntity(data: IUser): UserResponse {
-    const res = new UserResponse()
+  static fromEntity(data: IUser): UserStrictResponse {
+    const res = new UserStrictResponse()
     Object.assign(res, data)
 
     delete res.password
@@ -36,7 +36,7 @@ export class UserStrictResponse extends UserResponse {
     return res
   }
 
-  static fromEntities(data: IUser[]): UserResponse[] {
+  static fromEntities(data: IUser[]): UserStrictResponse[] {
     return data.map((data) => this.fromEntity(data))
   }
 }

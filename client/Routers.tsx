@@ -1,13 +1,14 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Route as HttpRoute } from './Enums/Route'
-import MainLayout from './Layouts/MainLayout/MainLayout'
+import LayoutMain from './Layouts/MainLayout/LayoutMain'
 import Dashboard from './Modules/Dashboard/Dashboard'
 import Home from './Modules/Home'
 import { authAction } from './Modules/Iam/Auth/auth.action'
 import Login from './Modules/Iam/Auth/Login'
 import Register from './Modules/Iam/Auth/Register'
 import Profile from './Modules/Iam/Profile/Profile'
+import ProfileForm from './Modules/Iam/Profile/ProfileForm'
 import RoleS from './Modules/Iam/Role/RoleS'
 import UserDetail from './Modules/Iam/User/UserDetail'
 import UserForm from './Modules/Iam/User/UserForm'
@@ -28,7 +29,7 @@ const Routers: React.FC = () => (
       </Routes>
 
       {user && (
-        <MainLayout>
+        <LayoutMain>
           <Routes>
             {/* <--- Dashboard ---> */}
 
@@ -37,7 +38,7 @@ const Routers: React.FC = () => (
             {/* <--- Profile ---> */}
 
             <Route path={HttpRoute.Profile} element={<Profile />} />
-            <Route path={HttpRoute.ProfileEdit} element={<Profile />} />
+            <Route path={HttpRoute.ProfileEdit} element={<ProfileForm />} />
 
             {/* <--- User ---> */}
 
@@ -52,7 +53,7 @@ const Routers: React.FC = () => (
 
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </MainLayout>
+        </LayoutMain>
       )}
     </BrowserRouter>
   </>

@@ -1,7 +1,7 @@
 import { Image } from 'antd'
 import React from 'react'
 
-const ImageCompany: React.FC = () => (
+const LayoutCompanyLogo: React.FC = () => (
   <Image
     src="https://avatars.githubusercontent.com/u/55073493?v=4"
     preview={false}
@@ -14,4 +14,4 @@ const ImageCompany: React.FC = () => (
   />
 )
 
-export default ImageCompany
+export default LayoutCompanyLogo

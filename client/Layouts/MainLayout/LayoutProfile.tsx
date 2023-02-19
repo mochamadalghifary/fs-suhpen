@@ -13,9 +13,9 @@ type IProps = {
 
 const { Text } = Typography
 
-const ProfileBar: React.FC<IProps> = (props: IProps) => {
+const LayoutProfile: React.FC<IProps> = (props: IProps) => {
   return (
-    <Link to={Route.Profile} style={{ width: '100%', marginLeft: '85%' }}>
+    <Link to={Route.Profile} style={{ width: '100%', marginLeft: '80%' }}>
       <Space size="small">
         <Avatar icon={<UserOutlined />} src={props?.user.avatar} />
 
@@ -27,4 +27,4 @@ const ProfileBar: React.FC<IProps> = (props: IProps) => {
   )
 }
 
-export default ProfileBar
+export default LayoutProfile
