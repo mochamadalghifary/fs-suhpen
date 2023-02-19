@@ -1,9 +1,8 @@
 import { AuthLoginRequest } from '@server/modules/iam/auth/infrastructure/auth.request'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Image, Input } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
-import { Section } from '../../../Components/Molecules/Section/Section'
 import FormContainer from '../../../Components/Organs/FormContainer/FormContainer'
 import { Route } from '../../../Enums/Route'
 import { formRule } from '../../../utils/form.rules'
@@ -34,15 +33,36 @@ const Login: React.FC = () => {
     return undefined
   } else
     return (
-      <Section>
-        <div style={{ backgroundColor: '#eeeeee', justifyContent: 'center' }}>
+      <div
+        style={{
+          backgroundColor: '#eeeeee',
+          paddingLeft: '35%',
+          paddingRight: '35%',
+          paddingBottom: '12%',
+          textAlign: 'center',
+        }}
+      >
+        <Image
+          src="https://avatars.githubusercontent.com/u/55073493?v=4"
+          preview={false}
+          style={{ width: '70%' }}
+        />
+        <div
+          style={{
+            backgroundColor: '#ffffff',
+            borderRadius: '10px',
+            padding: '5%',
+          }}
+        >
           <PageHeader title="Login" />
           <FormContainer
             onFinish={onFinish}
             form={form}
             layout="vertical"
-            centered
             buttonAction={[
+              <a onClick={() => navigate(Route.Register)}>
+                Don't have and account? Register
+              </a>,
               <Button type="primary" htmlType="submit" disabled={isLoading}>
                 Login
               </Button>,
@@ -57,7 +77,7 @@ const Login: React.FC = () => {
             </Form.Item>
           </FormContainer>
         </div>
-      </Section>
+      </div>
     )
 }
 

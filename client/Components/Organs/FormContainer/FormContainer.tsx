@@ -46,9 +46,6 @@ const FormContainer = (props: IFormProps): JSX.Element => {
             <ButtonFormAction
               justify={justifyButton}
               buttonAction={buttonAction}
-              style={{
-                marginInlineEnd: isFieldCentered && '25%',
-              }}
             />
           </>
         </Form>
