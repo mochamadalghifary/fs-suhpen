@@ -1,5 +1,5 @@
 import { AuthRegisterRequest } from '@server/modules/iam/auth/infrastructure/auth.request'
-import { Button, Form, Image, Input } from 'antd'
+import { Button, Card, Form, Image, Input } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
@@ -36,9 +36,7 @@ const Register: React.FC = () => {
       <div
         style={{
           backgroundColor: '#eeeeee',
-          paddingLeft: '35%',
-          paddingRight: '35%',
-          paddingBottom: '4%',
+          paddingBottom: '3%',
           textAlign: 'center',
         }}
       >
@@ -47,11 +45,10 @@ const Register: React.FC = () => {
           preview={false}
           style={{ width: '70%' }}
         />
-        <div
+        <Card
           style={{
-            backgroundColor: '#ffffff',
-            borderRadius: '10px',
-            padding: '5%',
+            marginLeft: '30%',
+            marginRight: '30%',
           }}
         >
           <PageHeader title="Register" />
@@ -87,7 +84,7 @@ const Register: React.FC = () => {
               />
             </Form.Item>
           </FormContainer>
-        </div>
+        </Card>
       </div>
     )
 }
