@@ -1,8 +1,8 @@
-import { routesDashboard } from '../Modules/Dashboard/dashboard.route'
-import { routesAuth } from '../Modules/Iam/Auth/auth.route'
-import { routesProfile } from '../Modules/Iam/Profile/profile.route'
-import { routesRole } from '../Modules/Iam/Role/role.route'
-import { routesUser } from '../Modules/Iam/User/user.route'
+import { routesDashboard } from '../Modules/Dashboard/Dashboard.route'
+import { routesAuth } from '../Modules/Iam/Auth/Auth.route'
+import { routesProfile } from '../Modules/Iam/Profile/Profile.route'
+import { routesRole } from '../Modules/Iam/Role/Role.route'
+import { routesUser } from '../Modules/Iam/User/User.route'
 
 export const Route = {
   Home: '/',
