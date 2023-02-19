@@ -1,5 +1,5 @@
 import { AuthRegisterRequest } from '@server/modules/iam/auth/infrastructure/auth.request'
-import { Button, Card, Form, Image, Input } from 'antd'
+import { Button, Card, Col, Form, Image, Input } from 'antd'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
@@ -33,7 +33,7 @@ const Register: React.FC = () => {
     return undefined
   } else
     return (
-      <div
+      <Col
         style={{
           backgroundColor: '#eeeeee',
           paddingBottom: '4%',
@@ -86,7 +86,7 @@ const Register: React.FC = () => {
             </Form.Item>
           </FormContainer>
         </Card>
-      </div>
+      </Col>
     )
 }
 
