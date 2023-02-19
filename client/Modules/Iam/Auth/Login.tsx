@@ -48,12 +48,12 @@ const Login: React.FC = () => {
               </Button>,
             ]}
           >
-            <Form.Item label="Email" name="email" rules={[formRule.email]}>
-              <Input type="email" />
+            <Form.Item name="email" rules={[formRule.email]}>
+              <Input placeholder="Email" type="email" />
             </Form.Item>
 
-            <Form.Item label="Password" name="password">
-              <Input.Password type="password" />
+            <Form.Item name="password">
+              <Input.Password placeholder="Password" type="password" />
             </Form.Item>
           </FormContainer>
         </div>

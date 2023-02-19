@@ -48,28 +48,23 @@ const Register: React.FC = () => {
               </Button>,
             ]}
           >
-            <Form.Item label="Name" name="name" required>
-              <Input />
+            <Form.Item name="name" required>
+              <Input placeholder="Name" />
             </Form.Item>
 
-            <Form.Item label="Email" name="email" rules={[formRule.email]}>
-              <Input type="email" />
+            <Form.Item name="email" rules={[formRule.email]}>
+              <Input placeholder="Email" type="email" />
             </Form.Item>
 
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[formRule.password]}
-            >
-              <Input.Password type="password" />
+            <Form.Item name="password" rules={[formRule.password]}>
+              <Input.Password placeholder="Password" type="password" />
             </Form.Item>
 
-            <Form.Item
-              label="Password Confirmation"
-              name="passwordConfirmation"
-              rules={[formRule.password]}
-            >
-              <Input.Password type="password" />
+            <Form.Item name="passwordConfirmation" rules={[formRule.password]}>
+              <Input.Password
+                placeholder="Password Confirmation"
+                type="password"
+              />
             </Form.Item>
           </FormContainer>
         </div>
