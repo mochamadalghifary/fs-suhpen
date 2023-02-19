@@ -50,15 +50,12 @@ const Profile: React.FC = () => {
           <Descriptions.Item label="Address">
             {props?.data?.address}
           </Descriptions.Item>
+          <Descriptions.Item label="Action">
+            <Button type="primary" onClick={() => navigate(Route.ProfileEdit)}>
+              <EditOutlined />
+            </Button>
+          </Descriptions.Item>
         </DescriptionContainer>
-        <Button
-          type="primary"
-          onClick={() => navigate(Route.ProfileEdit)}
-          style={{ margin: '2%' }}
-        >
-          <EditOutlined />
-          Edit
-        </Button>
       </Row>
     </>
   )
