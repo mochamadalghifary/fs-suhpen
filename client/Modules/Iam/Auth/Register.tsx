@@ -36,19 +36,20 @@ const Register: React.FC = () => {
       <div
         style={{
           backgroundColor: '#eeeeee',
-          paddingBottom: '3%',
+          paddingBottom: '4%',
           textAlign: 'center',
         }}
       >
         <Image
           src="https://avatars.githubusercontent.com/u/55073493?v=4"
           preview={false}
-          style={{ width: '70%' }}
+          style={{ width: '60%' }}
         />
         <Card
           style={{
-            marginLeft: '30%',
-            marginRight: '30%',
+            width: '400px',
+            margin: 'auto',
+            marginTop: '20px',
           }}
         >
           <PageHeader title="Register" />

@@ -36,19 +36,20 @@ const Login: React.FC = () => {
       <div
         style={{
           backgroundColor: '#eeeeee',
-          paddingBottom: '11%',
+          paddingBottom: '12%',
           textAlign: 'center',
         }}
       >
         <Image
           src="https://avatars.githubusercontent.com/u/55073493?v=4"
           preview={false}
-          style={{ width: '70%' }}
+          style={{ width: '60%' }}
         />
         <Card
           style={{
-            marginLeft: '30%',
-            marginRight: '30%',
+            width: '400px',
+            margin: 'auto',
+            marginTop: '20px',
           }}
         >
           <PageHeader title="Login" />
@@ -58,7 +59,7 @@ const Login: React.FC = () => {
             layout="vertical"
             buttonAction={[
               <a onClick={() => navigate(Route.Register)}>
-                Don't have and account? Register
+                Don't have an account? Register
               </a>,
               <Button type="primary" htmlType="submit" disabled={isLoading}>
                 Login
