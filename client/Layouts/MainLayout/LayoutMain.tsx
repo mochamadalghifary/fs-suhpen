@@ -71,11 +71,9 @@ const LayoutMain: React.FC<IProps> = ({ children }: IProps) => {
             {isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </a>
           <LayoutProfile user={user} />
-          <a key="logout">
-            <Link to="#" onClick={handleLogout}>
-              <LogoutOutlined style={{ color: 'red', marginLeft: '1%' }} />
-            </Link>
-          </a>
+          <Link to="#" onClick={handleLogout}>
+            <LogoutOutlined style={{ color: 'red', marginLeft: '1%' }} />
+          </Link>
         </Header>
         <Content
           style={{

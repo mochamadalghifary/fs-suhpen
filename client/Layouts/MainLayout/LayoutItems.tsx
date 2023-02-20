@@ -33,7 +33,7 @@ const itemsRoleAdministrator: MenuItem[] =
   user?.role == ERole.Administrator
     ? [
         {
-          key: Route.Users,
+          key: 'Iam',
           label: 'Iam',
           icon: <IdcardOutlined />,
           children: [
