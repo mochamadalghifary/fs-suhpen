@@ -36,7 +36,7 @@ const Login: React.FC = () => {
       <Col
         style={{
           backgroundColor: '#eeeeee',
-          paddingBottom: '12%',
+          paddingBottom: '150px',
           textAlign: 'center',
         }}
       >
@@ -49,6 +49,7 @@ const Login: React.FC = () => {
           style={{
             width: '400px',
             margin: 'auto',
+            padding: '5px',
             marginTop: '20px',
           }}
         >
