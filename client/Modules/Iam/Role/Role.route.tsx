@@ -6,4 +6,6 @@ export const routesRole = {
   Roles: '/roles',
 }
 
-export default [<Route path={routesRole.Roles} element={<RoleS />} />]
+export default [
+  <Route key={routesRole.Roles} path={routesRole.Roles} element={<RoleS />} />,
+]

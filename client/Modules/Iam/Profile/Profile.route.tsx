@@ -9,6 +9,14 @@ export const routesProfile = {
 }
 
 export default [
-  <Route path={routesProfile.Profile} element={<Profile />} />,
-  <Route path={routesProfile.ProfileEdit} element={<ProfileForm />} />,
+  <Route
+    key={routesProfile.Profile}
+    path={routesProfile.Profile}
+    element={<Profile />}
+  />,
+  <Route
+    key={routesProfile.ProfileEdit}
+    path={routesProfile.ProfileEdit}
+    element={<ProfileForm />}
+  />,
 ]

@@ -7,5 +7,9 @@ export const routesDashboard = {
 }
 
 export default [
-  <Route path={routesDashboard.Dashboard} element={<Dashboard />} />,
+  <Route
+    key={routesDashboard.Dashboard}
+    path={routesDashboard.Dashboard}
+    element={<Dashboard />}
+  />,
 ]

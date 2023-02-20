@@ -10,6 +10,10 @@ export const routesAuth = {
 }
 
 export default [
-  <Route path={routesAuth.Login} element={<Login />} />,
-  <Route path={routesAuth.Register} element={<Register />} />,
+  <Route key={routesAuth.Login} path={routesAuth.Login} element={<Login />} />,
+  <Route
+    key={routesAuth.Register}
+    path={routesAuth.Register}
+    element={<Register />}
+  />,
 ]

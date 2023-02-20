@@ -12,8 +12,20 @@ export const routesUser = {
 }
 
 export default [
-  <Route path={routesUser.Users} element={<UserS />} />,
-  <Route path={routesUser.UserForm} element={<UserForm />} />,
-  <Route path={routesUser.UserDetail} element={<UserDetail />} />,
-  <Route path={routesUser.UserEdit} element={<UserForm />} />,
+  <Route key={routesUser.Users} path={routesUser.Users} element={<UserS />} />,
+  <Route
+    key={routesUser.UserForm}
+    path={routesUser.UserForm}
+    element={<UserForm />}
+  />,
+  <Route
+    key={routesUser.UserDetail}
+    path={routesUser.UserDetail}
+    element={<UserDetail />}
+  />,
+  <Route
+    key={routesUser.UserEdit}
+    path={routesUser.UserEdit}
+    element={<UserForm />}
+  />,
 ]
