@@ -4,6 +4,7 @@ import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
 import Attachment from '../../../Components/Organs/Attachment/Attachment'
+import { getAttachment } from '../../../Components/Organs/Attachment/attachment.util'
 import FormContainer from '../../../Components/Organs/FormContainer/FormContainer'
 import { Route } from '../../../Enums/Route'
 import { formRule } from '../../../utils/form.rules'
@@ -17,6 +18,7 @@ const UserForm: React.FC = () => {
   const fetch = async () => {
     const res = await userAction.findOne(id)
     form.setFieldsValue(res.data)
+    return res
   }
 
   React.useEffect(() => {
@@ -26,6 +28,7 @@ const UserForm: React.FC = () => {
   const onFinish = async () => {
     setIsLoading(true)
     const data = form.getFieldsValue()
+    data.avatar = getAttachment(data.avatar) as string
 
     try {
       !id && (await userAction.create(data)) && alert('Success create data')
@@ -51,8 +54,12 @@ const UserForm: React.FC = () => {
           </Button>,
         ]}
       >
-        <Form.Item label="Avatar" name="avatar">
-          <Attachment total={1} />
+        <Form.Item label="Avatar">
+          <Attachment
+            total={1}
+            name="avatar"
+            defaultValues={[form.getFieldsValue().avatar]}
+          />
         </Form.Item>
 
         <Form.Item label="Name" name="name" rules={[formRule.required]}>

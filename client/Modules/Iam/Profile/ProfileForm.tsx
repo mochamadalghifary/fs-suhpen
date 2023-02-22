@@ -49,8 +49,8 @@ const ProfileForm: React.FC = () => {
           </Button>,
         ]}
       >
-        <Form.Item label="Avatar" name="avatar">
-          <Attachment total={1} />
+        <Form.Item label="Avatar">
+          <Attachment total={1} name="avatar" />
         </Form.Item>
 
         <Form.Item label="Name" name="name" rules={[formRule.required]}>

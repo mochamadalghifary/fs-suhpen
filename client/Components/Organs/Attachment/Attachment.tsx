@@ -1,28 +1,22 @@
 import { PlusOutlined } from '@ant-design/icons'
-import { Modal, Upload } from 'antd'
+import { Form, Modal, Upload } from 'antd'
 import type { RcFile, UploadProps } from 'antd/es/upload'
 import type { UploadFile } from 'antd/es/upload/interface'
 import React from 'react'
 import { Route } from '../../../Enums/Route'
 import { host } from '../../../services/axios.service'
-
-const getBase64 = (file: RcFile): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => resolve(reader.result as string)
-    reader.onerror = (error) => reject(error)
-  })
+import { getBase64 } from './attachment.util'
 
 interface IProps {
   total: number
-  data?: string[]
+  defaultValues?: string[]
+  name: string
 }
 
 const Attachment: React.FC<IProps> = (props: IProps) => {
   const defaultValues = () =>
-    props.data?.length > 0 &&
-    props?.data?.map((data) => {
+    props.defaultValues?.length > 0 &&
+    props.defaultValues?.map((data) => {
       return { uid: data, name: data, url: data }
     })
 
@@ -48,20 +42,23 @@ const Attachment: React.FC<IProps> = (props: IProps) => {
 
   return (
     <>
-      <Upload
-        action={`${host}${Route.Attachment}`}
-        listType="picture-card"
-        onPreview={handlePreview}
-        onChange={handleChange}
-        name={Route.Attachment.substring(1)}
-      >
-        {fileList.length >= props.total ? null : (
-          <>
-            <PlusOutlined />
-            <div> Upload</div>
-          </>
-        )}
-      </Upload>
+      <Form.Item name={props.name}>
+        <Upload
+          action={`${host}${Route.Attachment}`}
+          listType="picture-card"
+          fileList={fileList}
+          onPreview={handlePreview}
+          onChange={handleChange}
+          name={Route.Attachment.substring(1)}
+        >
+          {fileList.length >= props.total ? null : (
+            <>
+              <PlusOutlined />
+              <div> Upload</div>
+            </>
+          )}
+        </Upload>
+      </Form.Item>
       <Modal
         open={previewOpen}
         title={previewTitle}
