@@ -5,8 +5,9 @@ import {
   EditOutlined,
   EyeOutlined,
 } from '@ant-design/icons'
-import { Button, Space, Tooltip } from 'antd'
+import { Space, Tooltip } from 'antd'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 type ButtonType = 'view' | 'edit' | 'delete' | 'check' | 'close'
 
@@ -15,7 +16,6 @@ interface IRowActionButtonsProps {
   href?: string
   onClick?: () => void
   icon?: React.ReactNode
-  disabled?: boolean
 }
 
 interface IRowActionProps {
@@ -24,11 +24,10 @@ interface IRowActionProps {
 
 export const RowActionButtons: React.FC<IRowActionProps> = ({ actions }) => {
   const renderButton = (action: IRowActionButtonsProps) => {
-    const { type, href, onClick, disabled } = action
     let { icon } = action
 
     if (!icon) {
-      switch (type) {
+      switch (action.type) {
         case 'view':
           icon = <EyeOutlined style={{ color: 'green' }} />
           break
@@ -51,15 +50,10 @@ export const RowActionButtons: React.FC<IRowActionProps> = ({ actions }) => {
     }
 
     return (
-      <Tooltip title={type} key={type}>
-        <Button
-          type="text"
-          shape="circle"
-          href={href}
-          onClick={onClick}
-          icon={icon}
-          disabled={disabled}
-        />
+      <Tooltip title={action.type} key={action.type}>
+        <Link to={action.href || ''} onClick={action.onClick}>
+          {icon}
+        </Link>
       </Tooltip>
     )
   }

@@ -39,7 +39,7 @@ export const usersColumns: ColumnsType<UserResponse> = [
   },
   {
     title: 'Action',
-    width: '130px',
+    width: '75px',
     render: (data: UserResponse) => {
       return (
         <RowActionButtons
