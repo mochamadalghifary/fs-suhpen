@@ -40,29 +40,27 @@ export const usersColumns: ColumnsType<UserResponse> = [
   {
     title: 'Action',
     width: '75px',
-    render: (data: UserResponse) => {
-      return (
-        <RowActionButtons
-          actions={[
-            {
-              type: 'view',
-              href: `${Route.Users}/${data.id}`,
+    render: (data: UserResponse) => (
+      <RowActionButtons
+        actions={[
+          {
+            type: 'view',
+            href: `${Route.Users}/${data.id}`,
+          },
+          {
+            type: 'edit',
+            href: `${Route.UserForm}/${data.id}`,
+          },
+          {
+            type: 'delete',
+            onClick: async () => {
+              confirm('Are you sure?') &&
+                (await userAction.remove(data.id)) &&
+                location.reload()
             },
-            {
-              type: 'edit',
-              href: `${Route.UserForm}/${data.id}`,
-            },
-            {
-              type: 'delete',
-              onClick: async () => {
-                confirm('Are you sure?') &&
-                  (await userAction.remove(data.id)) &&
-                  location.reload()
-              },
-            },
-          ]}
-        />
-      )
-    },
+          },
+        ]}
+      />
+    ),
   },
 ]
