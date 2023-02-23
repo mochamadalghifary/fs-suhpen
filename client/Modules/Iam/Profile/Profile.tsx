@@ -1,17 +1,15 @@
-import { EditOutlined, UserOutlined } from '@ant-design/icons'
+import { UserOutlined } from '@ant-design/icons'
 import { IApiRes } from '@server/infrastructure/interfaces/api-responses.interface'
 import { UserResponse } from '@server/modules/iam/user/infrastructure/user.response'
-import { Avatar, Button, Descriptions, Row, Tag } from 'antd'
+import { Avatar, Descriptions, Row, Tag } from 'antd'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import DescriptionContainer from '../../../Components/Molecules/DescriptionContainer/DescriptionContainer'
 import { PageHeader } from '../../../Components/Molecules/Headers/PageHeader'
-import { Route } from '../../../Enums/Route'
 import { ERole } from '../Role/Role.enum'
 import { profileAction } from './profile.action'
 
 const Profile: React.FC = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [props, setProps] = React.useState<IApiRes<UserResponse>>()
   const fetch = async () => setProps(await profileAction.getUserLogged())
 
@@ -27,10 +25,12 @@ const Profile: React.FC = () => {
           size={250}
           icon={<UserOutlined />}
           style={{ margin: '32px' }}
-          src={props?.data.avatar}
+          src={
+            'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcTHxF6ZFN_jdNkcz_AllyoiVGbY0-UY48Tc42sE4hg22hB5AtTRbeSIdDgue-WwL7sLimP1OvgHp39lVIA'
+          }
         />
         <DescriptionContainer>
-          <Descriptions.Item label="ID">{props?.data?.id}</Descriptions.Item>
+          {/* <Descriptions.Item label="ID">{props?.data?.id}</Descriptions.Item> */}
           <Descriptions.Item label="Name">
             {props?.data?.name}
           </Descriptions.Item>
@@ -50,11 +50,11 @@ const Profile: React.FC = () => {
           <Descriptions.Item label="Address">
             {props?.data?.address}
           </Descriptions.Item>
-          <Descriptions.Item label="Action">
+          {/* <Descriptions.Item label="Action">
             <Button type="primary" onClick={() => navigate(Route.ProfileEdit)}>
               <EditOutlined />
             </Button>
-          </Descriptions.Item>
+          </Descriptions.Item> */}
         </DescriptionContainer>
       </Row>
     </>
