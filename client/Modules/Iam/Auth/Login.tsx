@@ -36,14 +36,14 @@ const Login: React.FC = () => {
       <Col
         style={{
           backgroundColor: '#eeeeee',
-          paddingBottom: '150px',
+          paddingBottom: '130px',
           textAlign: 'center',
         }}
       >
         <Image
-          src="https://avatars.githubusercontent.com/u/55073493?v=4"
+          src="https://pelajarinfo.id/wp-content/uploads/2021/03/Universitas-Bangka-Belitung-Logo.png"
           preview={false}
-          style={{ width: '60%' }}
+          style={{ width: '20%' }}
         />
         <Card
           style={{
@@ -59,9 +59,6 @@ const Login: React.FC = () => {
             form={form}
             layout="vertical"
             buttonAction={[
-              <a onClick={() => navigate(Route.Register)}>
-                Don't have an account? Register
-              </a>,
               <Button type="primary" htmlType="submit" disabled={isLoading}>
                 Login
               </Button>,
