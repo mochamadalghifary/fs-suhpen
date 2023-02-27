@@ -4,7 +4,7 @@ import Login from './Login'
 
 export const routesAuth = {
   Login: '/auth/login',
-  // Register: '/auth/register',
+  Register: '/auth/register',
   Logout: '/auth/logout',
 }
 
