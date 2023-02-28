@@ -1,7 +1,7 @@
-import { Image, Layout } from 'antd'
+import { Image, Layout, Typography } from 'antd'
 import { Content, Header } from 'antd/es/layout/layout'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Route } from '../Enums/Route'
 
 const Home: React.FC = () => {
   return (
@@ -9,19 +9,29 @@ const Home: React.FC = () => {
       <Header
         style={{
           background: '#6FAFAB',
-          justifyContent: 'space-around',
         }}
       >
-        <Link to="#">Home</Link>
-        <Link to="#">Profile</Link>
+        <Typography
+          style={{
+            float: 'right',
+            backgroundColor: '#ffffff',
+            paddingTop: '4px',
+            paddingLeft: '16px',
+            paddingRight: '16px',
+            paddingBottom: '4px',
+            margin: '14px',
+            borderRadius: '8px',
+          }}
+        >
+          <a href={Route.Login}>Login</a>
+        </Typography>
       </Header>
-      <Content
-        style={{
-          padding: '20px 20px',
-          overflow: 'auto',
-        }}
-      >
-        <Image src="https://suhpen.up.railway.app/images/home.jpg" />
+      <Content>
+        <Image
+          src="https://suhpen.up.railway.app/images/home.jpg"
+          preview={false}
+          width="100%"
+        />
       </Content>
     </Layout>
   )
