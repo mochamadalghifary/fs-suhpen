@@ -15,7 +15,13 @@ const { Text } = Typography
 
 const LayoutProfile: React.FC<IProps> = (props: IProps) => {
   return (
-    <Link to={Route.Profile} style={{ width: '100%', marginLeft: '80%' }}>
+    <Link
+      to={Route.Profile}
+      style={{
+        width: '100%',
+        marginLeft: '80%',
+      }}
+    >
       <Space size="small">
         <Avatar
           icon={<UserOutlined />}

@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
         </Card>
         <Card
           title="45 C"
-          style={{ margin: '10px', backgroundColor: '#f1959b' }}
+          style={{ margin: '10px', backgroundColor: '#F75964' }}
         >
           Danger
         </Card>

@@ -24,7 +24,7 @@ export const sidebarThemeConfig: ThemeConfig = {
       colorItemTextHover: themeColors.primary,
       colorItemBgHover: '#daf1ff',
       fontSize: 14,
-      colorItemBg: '#ffffff',
+      colorItemBg: '#6FAFAB',
     },
   },
 }

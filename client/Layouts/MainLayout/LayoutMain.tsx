@@ -66,7 +66,7 @@ const LayoutMain: React.FC<IProps> = ({ children }: IProps) => {
         </div>
       </Sider>
       <Layout>
-        <Header style={{ background: '#ffffff' }}>
+        <Header style={{ background: '#6FAFAB' }}>
           <a onClick={handleSidebarCollapse}>
             {isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </a>
