@@ -36,7 +36,7 @@ const Login: React.FC = () => {
       <Col
         style={{
           backgroundColor: '#eeeeee',
-          paddingBottom: '108px',
+          paddingBottom: '128px',
           textAlign: 'center',
           backgroundImage:
             'url("http://suhpen.up.railway.app/images/login.jpg")',
@@ -45,14 +45,13 @@ const Login: React.FC = () => {
         <Image
           src="https://pelajarinfo.id/wp-content/uploads/2021/03/Universitas-Bangka-Belitung-Logo.png"
           preview={false}
-          style={{ width: '20%', opacity: '0%' }}
+          style={{ width: '16%', marginTop: '50px', marginBottom: '20px' }}
         />
         <Card
           style={{
             border: '2px solid #007fd0',
             width: '400px',
             margin: 'auto',
-            marginTop: '50px',
           }}
         >
           <PageHeader title="Login" />
