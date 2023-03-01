@@ -8,7 +8,7 @@ const Home: React.FC = () => {
     <Layout>
       <Header
         style={{
-          background: '#6FAFAB',
+          background: '#ffffff',
         }}
       >
         <Typography
@@ -20,7 +20,8 @@ const Home: React.FC = () => {
             paddingRight: '16px',
             paddingBottom: '4px',
             margin: '14px',
-            borderRadius: '8px',
+            borderRadius: '2px',
+            border: '2px solid #6FAFAB',
           }}
         >
           <a href={Route.Login}>Login</a>
