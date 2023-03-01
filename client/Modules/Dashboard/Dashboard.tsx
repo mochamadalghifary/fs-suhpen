@@ -20,13 +20,13 @@ const Dashboard: React.FC = () => {
           Safe
         </Card>
         <Card
-          title="25 C"
+          title="25° C"
           style={{ margin: '10px', backgroundColor: '#ffea61' }}
         >
           Warning
         </Card>
         <Card
-          title="45 C"
+          title="45° C"
           style={{ margin: '10px', backgroundColor: '#F75964' }}
         >
           Danger
