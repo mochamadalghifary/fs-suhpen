@@ -20,6 +20,16 @@ const itemsRoleUser: MenuItem[] = [
     label: <Link to={Route.Dashboard}>Dashboard</Link>,
     icon: <DashboardOutlined />,
   },
+  {
+    key: 'Menu 1',
+    label: <Link to="#">Menu 1</Link>,
+    icon: <DashboardOutlined />,
+  },
+  {
+    key: 'Menu 2',
+    label: <Link to="#">Menu 2</Link>,
+    icon: <DashboardOutlined />,
+  },
 ]
 
 // const itemsRoleAdministrator: MenuItem[] =
