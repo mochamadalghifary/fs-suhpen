@@ -36,21 +36,23 @@ const Login: React.FC = () => {
       <Col
         style={{
           backgroundColor: '#eeeeee',
-          paddingBottom: '130px',
+          paddingBottom: '108px',
           textAlign: 'center',
+          backgroundImage:
+            'url("http://suhpen.up.railway.app/images/login.jpg")',
         }}
       >
         <Image
           src="https://pelajarinfo.id/wp-content/uploads/2021/03/Universitas-Bangka-Belitung-Logo.png"
           preview={false}
-          style={{ width: '20%' }}
+          style={{ width: '20%', opacity: '0%' }}
         />
         <Card
           style={{
+            border: '2px solid #007fd0',
             width: '400px',
             margin: 'auto',
-            padding: '5px',
-            marginTop: '20px',
+            marginTop: '50px',
           }}
         >
           <PageHeader title="Login" />
