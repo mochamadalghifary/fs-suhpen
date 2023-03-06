@@ -13,9 +13,7 @@ const Profile: React.FC = () => {
           size={250}
           icon={<UserOutlined />}
           style={{ margin: '32px' }}
-          src={
-            'https://pelajarinfo.id/wp-content/uploads/2021/03/Universitas-Bangka-Belitung-Logo.png'
-          }
+          src={'https://suhpen.up.railway.app/images/profile.jpg'}
         />
         <DescriptionContainer>
           <Descriptions.Item label="Name">ANNISA PRATIWI</Descriptions.Item>

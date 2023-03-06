@@ -25,9 +25,7 @@ const LayoutProfile: React.FC<IProps> = (props: IProps) => {
       <Space size="small">
         <Avatar
           icon={<UserOutlined />}
-          src={
-            'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcTHxF6ZFN_jdNkcz_AllyoiVGbY0-UY48Tc42sE4hg22hB5AtTRbeSIdDgue-WwL7sLimP1OvgHp39lVIA'
-          }
+          src={'https://suhpen.up.railway.app/images/profile.jpg'}
         />
 
         <Space.Compact direction="vertical" size="small">
