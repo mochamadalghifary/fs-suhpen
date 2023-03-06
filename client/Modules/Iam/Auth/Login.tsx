@@ -36,21 +36,22 @@ const Login: React.FC = () => {
       <Col
         style={{
           backgroundColor: '#eeeeee',
-          paddingBottom: '150px',
+          paddingBottom: '128px',
           textAlign: 'center',
+          backgroundImage:
+            'url("http://suhpen.up.railway.app/images/login.jpg")',
         }}
       >
         <Image
-          src="https://avatars.githubusercontent.com/u/55073493?v=4"
+          src="https://pelajarinfo.id/wp-content/uploads/2021/03/Universitas-Bangka-Belitung-Logo.png"
           preview={false}
-          style={{ width: '60%' }}
+          style={{ width: '16%', marginTop: '50px', marginBottom: '20px' }}
         />
         <Card
           style={{
+            border: '2px solid #007fd0',
             width: '400px',
             margin: 'auto',
-            padding: '5px',
-            marginTop: '20px',
           }}
         >
           <PageHeader title="Login" />
@@ -59,9 +60,6 @@ const Login: React.FC = () => {
             form={form}
             layout="vertical"
             buttonAction={[
-              <a onClick={() => navigate(Route.Register)}>
-                Don't have an account? Register
-              </a>,
               <Button type="primary" htmlType="submit" disabled={isLoading}>
                 Login
               </Button>,

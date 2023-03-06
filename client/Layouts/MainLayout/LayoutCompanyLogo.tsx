@@ -3,13 +3,13 @@ import React from 'react'
 
 const LayoutCompanyLogo: React.FC = () => (
   <Image
-    src="https://avatars.githubusercontent.com/u/55073493?v=4"
+    src="https://pelajarinfo.id/wp-content/uploads/2021/03/Universitas-Bangka-Belitung-Logo.png"
     preview={false}
     style={{
       marginTop: '5%',
       marginBottom: '5%',
       width: '50%',
-      marginLeft: '27%',
+      marginLeft: '25%',
     }}
   />
 )

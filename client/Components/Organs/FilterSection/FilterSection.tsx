@@ -1,5 +1,4 @@
-import { SearchOutlined } from '@ant-design/icons'
-import { Col, DatePicker, Form, FormInstance, Input, Row, Select } from 'antd'
+import { Col, DatePicker, Form, FormInstance, Row, Select } from 'antd'
 import React from 'react'
 import { Utils } from '../../../utils/utils'
 
@@ -76,7 +75,7 @@ export const FilterSection = (props: IFilterSection) => {
         </Row>
       </Form>
 
-      <Col flex="auto">
+      {/* <Col flex="auto">
         <Input
           prefix={<SearchOutlined />}
           placeholder="Search"
@@ -84,7 +83,7 @@ export const FilterSection = (props: IFilterSection) => {
           value={value}
           allowClear
         />
-      </Col>
+      </Col> */}
     </Row>
   )
 }

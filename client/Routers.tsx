@@ -1,15 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Route as HttpRoute } from './Enums/Route'
+import { Route as ERoute } from './Enums/Route'
 import LayoutMain from './Layouts/MainLayout/LayoutMain'
+import Dashboard from './Modules/Dashboard/Dashboard'
 import DashboardRoute from './Modules/Dashboard/Dashboard.route'
 import Home from './Modules/Home'
 import { authAction } from './Modules/Iam/Auth/auth.action'
 import AuthRoute from './Modules/Iam/Auth/Auth.route'
 import ProfileRoute from './Modules/Iam/Profile/Profile.route'
-import RoleRoute from './Modules/Iam/Role/Role.route'
-import UserRoute from './Modules/Iam/User/User.route'
-import NotFound from './Modules/NotFound'
 import Unauthorized from './Modules/Unauthorized'
 
 const user = authAction.loggedUser()
@@ -18,19 +16,19 @@ const Routers: React.FC = () => (
   <>
     <BrowserRouter>
       <Routes>
-        <Route path={HttpRoute.Home} element={<Home />} />
+        <Route path={ERoute.Home} element={<Home />} />
         {AuthRoute}
         {!user && <Route path="*" element={<Unauthorized />} />}
       </Routes>
 
-      {user && (
+      {user && location.pathname != ERoute.Home && (
         <LayoutMain>
           <Routes>
             {DashboardRoute}
             {ProfileRoute}
-            {UserRoute}
-            {RoleRoute}
-            <Route path="*" element={<NotFound />} />
+            {/* {UserRoute}
+            {RoleRoute} */}
+            <Route path="*" element={<Dashboard />} />
           </Routes>
         </LayoutMain>
       )}

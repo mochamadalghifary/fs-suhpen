@@ -35,7 +35,7 @@ const LayoutMain: React.FC<IProps> = ({ children }: IProps) => {
   ) => {
     event.preventDefault()
     const isConfirm = confirm('Are you sure to logout? ')
-    isConfirm && authAction.logout() && location.replace(Route.Login)
+    isConfirm && authAction.logout() && location.replace(Route.Home)
   }
 
   const handleSidebarCollapse = () => {
@@ -66,7 +66,7 @@ const LayoutMain: React.FC<IProps> = ({ children }: IProps) => {
         </div>
       </Sider>
       <Layout>
-        <Header style={{ background: '#ffffff' }}>
+        <Header style={{ background: '#6FAFAB' }}>
           <a onClick={handleSidebarCollapse}>
             {isCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </a>
