@@ -1,18 +1,30 @@
 # Rancang Bangun Alat Monitoring Penetasan Penyu Semi-Alami "TURTLE HOUSE" Di Pulau Buku Limau, Belitung Timur
-Website ini merupakan website yang dikembangkan untuk memonitoring penyu semi alami di Pulau Buku Limau, Belitung.
+**Website ini merupakan website yang dikembangkan untuk memonitoring penyu semi alami di Pulau Buku Limau, Belitung.**
+
+**Nama**     : 
+Annisa Pratiwi
+
+**NIM**      : 
+2072011022
+
+**Angkatan** : 
+2020
+
+**Jurusan**  : 
+Ilmu Kelautan
 
 ## Detail Requirement
 
-Bahasa pemrograman :
+* Bahasa pemrograman :
 Javascript/Typescript
 
-Framework frontend :
+* Framework frontend :
 ReactJs
 
-Framework backend  :
+* Framework backend  :
 NestJs
 
-Server Hosting     :
+* Server Hosting     :
 https://vercel.app
 ## Berikut Link untuk akses code halaman web :
 
